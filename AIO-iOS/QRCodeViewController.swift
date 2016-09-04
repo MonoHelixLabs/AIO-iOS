@@ -61,8 +61,8 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     func setManualEnterMode() {
         
-        enterCodeButton.selected = true
-        scanQRButton.selected = false
+        enterCodeButton.highlighted = false
+        scanQRButton.highlighted = true
         messageLabel.hidden = true
         manualEnterStackView.hidden = false
         saveCodeTextButton.hidden = false
@@ -72,11 +72,18 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     func setQRScanningMode() {
         
-        enterCodeButton.selected = false
-        scanQRButton.selected = true
+        enterCodeButton.highlighted = true
+        scanQRButton.highlighted = false
         messageLabel.text = noQRmessage
         messageLabel.hidden = false
         manualEnterStackView.hidden = true
+    }
+    
+    func showAIOKeySaveAlert(aiokey: String) {
+        
+        let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: {(action) -> Void in self.moveToMainTab()}))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func onEnterCodePress(sender: UIButton) {
@@ -93,10 +100,52 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
         
-        let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: {(action) -> Void in self.moveToMainTab()}))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        showAIOKeySaveAlert(aiokey)
 
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if captureSession?.running == true {
+            
+            // Change size of the view containing the video preview
+            videoPreviewLayer?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height-100)
+            
+            // Change video orientation
+            changeVideoOrientation()
+            
+        }
+    }
+    
+    func changeVideoOrientation() {
+        
+        if let connection =  self.videoPreviewLayer?.connection  {
+            let previewLayerConnection : AVCaptureConnection = connection
+            if (previewLayerConnection.supportsVideoOrientation)
+            {
+                previewLayerConnection.videoOrientation = getVideoOrientation()
+            }
+        }
+    }
+    
+    func getVideoOrientation() ->AVCaptureVideoOrientation {
+        
+        let currentDevice: UIDevice = UIDevice.currentDevice()
+        let orientation: UIDeviceOrientation = currentDevice.orientation
+        
+        switch (orientation)
+            {
+            case .Portrait:
+                return AVCaptureVideoOrientation.Portrait
+            case .LandscapeRight:
+                return AVCaptureVideoOrientation.LandscapeLeft
+            case .LandscapeLeft:
+                return AVCaptureVideoOrientation.LandscapeRight
+            case .PortraitUpsideDown:
+                return AVCaptureVideoOrientation.PortraitUpsideDown
+            default:
+                return AVCaptureVideoOrientation.Portrait
+            }
     }
     
     
@@ -129,8 +178,10 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            //videoPreviewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.Portrait
+            changeVideoOrientation()
             videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-            videoPreviewLayer?.frame = CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height-200) //view.layer.bounds
+            videoPreviewLayer?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height-100) //view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
             
             // Start video capture
@@ -187,9 +238,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 
                 UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
                 
-                let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: {(action) -> Void in self.moveToMainTab()}))
-                self.presentViewController(alertController, animated: true, completion: nil)
+                showAIOKeySaveAlert(aiokey)
                 
             }
         }

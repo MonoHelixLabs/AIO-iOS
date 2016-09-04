@@ -17,17 +17,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     // TO-DO: manage storage of images and the ability to add new images
     
+    // TO-DO: get historical data when clicking on one of the feeds (i.e. do the request for getting the historical data); also have option to view data for last hour, last 24 hours, or last month
+    
+    // TO-DO: scenes combining different sensors (for example a heatmap of temperatures)
     
     override func viewDidLoad() {
         
         NSUserDefaults.standardUserDefaults().synchronize()
-                
-        let label = UILabel(frame: CGRect(x: 0, y: 25, width: self.view.frame.width, height: 50))
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "Adafruit IO Feeds"
-        self.view.addSubview(label)
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
         
-        let frame:CGRect = CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height-200)
+        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
+        
+        refreshFeedData(self)
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        updateTableView(size.height,w: size.width)
+    }
+    
+    
+    func updateTableView(h: CGFloat, w: CGFloat) {
+    
+        if tableView != nil {
+            self.tableView?.removeFromSuperview()
+            self.refreshControl.removeFromSuperview()
+        }
+        
+        let frame:CGRect = CGRect(x: 0, y: 75, width: w, height: h-150)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
@@ -35,15 +55,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshFeedData:", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView?.addSubview(refreshControl) // not required when using UITableViewController
-        
+        self.tableView?.addSubview(refreshControl)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        refreshFeedData(self)
-    }
-    
     
     func refreshFeedData(sender:AnyObject) {
         self.items.removeAllObjects();
@@ -70,11 +83,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-    // TO-DO: get historical data when clicking on one of the feeds (i.e. do the request for getting the historical data); also have option to view data for last hour, last 24 hours, or last month
-    
-    
-    // TO-DO: fridge heatmap
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL") //as? UITableViewCell
         
@@ -87,15 +95,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let feedname: AnyObject = feed["name"].string {
                     
             if feed["description"].string == "temperature" {
-                //cell?.imageView?.image = tmpImage
                 cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f321",radix:16)!)))
             }
             else if feed["description"].string == "scale" {
-                //cell?.imageView?.image = milkImage
                 cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f37c",radix:16)!)))
             }
             else if feed["description"].string == "humidity" {
-                //cell?.imageView?.image = humImage
                 cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f4a7",radix:16)!)))
             }
             else {
@@ -113,7 +118,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             else {
                 cell!.textLabel?.text = (cell!.textLabel?.text)! + "Connection problem."
             }
-            //cell?.imageView?.image = warImage
         }
         return cell!
     }
