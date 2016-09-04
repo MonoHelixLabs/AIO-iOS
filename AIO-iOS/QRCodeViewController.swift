@@ -1,6 +1,9 @@
 //
 //  QRCodeViewController.swift
-//  MyFridge
+//  AIO-iOS
+//
+//  Code for reading QR codes is based on the following article:
+//  https://www.appcoda.com/qr-code-reader-swift/
 //
 //  Created by Paula Petcu on 9/3/16.
 //  Copyright © 2016 monohelix. All rights reserved.
@@ -11,7 +14,18 @@ import AVFoundation
 
 class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
+    
+    @IBOutlet var enterCodeButton: UIButton!
+    @IBOutlet var codeTextField: UITextField!
+    @IBOutlet var saveCodeTextButton: UIButton!
+    @IBOutlet var manualEnterStackView: UIStackView!
+    @IBOutlet var helpTextLabel: UILabel!
+    @IBOutlet var enterModeStackView: UIStackView!
+    
+    @IBOutlet var scanQRButton: UIButton!
     @IBOutlet var messageLabel: UILabel!
+    
+    var noQRmessage = "No QR code is detected"
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
@@ -22,6 +36,73 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        helpTextLabel.text = String(Character(UnicodeScalar(Int("2754",radix:16)!))) + " In order to view your feeds from Adafruit IO you will have to provide your AIO key. You can find this key on the io.adafruit.com website. \n\n  You can enter the key manually here or use the Scan QR button below to scan the QR code of your AIO key."
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        stopRecording()
+        setManualEnterMode()
+        
+        codeTextField.text = UserDefaultsManager.sharedInstance.getAIOkey()
+
+    }
+    
+    
+    func stopRecording() {
+        
+        if captureSession?.running == true {
+            captureSession?.stopRunning()
+            videoPreviewLayer?.removeFromSuperlayer()
+            qrCodeFrameView?.removeFromSuperview()
+        }
+    }
+    
+    func setManualEnterMode() {
+        
+        enterCodeButton.selected = true
+        scanQRButton.selected = false
+        messageLabel.hidden = true
+        manualEnterStackView.hidden = false
+        saveCodeTextButton.hidden = false
+        enterCodeButton.hidden = false
+        
+    }
+    
+    func setQRScanningMode() {
+        
+        enterCodeButton.selected = false
+        scanQRButton.selected = true
+        messageLabel.text = noQRmessage
+        messageLabel.hidden = false
+        manualEnterStackView.hidden = true
+    }
+    
+    @IBAction func onEnterCodePress(sender: UIButton) {
+        
+        stopRecording()
+        setManualEnterMode()
+        
+    }
+    
+    @IBAction func onCodeSavePress(sender: UIButton) {
+        
+        let aiokey = codeTextField.text! as String
+        codeTextField.endEditing(true)
+        
+        UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
+        
+        let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: {(action) -> Void in self.moveToMainTab()}))
+        self.presentViewController(alertController, animated: true, completion: nil)
+
+    }
+    
+    
+    @IBAction func onScanPress(sender: UIButton) {
+        
+        setQRScanningMode()
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
@@ -49,7 +130,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-            videoPreviewLayer?.frame = view.layer.bounds
+            videoPreviewLayer?.frame = CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height-200) //view.layer.bounds
             view.layer.addSublayer(videoPreviewLayer!)
             
             // Start video capture
@@ -65,21 +146,16 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 view.bringSubviewToFront(qrCodeFrameView)
             }
             
-            // Move the message label to the top view
+            // Move the message label and the buttons to the top view
             view.bringSubviewToFront(messageLabel)
+            view.bringSubviewToFront(enterModeStackView)
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
             print(error)
             return
         }
-
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
@@ -87,7 +163,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRectZero
-            messageLabel.text = "No QR code is detected"
+            messageLabel.text = noQRmessage
             return
         }
         
@@ -107,15 +183,13 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 let aiokey = metadataObj.stringValue
                 messageLabel.text = aiokey
                 
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(aiokey, forKey: "aiokey")
-                NSUserDefaults.standardUserDefaults().synchronize()
+                stopRecording()
                 
-                captureSession?.stopRunning()
+                UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
                 
                 let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-                self.presentViewController(alertController, animated: true, completion: moveToMainTab)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: {(action) -> Void in self.moveToMainTab()}))
+                self.presentViewController(alertController, animated: true, completion: nil)
                 
             }
         }

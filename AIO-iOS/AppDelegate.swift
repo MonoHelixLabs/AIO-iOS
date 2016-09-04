@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MyFridge
+//  AIO-iOS
 //
 //  Created by Paula Petcu on 9/3/16.
 //  Copyright © 2016 monohelix. All rights reserved.

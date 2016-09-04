@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  MyFridge
+//  AIO-iOS
 //
 //  Created by Paula Petcu on 9/3/16.
 //  Copyright © 2016 monohelix. All rights reserved.
@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     // TO-DO: manage storage of images and the ability to add new images
     
-    //override func viewWillAppear(animated: Bool) {
+    
     override func viewDidLoad() {
         
         NSUserDefaults.standardUserDefaults().synchronize()
@@ -37,14 +37,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         refreshControl.addTarget(self, action: "refreshFeedData:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(refreshControl) // not required when using UITableViewController
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
         refreshFeedData(self)
     }
+    
     
     func refreshFeedData(sender:AnyObject) {
         self.items.removeAllObjects();
         RestApiManager.sharedInstance.getLatestData { (json: JSON) in
             let feeds: JSON = json
-            for (key, subJson) in feeds {
+            for (_, subJson) in feeds {
                 if let feed: AnyObject = subJson.object {
                     self.items.addObject(feed)
                     self.items.sortUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)])
@@ -93,8 +98,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 //cell?.imageView?.image = humImage
                 cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f4a7",radix:16)!)))
             }
+            else {
+                cell!.textLabel?.text = " "
+            }
             
-            cell!.textLabel?.text = (cell!.textLabel?.text)! + (feedname as! String) + ": " + feed["last_value"].string!
+            cell!.textLabel?.text = (cell!.textLabel?.text)! + " " + (feedname as! String) + ": " + feed["last_value"].string!
 
         }
         else {

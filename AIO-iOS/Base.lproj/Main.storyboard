@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Sensors-->
@@ -36,11 +37,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JpH-et-Jaz" userLabel="Enter Mode Stack View">
+                                <rect key="frame" x="0.0" y="521" width="600" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-FG-2V8">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <state key="normal" title="Enter Code"/>
+                                        <connections>
+                                            <action selector="onEnterCodePress:" destination="MC2-7i-Wz2" eventType="touchUpInside" id="2Tw-jJ-EBa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3r-1o-ei8">
+                                        <rect key="frame" x="300" y="0.0" width="300" height="30"/>
+                                        <state key="normal" title="Scan QR"/>
+                                        <connections>
+                                            <action selector="onScanPress:" destination="MC2-7i-Wz2" eventType="touchUpInside" id="XhS-co-pe9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="jNa-FG-2V8" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="top" id="0um-46-J00"/>
+                                    <constraint firstItem="H3r-1o-ei8" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="top" id="2hN-vk-BH5"/>
+                                    <constraint firstItem="H3r-1o-ei8" firstAttribute="leading" secondItem="jNa-FG-2V8" secondAttribute="trailing" id="GMT-m9-kPW"/>
+                                    <constraint firstAttribute="trailing" secondItem="H3r-1o-ei8" secondAttribute="trailing" id="VBC-3c-Qir"/>
+                                    <constraint firstAttribute="bottom" secondItem="H3r-1o-ei8" secondAttribute="bottom" id="W6R-KV-Oge"/>
+                                    <constraint firstItem="jNa-FG-2V8" firstAttribute="leading" secondItem="JpH-et-Jaz" secondAttribute="leading" id="lHw-sl-f7h"/>
+                                    <constraint firstAttribute="bottom" secondItem="jNa-FG-2V8" secondAttribute="bottom" id="mno-A8-OrB"/>
+                                    <constraint firstItem="H3r-1o-ei8" firstAttribute="leading" secondItem="jNa-FG-2V8" secondAttribute="trailing" id="pMA-AV-O8J"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Ur-dwU" userLabel="Manual Enter Stack View">
+                                <rect key="frame" x="0.0" y="28" width="600" height="246"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HelpTextLabel" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7F-S4-5bj">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="cMZ-HO-ZUa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.45602912303664922" green="0.45602912303664922" blue="0.45602912303664922" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adafruit IO key:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaO-2h-Jdj">
+                                        <rect key="frame" x="0.0" y="150" width="600" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="zzb-MM-JTE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PeY-Sm-LYp">
+                                        <rect key="frame" x="0.0" y="186" width="600" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwo-iG-rsq">
+                                        <rect key="frame" x="0.0" y="216" width="600" height="30"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="onCodeSavePress:" destination="MC2-7i-Wz2" eventType="touchUpInside" id="UG8-xo-zgl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No QR code is detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-eW-Sxy">
-                                <rect key="frame" x="0.0" y="515" width="600" height="36"/>
+                                <rect key="frame" x="0.0" y="486" width="600" height="36"/>
                                 <color key="backgroundColor" red="0.75409031413612571" green="0.75409031413612571" blue="0.75409031413612571" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="UYp-VQ-w87"/>
+                                    <constraint firstAttribute="height" constant="36" id="Tyz-fJ-Bjd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,14 +115,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="1I4-eW-Sxy" secondAttribute="trailing" id="8qJ-wo-eYU"/>
-                            <constraint firstItem="1I4-eW-Sxy" firstAttribute="bottom" secondItem="SA8-Aj-xKB" secondAttribute="top" id="fNE-bq-W95"/>
-                            <constraint firstItem="1I4-eW-Sxy" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leading" id="t9u-hC-zzX"/>
+                            <constraint firstAttribute="trailing" secondItem="1I4-eW-Sxy" secondAttribute="trailing" id="4a0-Xc-dAu"/>
+                            <constraint firstItem="SA8-Aj-xKB" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="bottom" id="A94-ck-Qv7"/>
+                            <constraint firstItem="KhD-Ur-dwU" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leadingMargin" constant="-20" id="Gsx-Kf-QA3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JpH-et-Jaz" secondAttribute="trailing" constant="-20" id="LpI-M2-Ht0"/>
+                            <constraint firstItem="JpH-et-Jaz" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leadingMargin" constant="-20" id="Njk-1C-2OK"/>
+                            <constraint firstItem="1I4-eW-Sxy" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leading" id="X2f-Eg-fP7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KhD-Ur-dwU" secondAttribute="trailing" constant="-20" id="ZIj-hL-Gcc"/>
+                            <constraint firstItem="SA8-Aj-xKB" firstAttribute="top" secondItem="1I4-eW-Sxy" secondAttribute="bottom" constant="29" id="a1I-EL-kfJ"/>
+                            <constraint firstItem="KhD-Ur-dwU" firstAttribute="top" secondItem="dup-Yz-Xcj" secondAttribute="bottom" constant="8" symbolic="YES" id="eKF-i1-apX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="QR Code" image="apikey.png" id="bOf-B3-nIF"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="AIO Key" image="apikey.png" id="bOf-B3-nIF"/>
                     <connections>
+                        <outlet property="codeTextField" destination="PeY-Sm-LYp" id="9Ma-tk-Txi"/>
+                        <outlet property="enterCodeButton" destination="jNa-FG-2V8" id="uIa-SG-Jx8"/>
+                        <outlet property="enterModeStackView" destination="JpH-et-Jaz" id="w1O-ft-i8T"/>
+                        <outlet property="helpTextLabel" destination="u7F-S4-5bj" id="f2y-b3-tNK"/>
+                        <outlet property="manualEnterStackView" destination="KhD-Ur-dwU" id="4gQ-Ab-E9S"/>
                         <outlet property="messageLabel" destination="1I4-eW-Sxy" id="YTn-E7-GfG"/>
+                        <outlet property="saveCodeTextButton" destination="hwo-iG-rsq" id="IwQ-HP-lP5"/>
+                        <outlet property="scanQRButton" destination="H3r-1o-ei8" id="gi3-jO-qd6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WQ-9y-WAY" userLabel="First Responder" sceneMemberID="firstResponder"/>

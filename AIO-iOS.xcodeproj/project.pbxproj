@@ -11,6 +11,7 @@
 		DA0294891D7B6AAA00CD56CB /* apikey.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0294881D7B6AAA00CD56CB /* apikey.png */; };
 		DA02948B1D7B6AB100CD56CB /* sensors.png in Resources */ = {isa = PBXBuildFile; fileRef = DA02948A1D7B6AB100CD56CB /* sensors.png */; };
 		DA02948D1D7B80FB00CD56CB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA02948C1D7B80FB00CD56CB /* Settings.bundle */; };
+		DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
 		DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */; };
 		DA2528AE1D7AD20800EA6B6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AD1D7AD20800EA6B6B /* ViewController.swift */; };
 		DA2528B11D7AD20800EA6B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2528AF1D7AD20800EA6B6B /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		DA0294881D7B6AAA00CD56CB /* apikey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apikey.png; sourceTree = SOURCE_ROOT; };
 		DA02948A1D7B6AB100CD56CB /* sensors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sensors.png; sourceTree = SOURCE_ROOT; };
 		DA02948C1D7B80FB00CD56CB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "AIO-iOS/Settings.bundle"; sourceTree = "<group>"; };
+		DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA2528AD1D7AD20800EA6B6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				DA2528B71D7AD20800EA6B6B /* Info.plist */,
 				DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */,
 				DA0294861D7B5A9100CD56CB /* QRCodeViewController.swift */,
+				DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */,
 			);
 			path = "AIO-iOS";
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			files = (
 				DA2528C01D7AD52E00EA6B6B /* SwiftyJSON.swift in Sources */,
 				DA2528AE1D7AD20800EA6B6B /* ViewController.swift in Sources */,
+				DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */,
 				DA2528C21D7AD55700EA6B6B /* RestApiManager.swift in Sources */,
 				DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */,
 				DA0294871D7B5A9100CD56CB /* QRCodeViewController.swift in Sources */,
