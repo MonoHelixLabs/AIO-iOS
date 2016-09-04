@@ -12,14 +12,12 @@
 import UIKit
 import AVFoundation
 
-class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UITextFieldDelegate {
 
     
     @IBOutlet var enterCodeButton: UIButton!
     @IBOutlet var codeTextField: UITextField!
-    @IBOutlet var saveCodeTextButton: UIButton!
     @IBOutlet var manualEnterStackView: UIStackView!
-    @IBOutlet var helpTextLabel: UILabel!
     @IBOutlet var enterModeStackView: UIStackView!
     
     @IBOutlet var scanQRButton: UIButton!
@@ -37,7 +35,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        helpTextLabel.text = String(Character(UnicodeScalar(Int("2754",radix:16)!))) + " In order to view your feeds from Adafruit IO you will have to provide your AIO key. You can find this key on the io.adafruit.com website. \n\n  You can enter the key manually here or use the Scan QR button below to scan the QR code of your AIO key."
+        self.codeTextField.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,7 +63,6 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         scanQRButton.highlighted = true
         messageLabel.hidden = true
         manualEnterStackView.hidden = false
-        saveCodeTextButton.hidden = false
         enterCodeButton.hidden = false
         
     }
@@ -91,17 +88,6 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         stopRecording()
         setManualEnterMode()
         
-    }
-    
-    @IBAction func onCodeSavePress(sender: UIButton) {
-        
-        let aiokey = codeTextField.text! as String
-        codeTextField.endEditing(true)
-        
-        UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
-        
-        showAIOKeySaveAlert(aiokey)
-
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -248,6 +234,20 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         self.tabBarController!.selectedIndex = 0
     }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //self.view.endEditing(true)
+        //return false
+        
+        let aiokey = codeTextField.text! as String
+        codeTextField.endEditing(true)
+        
+        UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
+        
+        showAIOKeySaveAlert(aiokey)
+        
+        return false
+    }
+    
     /*
     // MARK: - Navigation
 
