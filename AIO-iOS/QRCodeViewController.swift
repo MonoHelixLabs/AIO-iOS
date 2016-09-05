@@ -137,6 +137,11 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     @IBAction func onScanPress(sender: UIButton) {
         
+        // Check if we're not already in scanning mode
+        if captureSession?.running == true {
+            return
+        }
+        
         setQRScanningMode()
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
