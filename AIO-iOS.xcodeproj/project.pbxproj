@@ -10,6 +10,7 @@
 		DA0294871D7B5A9100CD56CB /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294861D7B5A9100CD56CB /* QRCodeViewController.swift */; };
 		DA02948D1D7B80FB00CD56CB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA02948C1D7B80FB00CD56CB /* Settings.bundle */; };
 		DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
+		DA0294931D7F26DD00CD56CB /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */; };
 		DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */; };
 		DA2528AE1D7AD20800EA6B6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AD1D7AD20800EA6B6B /* ViewController.swift */; };
 		DA2528B11D7AD20800EA6B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2528AF1D7AD20800EA6B6B /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		DA0294861D7B5A9100CD56CB /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		DA02948C1D7B80FB00CD56CB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "AIO-iOS/Settings.bundle"; sourceTree = "<group>"; };
 		DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailsViewController.swift; sourceTree = "<group>"; };
 		DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA2528AD1D7AD20800EA6B6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */,
 				DA0294861D7B5A9100CD56CB /* QRCodeViewController.swift */,
 				DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */,
+				DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */,
 			);
 			path = "AIO-iOS";
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				DA2528AE1D7AD20800EA6B6B /* ViewController.swift in Sources */,
 				DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */,
 				DA2528C21D7AD55700EA6B6B /* RestApiManager.swift in Sources */,
+				DA0294931D7F26DD00CD56CB /* FeedDetailsViewController.swift in Sources */,
 				DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */,
 				DA0294871D7B5A9100CD56CB /* QRCodeViewController.swift in Sources */,
 			);

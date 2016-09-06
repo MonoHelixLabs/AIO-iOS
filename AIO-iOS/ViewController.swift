@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var refreshControl: UIRefreshControl!
     
+    var selectedFeed: String!
+    
     var imgPrefs:[String:String] = ["temperature":"1f321", "humidity":"1f4a7", "scale":"1f37c", "default":"26AA"]
     
     // TO-DO: manage storage of images and the ability to add new images
@@ -127,5 +129,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+        let feed:JSON =  JSON(self.items[indexPath.row])
+        
+        if let feedname: AnyObject = feed["name"].string {
+            selectedFeed = feedname as! String
+            performSegueWithIdentifier("tableCellDetails", sender: self)
+        }
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "tableCellDetails" {
+            
+            // get a reference to the second view controller
+            let feedDetailsViewController = segue.destinationViewController as! FeedDetailsViewController
+            
+            // set a variable in the second view controller with the data to pass
+            feedDetailsViewController.selectedFeed = selectedFeed
+        }
+    }
     
 }

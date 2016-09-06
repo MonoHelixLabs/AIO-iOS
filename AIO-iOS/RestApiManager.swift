@@ -16,20 +16,34 @@ typealias ServiceResponse = (JSON, NSError?) -> Void
 class RestApiManager: NSObject {
     static let sharedInstance = RestApiManager()
     
-    let baseURL = "https://io.adafruit.com/api/feeds?x-aio-key="
+    let baseURL = "https://io.adafruit.com/api/feeds"
+    
+    let baseURLhistorical1 = "https://io.adafruit.com/api/feeds/"
+    let baseURLhistorical2 = "/data?limit=10"
     
     func getLatestData(onCompletion: (JSON) -> Void) {
         
         let key = UserDefaultsManager.sharedInstance.getAIOkey()
         
-        let route = baseURL + key
-        makeHTTPGetRequest(route, onCompletion: { json, err in
+        let route = baseURL
+        makeHTTPGetRequest(route, key: key, onCompletion: { json, err in
                 onCompletion(json as JSON)
         })
     }
     
-    func makeHTTPGetRequest(path: String, onCompletion: ServiceResponse) {
+    func getHistoricalData(feedname: String, onCompletion: (JSON) -> Void) {
+        
+        let key = UserDefaultsManager.sharedInstance.getAIOkey()
+        
+        let route = baseURLhistorical1 + feedname + baseURLhistorical2
+        makeHTTPGetRequest(route, key: key, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    func makeHTTPGetRequest(path: String, key: String, onCompletion: ServiceResponse) {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
+        request.addValue(key, forHTTPHeaderField: "X-AIO-Key")
         
         let session = NSURLSession.sharedSession()
         

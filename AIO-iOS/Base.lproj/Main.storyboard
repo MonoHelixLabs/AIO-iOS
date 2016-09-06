@@ -17,30 +17,63 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adafruit IO Feeds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqN-LA-ReP">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
-                                <color key="backgroundColor" red="0.3170127761961799" green="0.67873479842460471" blue="0.91528959424083767" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="kWK-tg-sYn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="DqN-LA-ReP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="38U-1F-dEQ"/>
-                            <constraint firstItem="DqN-LA-ReP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="UGs-0H-JMR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DqN-LA-ReP" secondAttribute="trailing" constant="-20" id="W34-MT-NuW"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sensors" image="sensors" id="rZB-eX-Qgo"/>
+                    <navigationItem key="navigationItem" title="Adafruit IO Feeds" id="EEa-du-TOp">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="4a9-nE-Gue"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="FP0-2P-ZMV" kind="show" identifier="tableCellDetails" id="VJf-FT-nqi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387" y="424"/>
+            <point key="canvasLocation" x="2199" y="424"/>
+        </scene>
+        <!--Feed Details-->
+        <scene sceneID="fHk-up-5X1">
+            <objects>
+                <viewController storyboardIdentifier="FeedDetailsViewController" modalTransitionStyle="flipHorizontal" id="FP0-2P-ZMV" userLabel="Feed Details" customClass="FeedDetailsViewController" customModule="AIO_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ONJ-t9-EBS"/>
+                        <viewControllerLayoutGuide type="bottom" id="tWa-3r-Sc7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G9i-k0-RKZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p25-8h-vpT">
+                                <rect key="frame" x="0.0" y="64" width="600" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FeedName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMb-Rg-QRi">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="36"/>
+                                        <color key="backgroundColor" red="0.31701277620000001" green="0.67873479839999995" blue="0.9152895942" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="Li1-LQ-t8e"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p25-8h-vpT" firstAttribute="leading" secondItem="G9i-k0-RKZ" secondAttribute="leadingMargin" constant="-20" id="CcY-bx-bmX"/>
+                            <constraint firstItem="p25-8h-vpT" firstAttribute="top" secondItem="ONJ-t9-EBS" secondAttribute="bottom" id="lZN-Jf-tZ4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p25-8h-vpT" secondAttribute="trailing" constant="-20" id="mXW-wC-pE1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feed Details" id="ByG-o7-Tus"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="feedNameLabel" destination="vMb-Rg-QRi" id="QEL-Vk-Sqx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ovD-lZ-MD1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2883" y="424"/>
         </scene>
         <!--QR Code-->
         <scene sceneID="rtG-MP-Bk2">
@@ -185,13 +218,32 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="5mh-Sd-epU"/>
+                        <segue destination="ndv-un-g4u" kind="relationship" relationship="viewControllers" id="5mh-Sd-epU"/>
                         <segue destination="MC2-7i-Wz2" kind="relationship" relationship="viewControllers" id="nKG-Zn-HYZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLR-tg-gea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="575" y="424"/>
+        </scene>
+        <!--Sensors-->
+        <scene sceneID="FBn-iE-UuG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ndv-un-g4u" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sensors" image="sensors" id="rZB-eX-Qgo"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C36-yI-Gpb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gSJ-fq-nEG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fhR-We-Px0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1387" y="424"/>
         </scene>
     </scenes>
     <resources>
