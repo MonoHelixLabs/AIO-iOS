@@ -15,6 +15,8 @@ class UserDefaultsManager: NSObject {
     let aiokeyString = "aiokey"
     let aiokeyNotFound = ""
     
+    let imgPrefsString = "imageprefs"
+    
     func getAIOkey() -> String {
  
         let prefs = NSUserDefaults.standardUserDefaults()
@@ -29,6 +31,20 @@ class UserDefaultsManager: NSObject {
         defaults.setObject(aiokey, forKey: aiokeyString)
         NSUserDefaults.standardUserDefaults().synchronize()
         
+    }
+    
+    func getImagesPreferences() -> [String:String]{
+        
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let imagePrefs = prefs.dictionaryForKey(imgPrefsString) as! [String: String]
+        return imagePrefs
+    }
+    
+    func setImagesPreferences(prefs: [String:String]) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(prefs, forKey: imgPrefsString)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     

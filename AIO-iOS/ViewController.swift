@@ -14,7 +14,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var items = NSMutableArray()
     
     var refreshControl: UIRefreshControl!
-        
+    
+    var imgPrefs:[String:String] = ["temperature":"1f321", "humidity":"1f4a7", "scale":"1f37c", "default":"26AA"]
+    
     // TO-DO: manage storage of images and the ability to add new images
     
     // TO-DO: get historical data when clicking on one of the feeds (i.e. do the request for getting the historical data); also have option to view data for last hour, last 24 hours, or last month
@@ -23,7 +25,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         
-        NSUserDefaults.standardUserDefaults().synchronize()
+        //NSUserDefaults.standardUserDefaults().synchronize()
+        
+        UserDefaultsManager.sharedInstance.setImagesPreferences(imgPrefs)
+        
     }
     
     
@@ -92,26 +97,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let feed:JSON =  JSON(self.items[indexPath.row])
         
+        let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
+        
         if let feedname: AnyObject = feed["name"].string {
-                    
-            if feed["description"].string == "temperature" {
-                cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f321",radix:16)!)))
-            }
-            else if feed["description"].string == "scale" {
-                cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f37c",radix:16)!)))
-            }
-            else if feed["description"].string == "humidity" {
-                cell!.textLabel?.text = String(Character(UnicodeScalar(Int("1f4a7",radix:16)!)))
+            
+            if let val = imgPrefs[feed["description"].string!] {
+                cell!.textLabel?.text =  getStringFromEmoji(val)
             }
             else {
-                cell!.textLabel?.text = " "
+                cell!.textLabel?.text = getStringFromEmoji("26AA")
             }
             
             cell!.textLabel?.text = (cell!.textLabel?.text)! + " " + (feedname as! String) + ": " + feed["last_value"].string!
 
         }
         else {
-            cell!.textLabel?.text = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
+            cell!.textLabel?.text = getStringFromEmoji("26a0") // warning
             if let error: AnyObject = feed.string {
                 cell!.textLabel?.text = (cell!.textLabel?.text)! + "Connection problem: " + (error as! String)
             }
@@ -120,6 +121,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         return cell!
+    }
+    
+    func getStringFromEmoji(emoji: String) -> String {
+        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
     }
     
     
