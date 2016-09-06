@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -18,11 +19,42 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var tableView:UITableView?
     var histItems = NSMutableArray()
     
+    @IBOutlet var lineChartView: LineChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         feedNameLabel.text = selectedFeed
 
+        //let data = LineChartData()
+        
+        /*let ds1 = LineChartDataSet(values: [1,1,0,1,900,450,1,1,0], label: selectedFeed)
+        ds1.colors = [NSUIColor.blueColor()]
+        data.addDataSet(ds1)
+        self.lineChartView.data = data
+        self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()*/
+        
+        
+        // Do any additional setup after loading the view.
+        /*let ys1 = Array(1..<10).map { x in return sin(Double(x) / 2.0 / 3.141 * 1.5) }
+        let ys2 = Array(1..<10).map { x in return cos(Double(x) / 2.0 / 3.141) }
+        
+        let yse1 = ys1.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
+        let yse2 = ys2.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
+        
+        let data = LineChartData()
+        let ds1 = LineChartDataSet(values: yse1, label: "Hello")
+        ds1.colors = [NSUIColor.redColor()]
+        data.addDataSet(ds1)
+        
+        let ds2 = LineChartDataSet(values: yse2, label: "World")
+        ds2.colors = [NSUIColor.blueColor()]
+        data.addDataSet(ds2)
+        self.lineChartView.data = data
+        
+        self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
+        
+        self.lineChartView.descriptionText = "Linechart Demo"*/
     }
 
     
@@ -42,9 +74,42 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             self.tableView?.reloadData()
                         })
                     }
+                
                 }
             }
+            self.updateChart()
         }
+        
+        
+    }
+    
+    func updateChart() {
+        
+        var ys = [Double]()
+        for histItem in self.histItems {
+            ys.append(Double(histItem["value"] as! String)!)
+        }
+        let yse = ys.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
+        
+        let data = LineChartData()
+        
+        let ds1 = LineChartDataSet(values: yse, label: selectedFeed)
+        ds1.colors = [UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)]
+        ds1.drawCirclesEnabled = false
+        ds1.drawValuesEnabled = false
+        ds1.drawFilledEnabled = true
+        ds1.fillColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
+        ds1.mode = LineChartDataSet.Mode.CubicBezier;
+        ds1.cubicIntensity = 0.2;
+        
+        data.addDataSet(ds1)
+        
+        self.lineChartView.data = data
+        self.lineChartView.rightAxis.enabled = false
+        self.lineChartView.legend.enabled = false
+        self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
+        self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+        self.lineChartView.descriptionText = ""
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -58,7 +123,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             self.tableView?.removeFromSuperview()
         }
         
-        let frame:CGRect = CGRect(x: 0, y: 100, width: w, height: h-150)
+        let frame:CGRect = CGRect(x: 0, y: 350, width: w, height: h-150)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self

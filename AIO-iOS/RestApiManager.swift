@@ -19,7 +19,7 @@ class RestApiManager: NSObject {
     let baseURL = "https://io.adafruit.com/api/feeds"
     
     let baseURLhistorical1 = "https://io.adafruit.com/api/feeds/"
-    let baseURLhistorical2 = "/data?limit=10"
+    let baseURLhistorical2 = "/data?limit=30"
     
     func getLatestData(onCompletion: (JSON) -> Void) {
         
