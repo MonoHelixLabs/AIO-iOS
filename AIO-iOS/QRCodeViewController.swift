@@ -245,8 +245,6 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        //self.view.endEditing(true)
-        //return false
         
         let aiokey = codeTextField.text! as String
         codeTextField.endEditing(true)

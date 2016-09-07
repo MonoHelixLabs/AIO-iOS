@@ -12,6 +12,7 @@ import Charts
 class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var selectedFeed: String!
+    var limit: String!
     
     var tableView:UITableView?
     var histItems = NSMutableArray()
@@ -25,35 +26,6 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
         self.title = selectedFeed
     
-        //let data = LineChartData()
-        
-        /*let ds1 = LineChartDataSet(values: [1,1,0,1,900,450,1,1,0], label: selectedFeed)
-        ds1.colors = [NSUIColor.blueColor()]
-        data.addDataSet(ds1)
-        self.lineChartView.data = data
-        self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()*/
-        
-        
-        // Do any additional setup after loading the view.
-        /*let ys1 = Array(1..<10).map { x in return sin(Double(x) / 2.0 / 3.141 * 1.5) }
-        let ys2 = Array(1..<10).map { x in return cos(Double(x) / 2.0 / 3.141) }
-        
-        let yse1 = ys1.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
-        let yse2 = ys2.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
-        
-        let data = LineChartData()
-        let ds1 = LineChartDataSet(values: yse1, label: "Hello")
-        ds1.colors = [NSUIColor.redColor()]
-        data.addDataSet(ds1)
-        
-        let ds2 = LineChartDataSet(values: yse2, label: "World")
-        ds2.colors = [NSUIColor.blueColor()]
-        data.addDataSet(ds2)
-        self.lineChartView.data = data
-        
-        self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
-        
-        self.lineChartView.descriptionText = "Linechart Demo"*/
     }
 
     
@@ -61,8 +33,15 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
         
+        limit = "50" // default value
+        refreshHistFeedData()
+        
+    }
+    
+    
+    func refreshHistFeedData() {
         self.histItems.removeAllObjects();
-        RestApiManager.sharedInstance.getHistoricalData(selectedFeed) { (json: JSON) in
+        RestApiManager.sharedInstance.getHistoricalData(selectedFeed, limit: limit) { (json: JSON) in
             let history: JSON = json
             for (_, subJson) in history {
                 if let hist: AnyObject = subJson.object {
@@ -73,20 +52,23 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                             self.tableView?.reloadData()
                         })
                     }
-                
+                    
                 }
             }
             self.updateChart()
         }
-        
-        
     }
     
     func updateChart() {
         
+        //let dateFormatter = NSDateFormatter()
+        //dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss.zzzZ" //ex: 2016-09-06T20:09:10.127Z
+        
         var ys = [Double]()
         for histItem in self.histItems {
             ys.append(Double(histItem["value"] as! String)!)
+            //let date = dateFormatter.dateFromString(histItem["created_at"] as! String)
+            
         }
         let yse = ys.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
         
@@ -107,8 +89,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         self.lineChartView.rightAxis.enabled = false
         self.lineChartView.legend.enabled = false
         self.lineChartView.leftAxis.drawGridLinesEnabled = false
-        self.lineChartView.leftAxis.axisMaximum = ys.maxElement()! + 5/100*ys.maxElement()!
-        self.lineChartView.leftAxis.axisMinimum = ys.minElement()! - 5/100*ys.minElement()!
+        self.lineChartView.leftAxis.axisMaximum = ys.maxElement()! + 10/100*(ys.maxElement()!-ys.minElement()!)
+        self.lineChartView.leftAxis.axisMinimum = ys.minElement()! - 10/100*(ys.maxElement()!-ys.minElement()!)
         self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
         self.lineChartView.xAxis.drawAxisLineEnabled = false
         self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
@@ -127,12 +109,15 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             self.tableView?.removeFromSuperview()
         }
         
-        let frame:CGRect = CGRect(x: 0, y: 250, width: w, height: h-350)
-        self.tableView = UITableView(frame: frame)
-        self.tableView?.dataSource = self
-        self.tableView?.delegate = self
-        self.view.addSubview(self.tableView!)
+        // Only show the table if in Portrait
+        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)) {
         
+            let frame:CGRect = CGRect(x: 0, y: 280, width: w, height: h-380)
+            self.tableView = UITableView(frame: frame)
+            self.tableView?.dataSource = self
+            self.tableView?.delegate = self
+            self.view.addSubview(self.tableView!)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,6 +145,25 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         return cell!
     }
 
+    @IBAction func onGranularityChange(sender: UISegmentedControl) {
+        
+        let selectedSegment = sender.selectedSegmentIndex
+        
+        if (selectedSegment == 0) {
+            limit = "50"
+        }
+        else if (selectedSegment == 1) {
+            limit = "100"
+        }
+        else if (selectedSegment == 2) {
+            limit = "200"
+        }
+        else if (selectedSegment == 3) {
+            limit = "500"
+        }
+        
+        refreshHistFeedData()
+    }
     
     
     override func didReceiveMemoryWarning() {
