@@ -11,9 +11,6 @@ import Charts
 
 class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
-    @IBOutlet var feedNameLabel: UILabel!
-    
     var selectedFeed: String!
     
     var tableView:UITableView?
@@ -21,11 +18,13 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet var lineChartView: LineChartView!
     
+    @IBOutlet var feedDetailsView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        feedNameLabel.text = selectedFeed
-
+        self.title = selectedFeed
+    
         //let data = LineChartData()
         
         /*let ds1 = LineChartDataSet(values: [1,1,0,1,900,450,1,1,0], label: selectedFeed)
@@ -107,6 +106,11 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         self.lineChartView.data = data
         self.lineChartView.rightAxis.enabled = false
         self.lineChartView.legend.enabled = false
+        self.lineChartView.leftAxis.drawGridLinesEnabled = false
+        self.lineChartView.leftAxis.axisMaximum = ys.maxElement()! + 5/100*ys.maxElement()!
+        self.lineChartView.leftAxis.axisMinimum = ys.minElement()! - 5/100*ys.minElement()!
+        self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
+        self.lineChartView.xAxis.drawAxisLineEnabled = false
         self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
         self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
         self.lineChartView.descriptionText = ""
@@ -123,7 +127,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             self.tableView?.removeFromSuperview()
         }
         
-        let frame:CGRect = CGRect(x: 0, y: 350, width: w, height: h-150)
+        let frame:CGRect = CGRect(x: 0, y: 250, width: w, height: h-350)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self

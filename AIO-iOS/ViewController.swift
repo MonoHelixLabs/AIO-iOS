@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet var feedTableView: UIView!
+    
     var tableView:UITableView?
     var items = NSMutableArray()
     
@@ -30,7 +32,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //NSUserDefaults.standardUserDefaults().synchronize()
         
         UserDefaultsManager.sharedInstance.setImagesPreferences(imgPrefs)
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
     
@@ -54,11 +59,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.refreshControl.removeFromSuperview()
         }
         
-        let frame:CGRect = CGRect(x: 0, y: 75, width: w, height: h-150)
+        let frame:CGRect = CGRect(x: 0, y: 0, width: w, height: h-150)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.view.addSubview(self.tableView!)
+        self.feedTableView.addSubview(self.tableView!)
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshFeedData:", forControlEvents: UIControlEvents.ValueChanged)
@@ -98,6 +103,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         let feed:JSON =  JSON(self.items[indexPath.row])
+        
+        cell!.accessoryType = .DisclosureIndicator
         
         let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
         

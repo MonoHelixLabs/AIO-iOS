@@ -11,8 +11,8 @@
 		DA02948D1D7B80FB00CD56CB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA02948C1D7B80FB00CD56CB /* Settings.bundle */; };
 		DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
 		DA0294931D7F26DD00CD56CB /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */; };
-		DA0294A31D7F4EBC00CD56CB /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA02949C1D7F4E5900CD56CB /* Charts.framework */; };
-		DA0294A41D7F4EBC00CD56CB /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA02949C1D7F4E5900CD56CB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DA0294C11D7F6A1D00CD56CB /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BA1D7F6A0F00CD56CB /* Charts.framework */; };
+		DA0294C21D7F6A1D00CD56CB /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BA1D7F6A0F00CD56CB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */; };
 		DA2528AE1D7AD20800EA6B6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AD1D7AD20800EA6B6B /* ViewController.swift */; };
 		DA2528B11D7AD20800EA6B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2528AF1D7AD20800EA6B6B /* Main.storyboard */; };
@@ -23,37 +23,37 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DA02949B1D7F4E5900CD56CB /* PBXContainerItemProxy */ = {
+		DA0294B91D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
 			remoteInfo = "Charts-iOS";
 		};
-		DA02949D1D7F4E5900CD56CB /* PBXContainerItemProxy */ = {
+		DA0294BB1D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
 			remoteInfo = "Charts-TV";
 		};
-		DA02949F1D7F4E5900CD56CB /* PBXContainerItemProxy */ = {
+		DA0294BD1D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
 			remoteInfo = "Charts-OSX";
 		};
-		DA0294A11D7F4E5900CD56CB /* PBXContainerItemProxy */ = {
+		DA0294BF1D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
 			remoteInfo = ChartsTests;
 		};
-		DA0294A51D7F4EBC00CD56CB /* PBXContainerItemProxy */ = {
+		DA0294C31D7F6A1D00CD56CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
 			remoteInfo = "Charts-iOS";
@@ -67,7 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DA0294A41D7F4EBC00CD56CB /* Charts.framework in Embed Frameworks */,
+				DA0294C21D7F6A1D00CD56CB /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,7 +79,7 @@
 		DA02948C1D7B80FB00CD56CB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "AIO-iOS/Settings.bundle"; sourceTree = "<group>"; };
 		DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailsViewController.swift; sourceTree = "<group>"; };
-		DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = SOURCE_ROOT; };
+		DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA2528AD1D7AD20800EA6B6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,20 +96,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0294A31D7F4EBC00CD56CB /* Charts.framework in Frameworks */,
+				DA0294C11D7F6A1D00CD56CB /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA0294951D7F4E5900CD56CB /* Products */ = {
+		DA0294B31D7F6A0F00CD56CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA02949C1D7F4E5900CD56CB /* Charts.framework */,
-				DA02949E1D7F4E5900CD56CB /* Charts.framework */,
-				DA0294A01D7F4E5900CD56CB /* Charts.framework */,
-				DA0294A21D7F4E5900CD56CB /* ChartsTests.xctest */,
+				DA0294BA1D7F6A0F00CD56CB /* Charts.framework */,
+				DA0294BC1D7F6A0F00CD56CB /* Charts.framework */,
+				DA0294BE1D7F6A0F00CD56CB /* Charts.framework */,
+				DA0294C01D7F6A0F00CD56CB /* ChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,7 +117,7 @@
 		DA25289F1D7AD20800EA6B6B = {
 			isa = PBXGroup;
 			children = (
-				DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */,
+				DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */,
 				DA02948C1D7B80FB00CD56CB /* Settings.bundle */,
 				DA2528AA1D7AD20800EA6B6B /* AIO-iOS */,
 				DA2528A91D7AD20800EA6B6B /* Products */,
@@ -165,7 +165,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				DA0294A61D7F4EBC00CD56CB /* PBXTargetDependency */,
+				DA0294C41D7F6A1D00CD56CB /* PBXTargetDependency */,
 			);
 			name = "AIO-iOS";
 			productName = MyFridge;
@@ -201,8 +201,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DA0294951D7F4E5900CD56CB /* Products */;
-					ProjectRef = DA0294941D7F4E5900CD56CB /* Charts.xcodeproj */;
+					ProductGroup = DA0294B31D7F6A0F00CD56CB /* Products */;
+					ProjectRef = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -213,32 +213,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DA02949C1D7F4E5900CD56CB /* Charts.framework */ = {
+		DA0294BA1D7F6A0F00CD56CB /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = DA02949B1D7F4E5900CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA0294B91D7F6A0F00CD56CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DA02949E1D7F4E5900CD56CB /* Charts.framework */ = {
+		DA0294BC1D7F6A0F00CD56CB /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = DA02949D1D7F4E5900CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA0294BB1D7F6A0F00CD56CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DA0294A01D7F4E5900CD56CB /* Charts.framework */ = {
+		DA0294BE1D7F6A0F00CD56CB /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = DA02949F1D7F4E5900CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA0294BD1D7F6A0F00CD56CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DA0294A21D7F4E5900CD56CB /* ChartsTests.xctest */ = {
+		DA0294C01D7F6A0F00CD56CB /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = DA0294A11D7F4E5900CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA0294BF1D7F6A0F00CD56CB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -275,10 +275,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DA0294A61D7F4EBC00CD56CB /* PBXTargetDependency */ = {
+		DA0294C41D7F6A1D00CD56CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Charts-iOS";
-			targetProxy = DA0294A51D7F4EBC00CD56CB /* PBXContainerItemProxy */;
+			targetProxy = DA0294C31D7F6A1D00CD56CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -17,12 +17,25 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-i1-XVW" userLabel="FeedTableView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="O1M-i1-XVW" secondAttribute="bottom" id="6zu-0H-5ZH"/>
+                            <constraint firstItem="O1M-i1-XVW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="AbQ-QI-LS8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O1M-i1-XVW" secondAttribute="trailing" constant="-20" id="R5z-SI-Kyr"/>
+                            <constraint firstItem="O1M-i1-XVW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qL2-wl-NPh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Adafruit IO Feeds" id="EEa-du-TOp">
                         <barButtonItem key="backBarButtonItem" title="Back" id="4a9-nE-Gue"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="feedTableView" destination="O1M-i1-XVW" id="FxG-P1-Zgj"/>
                         <segue destination="FP0-2P-ZMV" kind="show" identifier="tableCellDetails" id="VJf-FT-nqi"/>
                     </connections>
                 </viewController>
@@ -42,25 +55,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p25-8h-vpT">
-                                <rect key="frame" x="0.0" y="64" width="600" height="266"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p25-8h-vpT">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FeedName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMb-Rg-QRi">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="36"/>
-                                        <color key="backgroundColor" red="0.31701277620000001" green="0.67873479839999995" blue="0.9152895942" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="Li1-LQ-t8e"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gBk-7c-MFM" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="36" width="600" height="230"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="230"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="230" id="dDA-8u-L7d"/>
                                         </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Orf-yC-Kvd" userLabel="Feed Details View">
+                                        <rect key="frame" x="0.0" y="230" width="600" height="257"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -68,6 +75,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="p25-8h-vpT" firstAttribute="leading" secondItem="G9i-k0-RKZ" secondAttribute="leadingMargin" constant="-20" id="CcY-bx-bmX"/>
+                            <constraint firstItem="tWa-3r-Sc7" firstAttribute="top" secondItem="p25-8h-vpT" secondAttribute="bottom" id="X5d-pf-QKq"/>
                             <constraint firstItem="p25-8h-vpT" firstAttribute="top" secondItem="ONJ-t9-EBS" secondAttribute="bottom" id="lZN-Jf-tZ4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p25-8h-vpT" secondAttribute="trailing" constant="-20" id="mXW-wC-pE1"/>
                         </constraints>
@@ -75,7 +83,7 @@
                     <navigationItem key="navigationItem" title="Feed Details" id="ByG-o7-Tus"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="feedNameLabel" destination="vMb-Rg-QRi" id="QEL-Vk-Sqx"/>
+                        <outlet property="feedDetailsView" destination="Orf-yC-Kvd" id="TbW-Jb-AcA"/>
                         <outlet property="lineChartView" destination="gBk-7c-MFM" id="DhA-fx-2gv"/>
                     </connections>
                 </viewController>
@@ -136,7 +144,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Ur-dwU" userLabel="Manual Enter Stack View">
-                                <rect key="frame" x="40" y="92" width="520" height="200"/>
+                                <rect key="frame" x="40" y="84" width="520" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your AIO Key" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXT-bR-TJ6">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
@@ -175,34 +183,21 @@
                                     </textView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adafruit IO Key" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRF-gh-STO" userLabel="Adafruit IO Key">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
-                                <color key="backgroundColor" red="0.31701277620000001" green="0.67873479839999995" blue="0.9152895942" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="Pzp-Es-nQZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="SRF-gh-STO" secondAttribute="trailing" constant="-20" id="0hV-IQ-Xow"/>
                             <constraint firstAttribute="trailing" secondItem="1I4-eW-Sxy" secondAttribute="trailing" id="4a0-Xc-dAu"/>
-                            <constraint firstItem="KhD-Ur-dwU" firstAttribute="top" secondItem="SRF-gh-STO" secondAttribute="bottom" constant="17" id="9yK-cq-PLN"/>
                             <constraint firstItem="SA8-Aj-xKB" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="bottom" id="A94-ck-Qv7"/>
-                            <constraint firstItem="SRF-gh-STO" firstAttribute="top" secondItem="dup-Yz-Xcj" secondAttribute="bottom" constant="-20" id="JUf-NV-heb"/>
                             <constraint firstItem="KhD-Ur-dwU" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leadingMargin" constant="20" id="Kru-Aq-giO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JpH-et-Jaz" secondAttribute="trailing" constant="-20" id="LpI-M2-Ht0"/>
                             <constraint firstItem="JpH-et-Jaz" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leadingMargin" constant="-20" id="Njk-1C-2OK"/>
-                            <constraint firstItem="SRF-gh-STO" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leadingMargin" constant="-20" id="PFi-Vb-UE2"/>
                             <constraint firstItem="1I4-eW-Sxy" firstAttribute="leading" secondItem="eZn-YF-EQz" secondAttribute="leading" id="X2f-Eg-fP7"/>
                             <constraint firstItem="SA8-Aj-xKB" firstAttribute="top" secondItem="1I4-eW-Sxy" secondAttribute="bottom" constant="29" id="a1I-EL-kfJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KhD-Ur-dwU" secondAttribute="trailing" constant="20" id="gGE-jw-89Y"/>
+                            <constraint firstItem="KhD-Ur-dwU" firstAttribute="top" secondItem="dup-Yz-Xcj" secondAttribute="bottom" constant="20" id="kFV-Yl-RrY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="AIO Key" image="apikey" id="bOf-B3-nIF"/>
+                    <navigationItem key="navigationItem" title="Adafruit IO Key" id="V6B-Vw-dUC"/>
                     <connections>
                         <outlet property="codeTextField" destination="PeY-Sm-LYp" id="9Ma-tk-Txi"/>
                         <outlet property="enterCodeButton" destination="jNa-FG-2V8" id="uIa-SG-Jx8"/>
@@ -214,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WQ-9y-WAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387" y="1215"/>
+            <point key="canvasLocation" x="2199" y="1215"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZX6-ZX-h4C">
@@ -227,7 +222,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="ndv-un-g4u" kind="relationship" relationship="viewControllers" id="5mh-Sd-epU"/>
-                        <segue destination="MC2-7i-Wz2" kind="relationship" relationship="viewControllers" id="nKG-Zn-HYZ"/>
+                        <segue destination="LJS-EQ-ycr" kind="relationship" relationship="viewControllers" id="nKG-Zn-HYZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLR-tg-gea" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -252,6 +247,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhR-We-Px0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1387" y="424"/>
+        </scene>
+        <!--AIO Key-->
+        <scene sceneID="SfT-EF-Icg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LJS-EQ-ycr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="AIO Key" image="apikey" id="bOf-B3-nIF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jt9-1r-8Q2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MC2-7i-Wz2" kind="relationship" relationship="rootViewController" id="bFl-Gn-gHw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Iv-b2-7nh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1387" y="1215"/>
         </scene>
     </scenes>
     <resources>
