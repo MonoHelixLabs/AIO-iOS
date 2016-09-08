@@ -111,7 +111,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="p25-8h-vpT" secondAttribute="trailing" constant="-20" id="mXW-wC-pE1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Feed Details" id="ByG-o7-Tus"/>
+                    <navigationItem key="navigationItem" title="Feed Details" id="ByG-o7-Tus">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QBd-bu-TTu">
+                            <connections>
+                                <action selector="onFeedEditClick:" destination="FP0-2P-ZMV" id="Vax-FM-7e2"/>
+                                <segue destination="ez0-Wb-1W3" kind="show" identifier="editFeed" id="0qr-0S-TYJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="feedDetailsView" destination="Orf-yC-Kvd" id="TbW-Jb-AcA"/>
@@ -121,6 +128,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ovD-lZ-MD1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2883" y="424"/>
+        </scene>
+        <!--Edit Feed-->
+        <scene sceneID="gdL-0R-2E9">
+            <objects>
+                <viewController id="ez0-Wb-1W3" userLabel="Edit Feed" customClass="EditFeedViewController" customModule="AIO_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ccv-1s-LXO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z1n-Yv-Dtc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wcN-TZ-xEH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="199-Zi-2tb">
+                                <rect key="frame" x="40" y="84" width="520" height="206"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Emoji" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbS-AC-nku">
+                                        <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="P5m-yV-6SQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yee-32-3al">
+                                        <rect key="frame" x="0.0" y="50" width="520" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="xb7-RV-0MO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edR-dK-zVn" userLabel="Space">
+                                        <rect key="frame" x="0.0" y="86" width="520" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Fo6-8Q-Rfg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text="You can configure an emoji to use for your feed. This preference will be saved on your phone." translatesAutoresizingMaskIntoConstraints="NO" id="ZvJ-1U-y1m">
+                                        <rect key="frame" x="0.0" y="106" width="520" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="rXZ-WQ-O5g"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.36405840969999997" green="0.36405840969999997" blue="0.36405840969999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="199-Zi-2tb" firstAttribute="leading" secondItem="wcN-TZ-xEH" secondAttribute="leadingMargin" constant="20" id="ERL-Iy-2hH"/>
+                            <constraint firstItem="199-Zi-2tb" firstAttribute="top" secondItem="Ccv-1s-LXO" secondAttribute="bottom" constant="20" id="jjY-Xf-88v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="199-Zi-2tb" secondAttribute="trailing" constant="20" id="tNW-W8-bKv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emojiTextField" destination="yee-32-3al" id="cq6-VQ-Qlm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaA-Cs-Sg9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3560" y="424"/>
         </scene>
         <!--QR Code-->
         <scene sceneID="rtG-MP-Bk2">

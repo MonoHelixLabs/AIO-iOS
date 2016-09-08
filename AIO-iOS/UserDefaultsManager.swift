@@ -47,5 +47,8 @@ class UserDefaultsManager: NSObject {
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
+    func getStringFromEmoji(emoji: String) -> String {
+        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
+    }
     
 }

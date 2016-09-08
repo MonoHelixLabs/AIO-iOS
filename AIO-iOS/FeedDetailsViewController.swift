@@ -17,6 +17,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var tableView:UITableView?
     var histItems = NSMutableArray()
     
+    //var currvalue = ""
+    
     @IBOutlet var lineChartView: LineChartView!
     
     @IBOutlet var feedDetailsView: UIView!
@@ -35,6 +37,17 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         limit = "50" // default value
         refreshHistFeedData()
+        
+        
+        //let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
+        
+        
+        /*if let val = imgPrefs[self.title!] {
+            currvalue =  getStringFromEmoji(val)
+        }
+        else {
+            currvalue = getStringFromEmoji(imgPrefs["default"]!)
+        }*/
         
     }
     
@@ -165,6 +178,35 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         refreshHistFeedData()
     }
     
+    /*func getStringFromEmoji(emoji: String) -> String {
+        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
+    }
+    
+    @IBAction func onFeedEditClick(sender: UIBarButtonItem) {
+        
+        print(self.title)
+        
+        
+        
+        let alertController = UIAlertController(title: self.title, message: "Select feed emoji", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addTextFieldWithConfigurationHandler(addTextField)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func addTextField(textField: UITextField!){
+        // add the text field and make the result global
+        textField.placeholder = currvalue
+    }
+    
+    
+    func checkMaxLength(textField: UITextField!, maxLength: Int) {
+        if (textField.text!.characters.count > maxLength) {
+            textField.deleteBackward()
+        }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -172,14 +214,15 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "editFeed" {
+            
+            // get a reference to the second view controller
+            let editFeedViewController = segue.destinationViewController as! EditFeedViewController
+            
+            // set a variable in the second view controller with the data to pass
+            editFeedViewController.selectedFeed = selectedFeed
+        }
     }
-    */
 
 }

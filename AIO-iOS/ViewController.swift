@@ -19,19 +19,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var selectedFeed: String!
     
-    var imgPrefs:[String:String] = ["temperature":"1f321", "humidity":"1f4a7", "scale":"1f37c", "default":"26AA"]
+    let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
+    let warningEmoji = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
     
-    // TO-DO: manage storage of images and the ability to add new images
-    
-    // TO-DO: get historical data when clicking on one of the feeds (i.e. do the request for getting the historical data); also have option to view data for last hour, last 24 hours, or last month
+    // TO-DO: show historical data over time (use time on xaxis)
     
     // TO-DO: scenes combining different sensors (for example a heatmap of temperatures)
     
     override func viewDidLoad() {
         
-        //NSUserDefaults.standardUserDefaults().synchronize()
-        
-        UserDefaultsManager.sharedInstance.setImagesPreferences(imgPrefs)
+        NSUserDefaults.standardUserDefaults().synchronize()
+                
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
@@ -59,7 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.refreshControl.removeFromSuperview()
         }
         
-        let frame:CGRect = CGRect(x: 0, y: 0, width: w, height: h-150)
+        let frame:CGRect = CGRect(x: 0, y: 0, width: w, height: h-36)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
@@ -110,18 +108,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if let feedname: AnyObject = feed["name"].string {
             
-            if let val = imgPrefs[feed["description"].string!] {
-                cell!.textLabel?.text =  getStringFromEmoji(val)
+            if let val = imgPrefs[feedname as! String] {
+                cell!.textLabel?.text =  val
             }
             else {
-                cell!.textLabel?.text = getStringFromEmoji("26AA")
+                cell!.textLabel?.text = defaultEmoji
             }
             
             cell!.textLabel?.text = (cell!.textLabel?.text)! + " " + (feedname as! String) + ": " + feed["last_value"].string!
 
         }
         else {
-            cell!.textLabel?.text = getStringFromEmoji("26a0") // warning
+            cell!.textLabel?.text = UserDefaultsManager.sharedInstance.getStringFromEmoji(warningEmoji)
             if let error: AnyObject = feed.string {
                 cell!.textLabel?.text = (cell!.textLabel?.text)! + "Connection problem: " + (error as! String)
             }
@@ -130,10 +128,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         return cell!
-    }
-    
-    func getStringFromEmoji(emoji: String) -> String {
-        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
