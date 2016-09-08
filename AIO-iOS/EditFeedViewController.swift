@@ -43,8 +43,8 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
         
         newEmoji = emojiTextField.text! as String
         emojiTextField.endEditing(true)
-        
-        UserDefaultsManager.sharedInstance.setImagesPreferences([selectedFeed:newEmoji])
+                
+        UserDefaultsManager.sharedInstance.addToImagePreferences(selectedFeed,emoji: newEmoji)
         
         return false
     }

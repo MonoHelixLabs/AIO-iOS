@@ -22,10 +22,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
     let warningEmoji = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
     
-    // TO-DO: show historical data over time (use time on xaxis)
-    
-    // TO-DO: scenes combining different sensors (for example a heatmap of temperatures)
-    
     override func viewDidLoad() {
         
         NSUserDefaults.standardUserDefaults().synchronize()
@@ -119,7 +115,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         }
         else {
-            cell!.textLabel?.text = UserDefaultsManager.sharedInstance.getStringFromEmoji(warningEmoji)
+            cell!.textLabel?.text = warningEmoji
             if let error: AnyObject = feed.string {
                 cell!.textLabel?.text = (cell!.textLabel?.text)! + "Connection problem: " + (error as! String)
             }

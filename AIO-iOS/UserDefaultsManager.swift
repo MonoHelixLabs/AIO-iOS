@@ -40,6 +40,14 @@ class UserDefaultsManager: NSObject {
         return imagePrefs
     }
     
+    func addToImagePreferences(feed: String, emoji: String) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        var imagePrefs = prefs.dictionaryForKey(imgPrefsString) as! [String: String]
+        imagePrefs[feed] = emoji
+        setImagesPreferences(imagePrefs)
+        
+    }
+    
     func setImagesPreferences(prefs: [String:String]) {
         
         let defaults = NSUserDefaults.standardUserDefaults()
