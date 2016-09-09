@@ -17,17 +17,19 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var tableView:UITableView?
     var histItems = NSMutableArray()
     
-    //var currvalue = ""
+    let dayTimePeriodFormatter = NSDateFormatter()
     
     @IBOutlet var lineChartView: LineChartView!
     
     @IBOutlet var feedDetailsView: UIView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         self.title = selectedFeed
-    
+        
+        dayTimePeriodFormatter.dateFormat = "MMM dd YYYY HH:mm:ss"
     }
 
     
@@ -37,17 +39,6 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         limit = "50" // default value
         refreshHistFeedData()
-        
-        
-        //let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
-        
-        
-        /*if let val = imgPrefs[self.title!] {
-            currvalue =  getStringFromEmoji(val)
-        }
-        else {
-            currvalue = getStringFromEmoji(imgPrefs["default"]!)
-        }*/
         
     }
     
@@ -59,7 +50,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             for (_, subJson) in history {
                 if let hist: AnyObject = subJson.object {
                     self.histItems.addObject(hist)
-                    self.histItems.sortUsingDescriptors([NSSortDescriptor(key: "id", ascending: true)])
+                    self.histItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: false)])
                     if (self.histItems.count != 0) {
                         dispatch_async(dispatch_get_main_queue(),{
                             self.tableView?.reloadData()
@@ -74,16 +65,19 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func updateChart() {
         
-        //let dateFormatter = NSDateFormatter()
-        //dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss.zzzZ" //ex: 2016-09-06T20:09:10.127Z
+        var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
+        sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
         
+        var xs = [Double]()
         var ys = [Double]()
-        for histItem in self.histItems {
+        var yse = [ChartDataEntry]()
+        for histItem in sortedHistItems {
+            xs.append(histItem["created_epoch"] as! Double)
+            let x = histItem["created_epoch"] as! Double
             ys.append(Double(histItem["value"] as! String)!)
-            //let date = dateFormatter.dateFromString(histItem["created_at"] as! String)
-            
+            let y = Double(histItem["value"] as! String)!
+            yse.append(ChartDataEntry(x: x,y: y))
         }
-        let yse = ys.enumerate().map { x, y in return ChartDataEntry(x: Double(x), y: y) }
         
         let data = LineChartData()
         
@@ -101,11 +95,19 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         self.lineChartView.data = data
         self.lineChartView.rightAxis.enabled = false
         self.lineChartView.legend.enabled = false
+        self.lineChartView.extraLeftOffset = 10
+        self.lineChartView.extraBottomOffset = 10
+        self.lineChartView.extraRightOffset = 10
         self.lineChartView.leftAxis.drawGridLinesEnabled = false
         self.lineChartView.leftAxis.axisMaximum = ys.maxElement()! + 10/100*(ys.maxElement()!-ys.minElement()!)
         self.lineChartView.leftAxis.axisMinimum = ys.minElement()! - 10/100*(ys.maxElement()!-ys.minElement()!)
         self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
+        self.lineChartView.xAxis.setLabelCount(5, force: true)
+        self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         self.lineChartView.xAxis.drawAxisLineEnabled = false
+        let granularity = decideTimeGranularityBasedOnData(xs)
+        self.lineChartView.xAxis.valueFormatter = DateValueFormatter(granularity: granularity)
+        
         self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
         self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
         self.lineChartView.descriptionText = ""
@@ -137,6 +139,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         return self.histItems.count;
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 36
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL") //as? UITableViewCell
@@ -145,15 +150,21 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
         }
         
+        cell!.userInteractionEnabled = false
+        
         let histItem:JSON =  JSON(self.histItems[indexPath.row])
         
-        if let timestamp: AnyObject = histItem["created_at"].string {
-            cell!.textLabel?.text = timestamp as? String
+        if let timestamp: AnyObject = histItem["created_epoch"].double {
+            //cell!.textLabel?.text = timestamp as? String
+            
+            cell!.textLabel?.text = dayTimePeriodFormatter.stringFromDate(NSDate(timeIntervalSince1970: (timestamp as? Double)!))
             
             if let val: AnyObject = histItem["value"].string {
-                cell!.textLabel?.text = (cell!.textLabel?.text)! + (val as! String)
+                cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + (val as! String)
+                cell!.textLabel!.enabled = true
             }
             
+            cell!.textLabel?.font = UIFont(name: "Arial",size:14.0)
         }
         return cell!
     }
@@ -162,51 +173,40 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let selectedSegment = sender.selectedSegmentIndex
         
-        if (selectedSegment == 0) {
+        switch selectedSegment {
+        case 0:
             limit = "50"
-        }
-        else if (selectedSegment == 1) {
+        case 1:
             limit = "100"
-        }
-        else if (selectedSegment == 2) {
+        case 2:
             limit = "200"
-        }
-        else if (selectedSegment == 3) {
+        case 3:
             limit = "500"
+        default:
+            limit = "50"
         }
         
         refreshHistFeedData()
     }
     
-    /*func getStringFromEmoji(emoji: String) -> String {
-        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
-    }
-    
-    @IBAction func onFeedEditClick(sender: UIBarButtonItem) {
+    func decideTimeGranularityBasedOnData(xs: [Double]) -> String {
         
-        print(self.title)
+        let cal = NSCalendar.currentCalendar()
+        let dayCalendarUnit: NSCalendarUnit = [.Day]
+        let dayDifference = cal.components(
+            dayCalendarUnit,
+            fromDate: NSDate(timeIntervalSince1970: (xs.minElement())!),
+            toDate: NSDate(timeIntervalSince1970: (xs.maxElement())!),
+            options: [])
         
-        
-        
-        let alertController = UIAlertController(title: self.title, message: "Select feed emoji", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addTextFieldWithConfigurationHandler(addTextField)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-        self.presentViewController(alertController, animated: true, completion: nil)
-        
-    }
-    
-    func addTextField(textField: UITextField!){
-        // add the text field and make the result global
-        textField.placeholder = currvalue
-    }
-    
-    
-    func checkMaxLength(textField: UITextField!, maxLength: Int) {
-        if (textField.text!.characters.count > maxLength) {
-            textField.deleteBackward()
+        if (dayDifference.day < 1) {
+            return "time"
         }
-    }*/
+        else {
+            return "datetime"
+        }
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
