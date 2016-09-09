@@ -61,8 +61,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZX-TH-HQM" userLabel="Granularity View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-dI-a9X">
-                                                <rect key="frame" x="10" y="14" width="580" height="29"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-dI-a9X">
+                                                <rect key="frame" x="10" y="10" width="580" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="6A1-8B-dK9"/>
                                                 </constraints>
@@ -141,8 +141,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="199-Zi-2tb">
-                                <rect key="frame" x="40" y="84" width="520" height="206"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="199-Zi-2tb">
+                                <rect key="frame" x="40" y="84" width="520" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Emoji" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbS-AC-nku">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
@@ -170,8 +170,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text="You can configure an emoji to use for your feed. This preference will be saved on your phone." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvJ-1U-y1m">
-                                        <rect key="frame" x="0.0" y="106" width="520" height="100"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="You can configure an emoji to use for your feed. This preference will be saved on your phone." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvJ-1U-y1m">
+                                        <rect key="frame" x="0.0" y="106" width="520" height="341"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="rXZ-WQ-O5g"/>
@@ -186,6 +186,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Z1n-Yv-Dtc" firstAttribute="top" secondItem="199-Zi-2tb" secondAttribute="bottom" constant="20" id="07k-MQ-jvb"/>
                             <constraint firstItem="199-Zi-2tb" firstAttribute="leading" secondItem="wcN-TZ-xEH" secondAttribute="leadingMargin" constant="20" id="ERL-Iy-2hH"/>
                             <constraint firstItem="199-Zi-2tb" firstAttribute="top" secondItem="Ccv-1s-LXO" secondAttribute="bottom" constant="20" id="jjY-Xf-88v"/>
                             <constraint firstAttribute="trailingMargin" secondItem="199-Zi-2tb" secondAttribute="trailing" constant="20" id="tNW-W8-bKv"/>

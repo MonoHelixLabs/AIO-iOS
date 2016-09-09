@@ -35,10 +35,10 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         
-        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
-        
         limit = "50" // default value
         refreshHistFeedData()
+        
+        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
         
     }
     
@@ -87,8 +87,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         ds1.drawValuesEnabled = false
         ds1.drawFilledEnabled = true
         ds1.fillColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
-        ds1.mode = LineChartDataSet.Mode.CubicBezier;
-        ds1.cubicIntensity = 0.2;
+        ds1.mode = LineChartDataSet.Mode.CubicBezier
+        ds1.cubicIntensity = 0.2
+        ds1.setDrawHighlightIndicators(false)
         
         data.addDataSet(ds1)
         
@@ -125,8 +126,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         // Only show the table if in Portrait
-        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation)) {
-        
+        if(!UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
+            
             let frame:CGRect = CGRect(x: 0, y: 280, width: w, height: h-380)
             self.tableView = UITableView(frame: frame)
             self.tableView?.dataSource = self
