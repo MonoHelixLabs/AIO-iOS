@@ -98,32 +98,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let feed:JSON =  JSON(self.items[indexPath.row])
         
-        cell!.accessoryType = .DisclosureIndicator
-        
         let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
         
         if let feedname: AnyObject = feed["name"].string {
             
+            cell!.accessoryType = .DisclosureIndicator
+            
             if let val = imgPrefs[feedname as! String] {
-                cell!.textLabel?.text =  val
+                cell!.imageView!.image = getImageFromText(val)
             }
             else {
-                cell!.textLabel?.text = defaultEmoji
+                cell!.imageView!.image = getImageFromText(defaultEmoji)
             }
             
-            cell!.textLabel?.text = (cell!.textLabel?.text)! + " " + (feedname as! String) + ": " + feed["last_value"].string!
+            cell!.textLabel?.text = (feedname as! String) + ": " + feed["last_value"].string!
 
         }
         else {
-            cell!.textLabel?.text = warningEmoji
+            cell!.imageView!.image = getImageFromText(warningEmoji)
             if let error: AnyObject = feed.string {
-                cell!.textLabel?.text = (cell!.textLabel?.text)! + "Connection problem: " + (error as! String)
+                cell!.textLabel?.text = "Connection problem: " + (error as! String)
             }
             else {
-                cell!.textLabel?.text = (cell!.textLabel?.text)! + "Connection problem."
+                cell!.textLabel?.text = "Connection problem."
             }
         }
         return cell!
+    }
+    
+    func getImageFromText(val: String) -> UIImage {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        label.text = val
+        label.font = UIFont(name: "Arial",size:30)
+        return UIImage.imageWithLabel(label)
+    
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -150,4 +158,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+}
+
+extension UIImage {
+    class func imageWithLabel(label: UILabel) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
+        label.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
 }
