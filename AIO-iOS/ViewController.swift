@@ -111,7 +111,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 cell!.imageView!.image = getImageFromText(defaultEmoji)
             }
             
-            cell!.textLabel?.text = (feedname as! String) + ": " + feed["last_value"].string!
+            cell!.textLabel?.text = (feedname as! String)
+            
+            if let feedvalue: AnyObject = feed["last_value"].string {
+                cell!.textLabel?.text = (cell!.textLabel?.text)! + ": " + feed["last_value"].string!
+            }
 
         }
         else {
