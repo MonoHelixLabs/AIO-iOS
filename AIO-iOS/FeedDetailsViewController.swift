@@ -104,9 +104,14 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         self.lineChartView.extraLeftOffset = 10
         self.lineChartView.extraBottomOffset = 10
         self.lineChartView.extraRightOffset = 10
+        
         self.lineChartView.leftAxis.drawGridLinesEnabled = false
-        self.lineChartView.leftAxis.axisMaximum = ys.maxElement()! + 10/100*(ys.maxElement()!-ys.minElement()!)
-        self.lineChartView.leftAxis.axisMinimum = ys.minElement()! - 10/100*(ys.maxElement()!-ys.minElement()!)
+        let minElement = ys.minElement()!
+        let maxElement = ys.maxElement()!
+        if minElement != maxElement {
+            self.lineChartView.leftAxis.axisMaximum = maxElement + 10/100*(maxElement-minElement)
+            self.lineChartView.leftAxis.axisMinimum = minElement - 10/100*(maxElement-minElement)
+        }
         self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
         self.lineChartView.xAxis.setLabelCount(5, force: true)
         self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
