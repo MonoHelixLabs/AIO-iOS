@@ -68,60 +68,66 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    //to-do: test what happens when a feed does not contain anything
+    
     func updateChart() {
         
-        var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
-        sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
+        if Double(self.histItems.firstObject!["value"] as! String) != nil {
+            
+            var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
+            sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
+            
+            var xs = [Double]()
+            var ys = [Double]()
+            var yse = [ChartDataEntry]()
         
-        var xs = [Double]()
-        var ys = [Double]()
-        var yse = [ChartDataEntry]()
-        for histItem in sortedHistItems {
-            xs.append(histItem["created_epoch"] as! Double)
-            let x = histItem["created_epoch"] as! Double
-            ys.append(Double(histItem["value"] as! String)!)
-            let y = Double(histItem["value"] as! String)!
-            yse.append(ChartDataEntry(x: x,y: y))
+            for histItem in sortedHistItems {
+                xs.append(histItem["created_epoch"] as! Double)
+                let x = histItem["created_epoch"] as! Double
+                ys.append(Double(histItem["value"] as! String)!)
+                let y = Double(histItem["value"] as! String)!
+                yse.append(ChartDataEntry(x: x,y: y))
+            }
+            let minElement = ys.minElement()!
+            let maxElement = ys.maxElement()!
+            
+            let data = LineChartData()
+            
+            let ds1 = LineChartDataSet(values: yse, label: selectedFeed)
+            ds1.colors = [UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)]
+            ds1.drawCirclesEnabled = false
+            ds1.drawValuesEnabled = false
+            ds1.drawFilledEnabled = true
+            ds1.fillColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
+            ds1.mode = LineChartDataSet.Mode.CubicBezier
+            ds1.cubicIntensity = 0.2
+            ds1.setDrawHighlightIndicators(false)
+            
+            data.addDataSet(ds1)
+            
+            self.lineChartView.data = data
+            self.lineChartView.rightAxis.enabled = false
+            self.lineChartView.legend.enabled = false
+            self.lineChartView.extraLeftOffset = 10
+            self.lineChartView.extraBottomOffset = 10
+            self.lineChartView.extraRightOffset = 10
+            
+            self.lineChartView.leftAxis.drawGridLinesEnabled = false
+            if minElement != maxElement {
+                self.lineChartView.leftAxis.axisMaximum = maxElement + 10/100*(maxElement-minElement)
+                self.lineChartView.leftAxis.axisMinimum = minElement - 10/100*(maxElement-minElement)
+            }
+            self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
+            self.lineChartView.xAxis.setLabelCount(5, force: true)
+            self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
+            self.lineChartView.xAxis.drawAxisLineEnabled = false
+            let granularity = decideTimeGranularityBasedOnData(xs)
+            self.lineChartView.xAxis.valueFormatter = DateValueFormatter(granularity: granularity)
+            
+            self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
+            self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+            self.lineChartView.descriptionText = ""
         }
-        
-        let data = LineChartData()
-        
-        let ds1 = LineChartDataSet(values: yse, label: selectedFeed)
-        ds1.colors = [UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)]
-        ds1.drawCirclesEnabled = false
-        ds1.drawValuesEnabled = false
-        ds1.drawFilledEnabled = true
-        ds1.fillColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
-        ds1.mode = LineChartDataSet.Mode.CubicBezier
-        ds1.cubicIntensity = 0.2
-        ds1.setDrawHighlightIndicators(false)
-        
-        data.addDataSet(ds1)
-        
-        self.lineChartView.data = data
-        self.lineChartView.rightAxis.enabled = false
-        self.lineChartView.legend.enabled = false
-        self.lineChartView.extraLeftOffset = 10
-        self.lineChartView.extraBottomOffset = 10
-        self.lineChartView.extraRightOffset = 10
-        
-        self.lineChartView.leftAxis.drawGridLinesEnabled = false
-        let minElement = ys.minElement()!
-        let maxElement = ys.maxElement()!
-        if minElement != maxElement {
-            self.lineChartView.leftAxis.axisMaximum = maxElement + 10/100*(maxElement-minElement)
-            self.lineChartView.leftAxis.axisMinimum = minElement - 10/100*(maxElement-minElement)
-        }
-        self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
-        self.lineChartView.xAxis.setLabelCount(5, force: true)
-        self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
-        self.lineChartView.xAxis.drawAxisLineEnabled = false
-        let granularity = decideTimeGranularityBasedOnData(xs)
-        self.lineChartView.xAxis.valueFormatter = DateValueFormatter(granularity: granularity)
-        
-        self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
-        self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
-        self.lineChartView.descriptionText = ""
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
