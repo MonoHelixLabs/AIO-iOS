@@ -23,6 +23,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet var feedDetailsView: UIView!
     
+    var refreshControl: UIRefreshControl!
+    @IBOutlet var feedDetailsStackView: UIStackView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -36,14 +39,15 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(animated: Bool) {
         
         limit = "50" // default value
-        refreshHistFeedData()
+        
+        refreshHistFeedData(self)
         
         updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
         
     }
     
     
-    func refreshHistFeedData() {
+    func refreshHistFeedData(sender:AnyObject) {
         self.histItems.removeAllObjects();
         RestApiManager.sharedInstance.getHistoricalData(selectedFeed, limit: limit) { (json: JSON) in
             let history: JSON = json
@@ -54,6 +58,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     if (self.histItems.count != 0) {
                         dispatch_async(dispatch_get_main_queue(),{
                             self.tableView?.reloadData()
+                            self.refreshControl?.endRefreshing()
                         })
                     }
                     
@@ -123,6 +128,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if tableView != nil {
             self.tableView?.removeFromSuperview()
+            self.refreshControl.removeFromSuperview()
         }
         
         // Only show the table if in Portrait
@@ -133,6 +139,10 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             self.tableView?.dataSource = self
             self.tableView?.delegate = self
             self.view.addSubview(self.tableView!)
+            
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: "refreshHistFeedData:", forControlEvents: UIControlEvents.ValueChanged)
+            self.tableView!.addSubview(refreshControl)
         }
     }
     
@@ -145,6 +155,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL") //as? UITableViewCell
         
         if cell == nil {
@@ -153,6 +166,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell!.userInteractionEnabled = false
         
+        if self.histItems.count > 0 {
         let histItem:JSON =  JSON(self.histItems[indexPath.row])
         
         if let timestamp: AnyObject = histItem["created_epoch"].double {
@@ -166,8 +180,10 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             }
             
             cell!.textLabel?.font = UIFont(name: "Arial",size:14.0)
+            }
         }
         return cell!
+        
     }
 
     @IBAction func onGranularityChange(sender: UISegmentedControl) {
@@ -187,7 +203,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             limit = "50"
         }
         
-        refreshHistFeedData()
+        refreshHistFeedData(self)
     }
     
     func decideTimeGranularityBasedOnData(xs: [Double]) -> String {
