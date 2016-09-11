@@ -17,6 +17,8 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
     
     let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
     
+    let maxEmojiLength = 3
+    
     @IBOutlet var emojiTextField: UITextField!
     
     override func viewDidLoad() {
@@ -51,7 +53,7 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
-        let maxLength = 5
+        let maxLength = maxEmojiLength
         let currentString: NSString = emojiTextField.text!
         let newString: NSString = currentString.stringByReplacingCharactersInRange(range, withString: string)
         return newString.length <= maxLength

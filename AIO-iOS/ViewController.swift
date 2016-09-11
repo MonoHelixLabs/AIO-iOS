@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(animated: Bool) {
         
-        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
+        updateTableView((UIScreen.mainScreen().bounds.height), w: (UIScreen.mainScreen().bounds.width))
         
         refreshFeedData(self)
     }
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.refreshControl.removeFromSuperview()
         }
         
-        let frame:CGRect = CGRect(x: 0, y: 0, width: w, height: h-36)
+        let frame:CGRect = CGRect(x: 0, y: 0, width: w, height: h-20)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
@@ -113,8 +113,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell!.textLabel?.text = (feedname as! String)
             
-            if let feedvalue: AnyObject = feed["last_value"].string {
-                cell!.textLabel?.text = (cell!.textLabel?.text)! + ": " + feed["last_value"].string!
+            if let feedvalue = feed["last_value"].string {
+                cell!.textLabel?.text = (cell!.textLabel?.text)! + ": " + feedvalue
             }
 
         }

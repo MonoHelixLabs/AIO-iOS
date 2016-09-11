@@ -23,7 +23,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     @IBOutlet var scanQRButton: UIButton!
     @IBOutlet var messageLabel: UILabel!
     
-    var noQRmessage = "No QR code is detected"
+    var noQRmessage = "Looking for QR code..."
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
