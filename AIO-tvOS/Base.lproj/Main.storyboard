@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="6tL-Gj-bdT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Adafruit IO Feeds-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AIO_tvOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,11 +16,202 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YU-wz-qdB" userLabel="FeedTableView">
+                                <rect key="frame" x="0.0" y="145" width="1920" height="935"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8YU-wz-qdB" secondAttribute="bottom" id="8QG-OZ-rbj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8YU-wz-qdB" secondAttribute="trailing" constant="-20" id="Qro-EO-p90"/>
+                            <constraint firstItem="8YU-wz-qdB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="e9j-kk-JpZ"/>
+                            <constraint firstItem="8YU-wz-qdB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fdr-FN-esC"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Adafruit IO Feeds" id="0Ap-ez-vPP">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="UTe-Da-8Da"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="feedTableViewTV" destination="8YU-wz-qdB" id="cKU-Eh-DEU"/>
+                        <segue destination="Vii-0K-HF3" kind="show" identifier="tableCellDetails" id="w0m-Ra-cdf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="5085" y="-748"/>
+        </scene>
+        <!--Feed Details-->
+        <scene sceneID="ngJ-GX-gjO">
+            <objects>
+                <viewController id="Vii-0K-HF3" customClass="FeedDetailsViewController" customModule="AIO_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IWc-bJ-fDo"/>
+                        <viewControllerLayoutGuide type="bottom" id="k5b-iB-X4G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1xY-Wc-4fj">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZAf-vB-vza">
+                                <rect key="frame" x="0.0" y="145" width="1920" height="935"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psx-dR-9LV" userLabel="Granularity View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H5u-Pu-Psr">
+                                                <rect key="frame" x="20" y="20" width="1880" height="70"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="69" id="iF8-D3-8yh"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="50"/>
+                                                    <segment title="100"/>
+                                                    <segment title="200"/>
+                                                    <segment title="500"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="onGranularityChange:" destination="Vii-0K-HF3" eventType="valueChanged" id="eTD-Qp-9Z9"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="Yxd-Mo-QxW"/>
+                                            <constraint firstAttribute="trailing" secondItem="H5u-Pu-Psr" secondAttribute="trailing" constant="20" id="edj-Y7-lHN"/>
+                                            <constraint firstItem="H5u-Pu-Psr" firstAttribute="top" secondItem="psx-dR-9LV" secondAttribute="top" constant="20" id="hDp-Rx-edx"/>
+                                            <constraint firstItem="H5u-Pu-Psr" firstAttribute="leading" secondItem="psx-dR-9LV" secondAttribute="leading" constant="20" id="sQf-I6-WuQ"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ufp-ju-gty" userLabel="Vertical Stack View">
+                                        <rect key="frame" x="0.0" y="140" width="1920" height="795"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syg-3o-a1F" userLabel="Line Chart View" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="0.0" width="1920" height="795"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ufp-ju-gty" firstAttribute="top" secondItem="psx-dR-9LV" secondAttribute="bottom" id="efu-7t-FgJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ufp-ju-gty" secondAttribute="bottom" id="we5-D6-kUy"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="k5b-iB-X4G" firstAttribute="top" secondItem="ZAf-vB-vza" secondAttribute="bottom" id="9IE-wQ-cDk"/>
+                            <constraint firstItem="ZAf-vB-vza" firstAttribute="leading" secondItem="1xY-Wc-4fj" secondAttribute="leadingMargin" constant="-20" id="NyH-On-Mbo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZAf-vB-vza" secondAttribute="trailing" constant="-20" id="atW-Xm-Xgr"/>
+                            <constraint firstItem="ZAf-vB-vza" firstAttribute="top" secondItem="IWc-bJ-fDo" secondAttribute="bottom" id="x5Q-er-ahm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Feed Details" id="Z6O-tT-qw4">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="244-fN-KD3"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="lineChartView" destination="syg-3o-a1F" id="DcO-j4-dmM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Xe-h6-ybE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7094" y="-748"/>
+        </scene>
+        <!--Feeds-->
+        <scene sceneID="PBJ-Xk-3Qi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mk0-KE-Bul" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Feeds" image="sensors" id="2FY-UB-fra"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QNb-xL-JG2">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="d5H-YI-R3r"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fxa-Ra-Twh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2926" y="-748"/>
+        </scene>
+        <!--EnterKey View Controller-->
+        <scene sceneID="LTD-6R-eOH">
+            <objects>
+                <viewController id="6Wf-9s-Sxf" userLabel="EnterKey View Controller" customClass="EnterKeyViewController" customModule="AIO_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="avL-ab-8We"/>
+                        <viewControllerLayoutGuide type="bottom" id="ldn-tH-3da"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x89-6A-en8">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dhz-TN-C1g">
+                                <rect key="frame" x="40" y="150" width="1840" height="262"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="Manage your AIO Key" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oM2-gS-4Zx">
+                                        <rect key="frame" x="0.0" y="0.0" width="1840" height="88"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hnL-SW-fRP" userLabel="Key Text Input">
+                                        <rect key="frame" x="0.0" y="88" width="1840" height="46"/>
+                                        <color key="textColor" red="0.35142227564102568" green="0.35142227564102568" blue="0.35142227564102568" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="To view your Adafruit IO feeds you have to use your AIO key. You can find this key on the io.adafruit.com website." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9a-sF-Kaa">
+                                        <rect key="frame" x="0.0" y="134" width="1840" height="128"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.35717147435897434" green="0.35717147435897434" blue="0.35717147435897434" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Dhz-TN-C1g" firstAttribute="leading" secondItem="x89-6A-en8" secondAttribute="leadingMargin" constant="20" id="I4c-Pp-o0w"/>
+                            <constraint firstItem="Dhz-TN-C1g" firstAttribute="top" secondItem="avL-ab-8We" secondAttribute="bottom" constant="150" id="VS9-ZH-HJa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dhz-TN-C1g" secondAttribute="trailing" constant="20" id="kfo-ah-61l"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AIO Key" image="apikey" id="cH2-qq-aCz" userLabel="AIO Key"/>
+                    <connections>
+                        <outlet property="codeTextField" destination="hnL-SW-fRP" id="EA1-4k-ENW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCC-Xk-oKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2906" y="633"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="FKG-bB-IKh">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6tL-Gj-bdT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="gOA-IK-gsO">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="mk0-KE-Bul" kind="relationship" relationship="viewControllers" id="Jys-mp-xF2"/>
+                        <segue destination="6Wf-9s-Sxf" kind="relationship" relationship="viewControllers" id="rX0-08-asO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGj-iq-VBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="-58"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="apikey" width="40" height="24"/>
+        <image name="sensors" width="50" height="33"/>
+    </resources>
 </document>

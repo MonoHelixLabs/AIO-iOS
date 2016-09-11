@@ -22,10 +22,20 @@
 		DA2528B61D7AD20800EA6B6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2528B41D7AD20800EA6B6B /* LaunchScreen.storyboard */; };
 		DA2528C01D7AD52E00EA6B6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */; };
 		DA2528C21D7AD55700EA6B6B /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */; };
-		DACCC58C1D858C730062A82F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCC58B1D858C730062A82F /* AppDelegate.swift */; };
-		DACCC58E1D858C730062A82F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCC58D1D858C730062A82F /* ViewController.swift */; };
-		DACCC5911D858C730062A82F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DACCC58F1D858C730062A82F /* Main.storyboard */; };
 		DACCC5931D858C730062A82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DACCC5921D858C730062A82F /* Assets.xcassets */; };
+		DACCC5981D858EB20062A82F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AD1D7AD20800EA6B6B /* ViewController.swift */; };
+		DACCC5991D858EE20062A82F /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */; };
+		DACCC59A1D858EED0062A82F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */; };
+		DACCC59B1D858EFA0062A82F /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
+		DACCC59C1D8590240062A82F /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */; };
+		DACCC59D1D85903F0062A82F /* EditFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */; };
+		DACCC5A41D8590D70062A82F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BC1D7F6A0F00CD56CB /* Charts.framework */; };
+		DACCC5A51D8590D70062A82F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BC1D7F6A0F00CD56CB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DACCC5A91D8591120062A82F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */; };
+		DACCC5AA1D8591340062A82F /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C71D83428300CD56CB /* DateValueFormatter.swift */; };
+		DACCC5AC1D85939E0062A82F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DACCC58F1D858C730062A82F /* Main.storyboard */; };
+		DACCC5AE1D85B0F40062A82F /* EnterKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCC5AD1D85B0F40062A82F /* EnterKeyViewController.swift */; };
+		DACCC5AF1D85B1E70062A82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2528B21D7AD20800EA6B6B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +74,13 @@
 			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
 			remoteInfo = "Charts-iOS";
 		};
+		DACCC5A61D8590D70062A82F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A52C5C361BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +91,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				DA0294C21D7F6A1D00CD56CB /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DACCC5A81D8590D70062A82F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DACCC5A51D8590D70062A82F /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,11 +126,10 @@
 		DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SwiftyJSON-master/Source/SwiftyJSON.swift"; sourceTree = SOURCE_ROOT; };
 		DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		DACCC5891D858C730062A82F /* AIO-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DACCC58B1D858C730062A82F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DACCC58D1D858C730062A82F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DACCC5901D858C730062A82F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DACCC5921D858C730062A82F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DACCC5941D858C730062A82F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DACCC5AD1D85B0F40062A82F /* EnterKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterKeyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DACCC5A41D8590D70062A82F /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,11 +206,10 @@
 		DACCC58A1D858C730062A82F /* AIO-tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				DACCC58B1D858C730062A82F /* AppDelegate.swift */,
-				DACCC58D1D858C730062A82F /* ViewController.swift */,
 				DACCC58F1D858C730062A82F /* Main.storyboard */,
 				DACCC5921D858C730062A82F /* Assets.xcassets */,
 				DACCC5941D858C730062A82F /* Info.plist */,
+				DACCC5AD1D85B0F40062A82F /* EnterKeyViewController.swift */,
 			);
 			path = "AIO-tvOS";
 			sourceTree = "<group>";
@@ -216,10 +243,12 @@
 				DACCC5851D858C730062A82F /* Sources */,
 				DACCC5861D858C730062A82F /* Frameworks */,
 				DACCC5871D858C730062A82F /* Resources */,
+				DACCC5A81D8590D70062A82F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DACCC5A71D8590D70062A82F /* PBXTargetDependency */,
 			);
 			name = "AIO-tvOS";
 			productName = "AIO-tvOS";
@@ -318,7 +347,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DACCC5931D858C730062A82F /* Assets.xcassets in Resources */,
-				DACCC5911D858C730062A82F /* Main.storyboard in Resources */,
+				DACCC5AF1D85B1E70062A82F /* Assets.xcassets in Resources */,
+				DACCC5AC1D85939E0062A82F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,8 +375,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DACCC58E1D858C730062A82F /* ViewController.swift in Sources */,
-				DACCC58C1D858C730062A82F /* AppDelegate.swift in Sources */,
+				DACCC5AE1D85B0F40062A82F /* EnterKeyViewController.swift in Sources */,
+				DACCC5981D858EB20062A82F /* ViewController.swift in Sources */,
+				DACCC59D1D85903F0062A82F /* EditFeedViewController.swift in Sources */,
+				DACCC5AA1D8591340062A82F /* DateValueFormatter.swift in Sources */,
+				DACCC59B1D858EFA0062A82F /* UserDefaultsManager.swift in Sources */,
+				DACCC59C1D8590240062A82F /* FeedDetailsViewController.swift in Sources */,
+				DACCC5A91D8591120062A82F /* AppDelegate.swift in Sources */,
+				DACCC5991D858EE20062A82F /* RestApiManager.swift in Sources */,
+				DACCC59A1D858EED0062A82F /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +394,11 @@
 			isa = PBXTargetDependency;
 			name = "Charts-iOS";
 			targetProxy = DA0294C31D7F6A1D00CD56CB /* PBXContainerItemProxy */;
+		};
+		DACCC5A71D8590D70062A82F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Charts-TV";
+			targetProxy = DACCC5A61D8590D70062A82F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -508,6 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "AIO-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monohelixlabs.AIO-tvOS";
@@ -523,6 +566,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "AIO-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monohelixlabs.AIO-tvOS";

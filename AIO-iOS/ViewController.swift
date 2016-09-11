@@ -10,12 +10,18 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var feedTableView: UIView!
+    #if os(iOS)
+        @IBOutlet var feedTableView: UIView!
+    #else
+        @IBOutlet var feedTableViewTV: UIView!
+    #endif
     
     var tableView:UITableView?
     var items = NSMutableArray()
     
-    var refreshControl: UIRefreshControl!
+    #if os(iOS)
+        var refreshControl: UIRefreshControl!
+    #endif
     
     var selectedFeedName: String!
     var selectedFeedKey: String!
@@ -30,7 +36,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
+        #if os(iOS)
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        #else
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
+        #endif
     }
     
     
@@ -51,18 +62,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
         if tableView != nil {
             self.tableView?.removeFromSuperview()
-            self.refreshControl.removeFromSuperview()
+            #if os(iOS)
+                self.refreshControl.removeFromSuperview()
+            #endif
         }
         
         let frame:CGRect = CGRect(x: 0, y: 0, width: w, height: h-20)
         self.tableView = UITableView(frame: frame)
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        self.feedTableView.addSubview(self.tableView!)
-        
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refreshFeedData:", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView?.addSubview(refreshControl)
+        #if os(iOS)
+            self.feedTableView.addSubview(self.tableView!)
+        #else
+            self.feedTableViewTV.addSubview(self.tableView!)
+        #endif
+            
+        #if os(iOS)
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: "refreshFeedData:", forControlEvents: UIControlEvents.ValueChanged)
+            self.tableView?.addSubview(refreshControl)
+        #endif
     }
     
     func refreshFeedData(sender:AnyObject) {
@@ -76,7 +95,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     if (self.items.count != 0) {
                         dispatch_async(dispatch_get_main_queue(),{
                             self.tableView?.reloadData()
-                            self.refreshControl?.endRefreshing()
+                            #if os(iOS)
+                                self.refreshControl?.endRefreshing()
+                            #endif
                         })
                     }
                 }
@@ -134,8 +155,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func getImageFromText(val: String) -> UIImage {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        label.text = val
+        
+        #if os(iOS)
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            label.text = val
+        #else
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+            label.text = "\t" + val
+        #endif
+        
         label.font = UIFont(name: "Arial",size:30)
         return UIImage.imageWithLabel(label)
     

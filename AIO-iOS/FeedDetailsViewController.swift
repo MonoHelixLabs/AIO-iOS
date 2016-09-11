@@ -20,18 +20,34 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     let dayTimePeriodFormatter = NSDateFormatter()
     
-    @IBOutlet var lineChartView: LineChartView!
+    #if os(iOS)
+        @IBOutlet var lineChartView: LineChartView!
+    #else
+        @IBOutlet var lineChartView: LineChartView!
+    #endif
     
-    @IBOutlet var feedDetailsView: UIView!
+    #if os(iOS)
+        @IBOutlet var feedDetailsView: UIView!
+    #endif
     
-    var refreshControl: UIRefreshControl!
-    @IBOutlet var feedDetailsStackView: UIStackView!
+    #if os(iOS)
+        var refreshControl: UIRefreshControl!
+    #endif
+    
+    #if os(iOS)
+        @IBOutlet var feedDetailsStackView: UIStackView!
+    #endif
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
 
         self.title = selectedFeedName
+        #if os(iOS)
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        #else
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
+        #endif
         
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY HH:mm:ss"
     }
@@ -59,7 +75,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     if (self.histItems.count != 0) {
                         dispatch_async(dispatch_get_main_queue(),{
                             self.tableView?.reloadData()
-                            self.refreshControl?.endRefreshing()
+                            #if os(iOS)
+                                self.refreshControl?.endRefreshing()
+                            #endif
                         })
                     }
                     
@@ -109,9 +127,6 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.lineChartView.data = data
                 self.lineChartView.rightAxis.enabled = false
                 self.lineChartView.legend.enabled = false
-                self.lineChartView.extraLeftOffset = 10
-                self.lineChartView.extraBottomOffset = 10
-                self.lineChartView.extraRightOffset = 10
                 
                 self.lineChartView.leftAxis.drawGridLinesEnabled = false
                 if minElement != maxElement {
@@ -119,7 +134,21 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     self.lineChartView.leftAxis.axisMinimum = minElement - 10/100*(maxElement-minElement)
                 }
                 self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
-                self.lineChartView.xAxis.setLabelCount(5, force: true)
+                
+                #if os(iOS)
+                    self.lineChartView.extraLeftOffset = 10
+                    self.lineChartView.extraRightOffset = 10
+                    self.lineChartView.extraBottomOffset = 10
+                    
+                    self.lineChartView.xAxis.setLabelCount(5, force: true)
+                #else
+                    self.lineChartView.extraLeftOffset = 30
+                    self.lineChartView.extraRightOffset = 30
+                    self.lineChartView.extraBottomOffset = 30
+                    
+                    self.lineChartView.xAxis.labelFont = self.lineChartView.xAxis.labelFont.fontWithSize(30)
+                    self.lineChartView.leftAxis.labelFont = self.lineChartView.leftAxis.labelFont.fontWithSize(30)
+                #endif
                 self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
                 self.lineChartView.xAxis.drawAxisLineEnabled = false
                 let granularity = decideTimeGranularityBasedOnData(xs)
@@ -141,22 +170,32 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if tableView != nil {
             self.tableView?.removeFromSuperview()
-            self.refreshControl.removeFromSuperview()
+            #if os(iOS)
+                self.refreshControl.removeFromSuperview()
+            #endif
         }
         
-        // Only show the table if in Portrait
-        if(!UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
-            
-            let frame:CGRect = CGRect(x: 0, y: 280, width: w, height: h-380)
+        #if os(iOS)
+            // Only show the table if in Portrait
+            if(!UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
+                
+                let frame:CGRect = CGRect(x: 0, y: 280, width: w, height: h-380)
+                self.tableView = UITableView(frame: frame)
+                self.tableView?.dataSource = self
+                self.tableView?.delegate = self
+                self.view.addSubview(self.tableView!)
+                
+                refreshControl = UIRefreshControl()
+                refreshControl.addTarget(self, action: "refreshHistFeedData:", forControlEvents: UIControlEvents.ValueChanged)
+                self.tableView!.addSubview(refreshControl)
+            }
+        /*#else
+            let frame:CGRect = CGRect(x: w/2, y: 0, width: w/2, height: h-380)
             self.tableView = UITableView(frame: frame)
             self.tableView?.dataSource = self
             self.tableView?.delegate = self
-            self.view.addSubview(self.tableView!)
-            
-            refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: "refreshHistFeedData:", forControlEvents: UIControlEvents.ValueChanged)
-            self.tableView!.addSubview(refreshControl)
-        }
+            self.view.addSubview(self.tableView!)*/
+        #endif
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
