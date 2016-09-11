@@ -31,11 +31,11 @@ class RestApiManager: NSObject {
         })
     }
     
-    func getHistoricalData(feedname: String, limit: String, onCompletion: (JSON) -> Void) {
+    func getHistoricalData(feedkey: String, limit: String, onCompletion: (JSON) -> Void) {
         
         let key = UserDefaultsManager.sharedInstance.getAIOkey()
         
-        let route = baseURLhistorical1 + feedname + baseURLhistorical2 + limit
+        let route = baseURLhistorical1 + feedkey + baseURLhistorical2 + limit
         makeHTTPGetRequest(route, key: key, onCompletion: { json, err in
             onCompletion(json as JSON)
         })

@@ -10,7 +10,8 @@ import UIKit
 
 class EditFeedViewController: UIViewController, UITextFieldDelegate {
 
-    var selectedFeed: String!
+    var selectedFeedName: String!
+    var selectedFeedKey: String!
     
     var currentEmoji: String!
     var newEmoji: String!
@@ -24,11 +25,11 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Edit Feed " + selectedFeed
+        self.title = "Edit Feed " + selectedFeedName
         
         let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
         
-        if let val = imgPrefs[selectedFeed!] {
+        if let val = imgPrefs[selectedFeedKey!] {
             currentEmoji =  val
          }
          else {
@@ -46,7 +47,7 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
         newEmoji = emojiTextField.text! as String
         emojiTextField.endEditing(true)
                 
-        UserDefaultsManager.sharedInstance.addToImagePreferences(selectedFeed,emoji: newEmoji)
+        UserDefaultsManager.sharedInstance.addToImagePreferences(selectedFeedKey,emoji: newEmoji)
         
         return false
     }

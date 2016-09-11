@@ -17,7 +17,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var refreshControl: UIRefreshControl!
     
-    var selectedFeed: String!
+    var selectedFeedName: String!
+    var selectedFeedKey: String!
     
     let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
     let warningEmoji = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
@@ -104,13 +105,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell!.accessoryType = .DisclosureIndicator
             
-            if let val = imgPrefs[feedname as! String] {
-                cell!.imageView!.image = getImageFromText(val)
+            if let feedkey: AnyObject = feed["key"].string {
+                if let val = imgPrefs[feedkey as! String] {
+                    cell!.imageView!.image = getImageFromText(val)
+                }
+                else {
+                    cell!.imageView!.image = getImageFromText(defaultEmoji)
+                }
             }
-            else {
-                cell!.imageView!.image = getImageFromText(defaultEmoji)
-            }
-            
+                
             cell!.textLabel?.text = (feedname as! String)
             
             if let feedvalue = feed["last_value"].string {
@@ -145,7 +148,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let feed:JSON =  JSON(self.items[indexPath.row])
         
         if let feedname: AnyObject = feed["name"].string {
-            selectedFeed = feedname as! String
+            selectedFeedName = feedname as! String
+            
+            if let feedkey: AnyObject = feed["key"].string {
+                selectedFeedKey = feedkey as! String
+            }
+            
             performSegueWithIdentifier("tableCellDetails", sender: self)
         }
         
@@ -158,7 +166,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let feedDetailsViewController = segue.destinationViewController as! FeedDetailsViewController
             
             // set a variable in the second view controller with the data to pass
-            feedDetailsViewController.selectedFeed = selectedFeed
+            feedDetailsViewController.selectedFeedName = selectedFeedName
+            feedDetailsViewController.selectedFeedKey = selectedFeedKey
         }
     }
     

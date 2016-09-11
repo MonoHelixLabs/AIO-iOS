@@ -11,7 +11,8 @@ import Charts
 
 class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var selectedFeed: String!
+    var selectedFeedName: String!
+    var selectedFeedKey: String!
     var limit: String!
     
     var tableView:UITableView?
@@ -30,7 +31,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         super.viewDidLoad()
 
-        self.title = selectedFeed
+        self.title = selectedFeedName
         
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY HH:mm:ss"
     }
@@ -49,7 +50,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func refreshHistFeedData(sender:AnyObject) {
         self.histItems.removeAllObjects();
-        RestApiManager.sharedInstance.getHistoricalData(selectedFeed, limit: limit) { (json: JSON) in
+        RestApiManager.sharedInstance.getHistoricalData(selectedFeedKey, limit: limit) { (json: JSON) in
             let history: JSON = json
             for (_, subJson) in history {
                 if let hist: AnyObject = subJson.object {
@@ -93,7 +94,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 let data = LineChartData()
                 
-                let ds1 = LineChartDataSet(values: yse, label: selectedFeed)
+                let ds1 = LineChartDataSet(values: yse, label: selectedFeedName)
                 ds1.colors = [UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)]
                 ds1.drawCirclesEnabled = false
                 ds1.drawValuesEnabled = false
@@ -250,7 +251,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             let editFeedViewController = segue.destinationViewController as! EditFeedViewController
             
             // set a variable in the second view controller with the data to pass
-            editFeedViewController.selectedFeed = selectedFeed
+            editFeedViewController.selectedFeedName = selectedFeedName
+            editFeedViewController.selectedFeedKey = selectedFeedKey
         }
     }
 
