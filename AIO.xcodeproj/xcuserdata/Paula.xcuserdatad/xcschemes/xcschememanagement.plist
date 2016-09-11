@@ -7,12 +7,22 @@
 		<key>AIO-iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+		<key>AIO-tvOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>DA2528A71D7AD20800EA6B6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DACCC5881D858C730062A82F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

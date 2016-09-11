@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DA2528A71D7AD20800EA6B6B"
-               BuildableName = "AIO-iOS.app"
-               BlueprintName = "AIO-iOS"
-               ReferencedContainer = "container:AIO-iOS.xcodeproj">
+               BlueprintIdentifier = "DACCC5881D858C730062A82F"
+               BuildableName = "AIO-tvOS.app"
+               BlueprintName = "AIO-tvOS"
+               ReferencedContainer = "container:AIO.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DA2528A71D7AD20800EA6B6B"
-            BuildableName = "AIO-iOS.app"
-            BlueprintName = "AIO-iOS"
-            ReferencedContainer = "container:AIO-iOS.xcodeproj">
+            BlueprintIdentifier = "DACCC5881D858C730062A82F"
+            BuildableName = "AIO-tvOS.app"
+            BlueprintName = "AIO-tvOS"
+            ReferencedContainer = "container:AIO.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DA2528A71D7AD20800EA6B6B"
-            BuildableName = "AIO-iOS.app"
-            BlueprintName = "AIO-iOS"
-            ReferencedContainer = "container:AIO-iOS.xcodeproj">
+            BlueprintIdentifier = "DACCC5881D858C730062A82F"
+            BuildableName = "AIO-tvOS.app"
+            BlueprintName = "AIO-tvOS"
+            ReferencedContainer = "container:AIO.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DA2528A71D7AD20800EA6B6B"
-            BuildableName = "AIO-iOS.app"
-            BlueprintName = "AIO-iOS"
-            ReferencedContainer = "container:AIO-iOS.xcodeproj">
+            BlueprintIdentifier = "DACCC5881D858C730062A82F"
+            BuildableName = "AIO-tvOS.app"
+            BlueprintName = "AIO-tvOS"
+            ReferencedContainer = "container:AIO.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

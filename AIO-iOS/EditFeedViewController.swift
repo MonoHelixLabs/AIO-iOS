@@ -3,7 +3,7 @@
 //  AIO-iOS
 //
 //  Created by Paula Petcu on 9/8/16.
-//  Copyright © 2016 monohelix. All rights reserved.
+//  Copyright © 2016 monohelixlabs. All rights reserved.
 //
 
 import UIKit
