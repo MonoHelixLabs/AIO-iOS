@@ -11,10 +11,12 @@
 		DA02948D1D7B80FB00CD56CB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA02948C1D7B80FB00CD56CB /* Settings.bundle */; };
 		DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
 		DA0294931D7F26DD00CD56CB /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */; };
-		DA0294C11D7F6A1D00CD56CB /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BA1D7F6A0F00CD56CB /* Charts.framework */; };
-		DA0294C21D7F6A1D00CD56CB /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BA1D7F6A0F00CD56CB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA0294C61D81ADD200CD56CB /* EditFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */; };
 		DA0294C81D83428300CD56CB /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C71D83428300CD56CB /* DateValueFormatter.swift */; };
+		DA211F071D8C9F9F009B4C68 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A582E1D8C9C6C006D4C41 /* Charts.framework */; };
+		DA211F081D8C9F9F009B4C68 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A582E1D8C9C6C006D4C41 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DA211F0B1D8C9FAB009B4C68 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A58301D8C9C6C006D4C41 /* Charts.framework */; };
+		DA211F0C1D8C9FAB009B4C68 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A58301D8C9C6C006D4C41 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */; };
 		DA2528AE1D7AD20800EA6B6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AD1D7AD20800EA6B6B /* ViewController.swift */; };
 		DA2528B11D7AD20800EA6B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2528AF1D7AD20800EA6B6B /* Main.storyboard */; };
@@ -29,8 +31,6 @@
 		DACCC59B1D858EFA0062A82F /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
 		DACCC59C1D8590240062A82F /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */; };
 		DACCC59D1D85903F0062A82F /* EditFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */; };
-		DACCC5A41D8590D70062A82F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BC1D7F6A0F00CD56CB /* Charts.framework */; };
-		DACCC5A51D8590D70062A82F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA0294BC1D7F6A0F00CD56CB /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DACCC5A91D8591120062A82F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */; };
 		DACCC5AA1D8591340062A82F /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C71D83428300CD56CB /* DateValueFormatter.swift */; };
 		DACCC5AC1D85939E0062A82F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DACCC58F1D858C730062A82F /* Main.storyboard */; };
@@ -39,47 +39,47 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DA0294B91D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
+		DA211F091D8C9F9F009B4C68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
-			remoteInfo = "Charts-iOS";
-		};
-		DA0294BB1D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
-			remoteInfo = "Charts-TV";
-		};
-		DA0294BD1D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
-			remoteInfo = "Charts-OSX";
-		};
-		DA0294BF1D7F6A0F00CD56CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
-			remoteInfo = ChartsTests;
-		};
-		DA0294C31D7F6A1D00CD56CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
 			remoteInfo = "Charts-iOS";
 		};
-		DACCC5A61D8590D70062A82F /* PBXContainerItemProxy */ = {
+		DA211F0D1D8C9FAB009B4C68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
+			containerPortal = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = A52C5C361BAC5CA400594CDD;
 			remoteInfo = "Charts-TV";
+		};
+		DA6A582D1D8C9C6C006D4C41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		DA6A582F1D8C9C6C006D4C41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		DA6A58311D8C9C6C006D4C41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
+			remoteInfo = "Charts-OSX";
+		};
+		DA6A58331D8C9C6C006D4C41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -90,7 +90,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DA0294C21D7F6A1D00CD56CB /* Charts.framework in Embed Frameworks */,
+				DA211F081D8C9F9F009B4C68 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,7 +101,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DACCC5A51D8590D70062A82F /* Charts.framework in Embed Frameworks */,
+				DA211F0C1D8C9FAB009B4C68 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,7 +113,6 @@
 		DA02948C1D7B80FB00CD56CB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "AIO-iOS/Settings.bundle"; sourceTree = "<group>"; };
 		DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailsViewController.swift; sourceTree = "<group>"; };
-		DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFeedViewController.swift; sourceTree = "<group>"; };
 		DA0294C71D83428300CD56CB /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +124,7 @@
 		DA2528B71D7AD20800EA6B6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SwiftyJSON-master/Source/SwiftyJSON.swift"; sourceTree = SOURCE_ROOT; };
 		DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
+		DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		DACCC5891D858C730062A82F /* AIO-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACCC5901D858C730062A82F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DACCC5921D858C730062A82F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0294C11D7F6A1D00CD56CB /* Charts.framework in Frameworks */,
+				DA211F071D8C9F9F009B4C68 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,28 +145,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DACCC5A41D8590D70062A82F /* Charts.framework in Frameworks */,
+				DA211F0B1D8C9FAB009B4C68 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA0294B31D7F6A0F00CD56CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DA0294BA1D7F6A0F00CD56CB /* Charts.framework */,
-				DA0294BC1D7F6A0F00CD56CB /* Charts.framework */,
-				DA0294BE1D7F6A0F00CD56CB /* Charts.framework */,
-				DA0294C01D7F6A0F00CD56CB /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		DA25289F1D7AD20800EA6B6B = {
 			isa = PBXGroup;
 			children = (
-				DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */,
+				DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */,
 				DA02948C1D7B80FB00CD56CB /* Settings.bundle */,
 				DA2528AA1D7AD20800EA6B6B /* AIO-iOS */,
 				DACCC58A1D858C730062A82F /* AIO-tvOS */,
@@ -203,6 +192,17 @@
 			path = "AIO-iOS";
 			sourceTree = "<group>";
 		};
+		DA6A58271D8C9C6C006D4C41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA6A582E1D8C9C6C006D4C41 /* Charts.framework */,
+				DA6A58301D8C9C6C006D4C41 /* Charts.framework */,
+				DA6A58321D8C9C6C006D4C41 /* Charts.framework */,
+				DA6A58341D8C9C6C006D4C41 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DACCC58A1D858C730062A82F /* AIO-tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +229,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				DA0294C41D7F6A1D00CD56CB /* PBXTargetDependency */,
+				DA211F0A1D8C9F9F009B4C68 /* PBXTargetDependency */,
 			);
 			name = "AIO-iOS";
 			productName = MyFridge;
@@ -248,7 +248,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				DACCC5A71D8590D70062A82F /* PBXTargetDependency */,
+				DA211F0E1D8C9FAB009B4C68 /* PBXTargetDependency */,
 			);
 			name = "AIO-tvOS";
 			productName = "AIO-tvOS";
@@ -287,8 +287,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = DA0294B31D7F6A0F00CD56CB /* Products */;
-					ProjectRef = DA0294B21D7F6A0F00CD56CB /* Charts.xcodeproj */;
+					ProductGroup = DA6A58271D8C9C6C006D4C41 /* Products */;
+					ProjectRef = DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -300,32 +300,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		DA0294BA1D7F6A0F00CD56CB /* Charts.framework */ = {
+		DA6A582E1D8C9C6C006D4C41 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = DA0294B91D7F6A0F00CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA6A582D1D8C9C6C006D4C41 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DA0294BC1D7F6A0F00CD56CB /* Charts.framework */ = {
+		DA6A58301D8C9C6C006D4C41 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = DA0294BB1D7F6A0F00CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA6A582F1D8C9C6C006D4C41 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DA0294BE1D7F6A0F00CD56CB /* Charts.framework */ = {
+		DA6A58321D8C9C6C006D4C41 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = DA0294BD1D7F6A0F00CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA6A58311D8C9C6C006D4C41 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DA0294C01D7F6A0F00CD56CB /* ChartsTests.xctest */ = {
+		DA6A58341D8C9C6C006D4C41 /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = DA0294BF1D7F6A0F00CD56CB /* PBXContainerItemProxy */;
+			remoteRef = DA6A58331D8C9C6C006D4C41 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -390,15 +390,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DA0294C41D7F6A1D00CD56CB /* PBXTargetDependency */ = {
+		DA211F0A1D8C9F9F009B4C68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Charts-iOS";
-			targetProxy = DA0294C31D7F6A1D00CD56CB /* PBXContainerItemProxy */;
+			targetProxy = DA211F091D8C9F9F009B4C68 /* PBXContainerItemProxy */;
 		};
-		DACCC5A71D8590D70062A82F /* PBXTargetDependency */ = {
+		DA211F0E1D8C9FAB009B4C68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Charts-TV";
-			targetProxy = DACCC5A61D8590D70062A82F /* PBXContainerItemProxy */;
+			targetProxy = DA211F0D1D8C9FAB009B4C68 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -472,6 +472,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -509,6 +510,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -516,6 +518,7 @@
 		DA2528BB1D7AD20800EA6B6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -525,6 +528,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.AIO;
 				PRODUCT_NAME = "AIO-iOS";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -532,6 +536,7 @@
 		DA2528BC1D7AD20800EA6B6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -541,6 +546,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.AIO;
 				PRODUCT_NAME = "AIO-iOS";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -548,6 +554,7 @@
 		DACCC5961D858C730062A82F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -556,6 +563,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monohelixlabs.AIO-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -564,6 +572,7 @@
 		DACCC5971D858C730062A82F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -572,6 +581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monohelixlabs.AIO-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -605,6 +615,7 @@
 				DACCC5971D858C730062A82F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
