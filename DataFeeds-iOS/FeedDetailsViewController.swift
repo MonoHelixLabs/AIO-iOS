@@ -113,12 +113,12 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 let data = LineChartData()
                 
                 let ds1 = LineChartDataSet(values: yse, label: selectedFeedName)
-                ds1.colors = [UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)]
+                ds1.colors = [UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)]
                 ds1.drawCirclesEnabled = false
                 ds1.drawValuesEnabled = false
                 ds1.drawFilledEnabled = true
-                ds1.fillColor = UIColor(red: 81.0/255.0, green: 173.0/255.0, blue: 233.0/255.0, alpha: 1.0)
-                ds1.mode = LineChartDataSet.Mode.CubicBezier
+                ds1.fillColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+                ds1.mode = LineChartDataSet.Mode.HorizontalBezier
                 ds1.cubicIntensity = 0.2
                 ds1.setDrawHighlightIndicators(false)
                 

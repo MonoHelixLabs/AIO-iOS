@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lg8-BN-ZZ8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lg8-BN-ZZ8">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Sensors-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Sensors" id="BYZ-38-t0r" customClass="ViewController" customModule="AIO_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sensors" id="BYZ-38-t0r" customClass="ViewController" customModule="DataFeeds_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-i1-XVW" userLabel="FeedTableView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-i1-XVW" userLabel="FeedTableView">
+                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="O1M-i1-XVW" secondAttribute="bottom" id="6zu-0H-5ZH"/>
                             <constraint firstItem="O1M-i1-XVW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="AbQ-QI-LS8"/>
@@ -31,7 +32,7 @@
                             <constraint firstItem="O1M-i1-XVW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qL2-wl-NPh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Adafruit IO Feeds" id="EEa-du-TOp">
+                    <navigationItem key="navigationItem" title="Data Feeds" id="EEa-du-TOp">
                         <barButtonItem key="backBarButtonItem" title="Back" id="4a9-nE-Gue"/>
                     </navigationItem>
                     <connections>
@@ -46,23 +47,22 @@
         <!--Feed Details-->
         <scene sceneID="fHk-up-5X1">
             <objects>
-                <viewController storyboardIdentifier="FeedDetailsViewController" modalTransitionStyle="flipHorizontal" id="FP0-2P-ZMV" userLabel="Feed Details" customClass="FeedDetailsViewController" customModule="AIO_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedDetailsViewController" modalTransitionStyle="flipHorizontal" id="FP0-2P-ZMV" userLabel="Feed Details" customClass="FeedDetailsViewController" customModule="DataFeeds_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ONJ-t9-EBS"/>
                         <viewControllerLayoutGuide type="bottom" id="tWa-3r-Sc7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="G9i-k0-RKZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p25-8h-vpT">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p25-8h-vpT">
+                                <frame key="frameInset" minY="64" width="414" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZX-TH-HQM" userLabel="Granularity View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-dI-a9X">
-                                                <rect key="frame" x="10" y="10" width="580" height="29"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-dI-a9X">
+                                                <frame key="frameInset" minX="10" minY="10" width="580" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="6A1-8B-dK9"/>
                                                 </constraints>
@@ -72,13 +72,13 @@
                                                     <segment title="200"/>
                                                     <segment title="500"/>
                                                 </segments>
-                                                <color key="tintColor" red="0.75409031410000005" green="0.75409031410000005" blue="0.75409031410000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" red="0.75409031410000005" green="0.75409031410000005" blue="0.75409031410000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="onGranularityChange:" destination="FP0-2P-ZMV" eventType="valueChanged" id="U68-dz-MwN"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="VbM-dI-a9X" secondAttribute="trailing" constant="10" id="4Y8-Oc-f93"/>
                                             <constraint firstItem="VbM-dI-a9X" firstAttribute="top" secondItem="uZX-TH-HQM" secondAttribute="top" constant="10" id="VJs-qx-UtJ"/>
@@ -87,15 +87,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBk-7c-MFM" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="48" width="600" height="230"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="230" id="dDA-8u-L7d"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Orf-yC-Kvd" userLabel="Feed Details View">
-                                        <rect key="frame" x="0.0" y="278" width="600" height="209"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -103,7 +101,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="p25-8h-vpT" firstAttribute="leading" secondItem="G9i-k0-RKZ" secondAttribute="leadingMargin" constant="-20" id="CcY-bx-bmX"/>
                             <constraint firstItem="tWa-3r-Sc7" firstAttribute="top" secondItem="p25-8h-vpT" secondAttribute="bottom" id="X5d-pf-QKq"/>
@@ -133,29 +131,27 @@
         <!--Edit Feed-->
         <scene sceneID="gdL-0R-2E9">
             <objects>
-                <viewController id="ez0-Wb-1W3" userLabel="Edit Feed" customClass="EditFeedViewController" customModule="AIO_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ez0-Wb-1W3" userLabel="Edit Feed" customClass="EditFeedViewController" customModule="DataFeeds_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ccv-1s-LXO"/>
                         <viewControllerLayoutGuide type="bottom" id="Z1n-Yv-Dtc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wcN-TZ-xEH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="199-Zi-2tb">
-                                <rect key="frame" x="40" y="84" width="520" height="447"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="199-Zi-2tb">
+                                <frame key="frameInset" minX="40" minY="84" width="334" height="583"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Emoji" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbS-AC-nku">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="P5m-yV-6SQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yee-32-3al">
-                                        <rect key="frame" x="0.0" y="50" width="520" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="xb7-RV-0MO"/>
                                         </constraints>
@@ -163,21 +159,19 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edR-dK-zVn" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="86" width="520" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Fo6-8Q-Rfg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="You can configure an emoji to use for your feed. This preference will be saved on your phone." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvJ-1U-y1m">
-                                        <rect key="frame" x="0.0" y="106" width="520" height="341"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="rXZ-WQ-O5g"/>
                                         </constraints>
-                                        <color key="textColor" red="0.36405840969999997" green="0.36405840969999997" blue="0.36405840969999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.36405840969999997" green="0.36405840969999997" blue="0.36405840969999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -185,7 +179,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Z1n-Yv-Dtc" firstAttribute="top" secondItem="199-Zi-2tb" secondAttribute="bottom" constant="20" id="07k-MQ-jvb"/>
                             <constraint firstItem="199-Zi-2tb" firstAttribute="leading" secondItem="wcN-TZ-xEH" secondAttribute="leadingMargin" constant="20" id="ERL-Iy-2hH"/>
@@ -204,20 +198,19 @@
         <!--QR Code-->
         <scene sceneID="rtG-MP-Bk2">
             <objects>
-                <viewController title="QR Code" id="MC2-7i-Wz2" customClass="QRCodeViewController" customModule="AIO_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="QR Code" id="MC2-7i-Wz2" customClass="QRCodeViewController" customModule="DataFeeds_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dup-Yz-Xcj"/>
                         <viewControllerLayoutGuide type="bottom" id="SA8-Aj-xKB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eZn-YF-EQz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JpH-et-Jaz" userLabel="Enter Mode Stack View">
-                                <rect key="frame" x="0.0" y="507" width="600" height="44"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JpH-et-Jaz" userLabel="Enter Mode Stack View">
+                                <frame key="frameInset" minY="507" width="414" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-FG-2V8">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="VvC-Gg-b88"/>
                                         </constraints>
@@ -227,7 +220,6 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3r-1o-ei8">
-                                        <rect key="frame" x="300" y="0.0" width="300" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="yzq-si-8XV"/>
                                         </constraints>
@@ -237,7 +229,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="jNa-FG-2V8" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="top" id="0um-46-J00"/>
                                     <constraint firstItem="H3r-1o-ei8" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="top" id="2hN-vk-BH5"/>
@@ -249,50 +241,46 @@
                                     <constraint firstItem="H3r-1o-ei8" firstAttribute="leading" secondItem="jNa-FG-2V8" secondAttribute="trailing" id="pMA-AV-O8J"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for QR code..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-eW-Sxy">
-                                <rect key="frame" x="0.0" y="471" width="600" height="36"/>
-                                <color key="backgroundColor" red="0.75409031413612571" green="0.75409031413612571" blue="0.75409031413612571" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Looking for QR code..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-eW-Sxy">
+                                <frame key="frameInset" minY="471" width="600" height="36"/>
+                                <color key="backgroundColor" red="0.75409031413612571" green="0.75409031413612571" blue="0.75409031413612571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Tyz-fJ-Bjd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Ur-dwU" userLabel="Manual Enter Stack View">
-                                <rect key="frame" x="40" y="84" width="520" height="225"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Ur-dwU" userLabel="Manual Enter Stack View">
+                                <frame key="frameInset" minX="40" minY="84" width="334" height="225"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your AIO Key" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXT-bR-TJ6">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UKF-s1-kB1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PeY-Sm-LYp">
-                                        <rect key="frame" x="0.0" y="50" width="520" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbY-OU-3dd" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="80" width="520" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="bri-Ua-o9m"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="vTd-ab-WFO">
-                                        <rect key="frame" x="0.0" y="100" width="520" height="125"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="125" id="Gzb-Kp-llD"/>
                                         </constraints>
                                         <string key="text">To view your Adafruit IO feeds you have to use your AIO key. You can find this key on the io.adafruit.com website. You can enter the key manually here or use the Scan QR button below to scan the QR code of your AIO key.</string>
-                                        <color key="textColor" red="0.36405840968586389" green="0.36405840968586389" blue="0.36405840968586389" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.36405840968586389" green="0.36405840968586389" blue="0.36405840968586389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -300,7 +288,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1I4-eW-Sxy" secondAttribute="trailing" id="4a0-Xc-dAu"/>
                             <constraint firstItem="SA8-Aj-xKB" firstAttribute="top" secondItem="JpH-et-Jaz" secondAttribute="bottom" id="A94-ck-Qv7"/>
@@ -334,7 +322,7 @@
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="BzT-hB-EfZ">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="ndv-un-g4u" kind="relationship" relationship="viewControllers" id="5mh-Sd-epU"/>
@@ -386,6 +374,6 @@
     </scenes>
     <resources>
         <image name="apikey" width="40" height="24"/>
-        <image name="sensors" width="50" height="33"/>
+        <image name="sensors" width="40" height="40"/>
     </resources>
 </document>
