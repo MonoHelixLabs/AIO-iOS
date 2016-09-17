@@ -1,6 +1,6 @@
 //
 //  QRCodeViewController.swift
-//  AIO-iOS
+//  DataFeeds
 //
 //  Code for reading QR codes is based on the following article:
 //  https://www.appcoda.com/qr-code-reader-swift/

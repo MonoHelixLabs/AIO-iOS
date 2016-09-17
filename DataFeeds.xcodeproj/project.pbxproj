@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		DA0294871D7B5A9100CD56CB /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294861D7B5A9100CD56CB /* QRCodeViewController.swift */; };
-		DA02948D1D7B80FB00CD56CB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA02948C1D7B80FB00CD56CB /* Settings.bundle */; };
 		DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */; };
 		DA0294931D7F26DD00CD56CB /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */; };
 		DA0294C61D81ADD200CD56CB /* EditFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */; };
 		DA0294C81D83428300CD56CB /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0294C71D83428300CD56CB /* DateValueFormatter.swift */; };
+		DA08FABF1D8D34D300D266F5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA08FABE1D8D34D300D266F5 /* Settings.bundle */; };
 		DA211F071D8C9F9F009B4C68 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A582E1D8C9C6C006D4C41 /* Charts.framework */; };
 		DA211F081D8C9F9F009B4C68 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A582E1D8C9C6C006D4C41 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA211F0B1D8C9FAB009B4C68 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A58301D8C9C6C006D4C41 /* Charts.framework */; };
@@ -110,12 +110,12 @@
 
 /* Begin PBXFileReference section */
 		DA0294861D7B5A9100CD56CB /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
-		DA02948C1D7B80FB00CD56CB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "AIO-iOS/Settings.bundle"; sourceTree = "<group>"; };
 		DA0294901D7C771600CD56CB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		DA0294921D7F26DD00CD56CB /* FeedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDetailsViewController.swift; sourceTree = "<group>"; };
 		DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFeedViewController.swift; sourceTree = "<group>"; };
 		DA0294C71D83428300CD56CB /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
-		DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA08FABE1D8D34D300D266F5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "DataFeeds-iOS/Settings.bundle"; sourceTree = "<group>"; };
+		DA2528A81D7AD20800EA6B6B /* DataFeeds-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DataFeeds-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA2528AD1D7AD20800EA6B6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DA2528B01D7AD20800EA6B6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SwiftyJSON-master/Source/SwiftyJSON.swift"; sourceTree = SOURCE_ROOT; };
 		DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts/Charts.xcodeproj; sourceTree = "<group>"; };
-		DACCC5891D858C730062A82F /* AIO-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AIO-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DACCC5891D858C730062A82F /* DataFeeds-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DataFeeds-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACCC5901D858C730062A82F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DACCC5921D858C730062A82F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DACCC5941D858C730062A82F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,10 +155,10 @@
 		DA25289F1D7AD20800EA6B6B = {
 			isa = PBXGroup;
 			children = (
+				DA08FABE1D8D34D300D266F5 /* Settings.bundle */,
 				DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */,
-				DA02948C1D7B80FB00CD56CB /* Settings.bundle */,
-				DA2528AA1D7AD20800EA6B6B /* AIO-iOS */,
-				DACCC58A1D858C730062A82F /* AIO-tvOS */,
+				DA2528AA1D7AD20800EA6B6B /* DataFeeds-iOS */,
+				DACCC58A1D858C730062A82F /* DataFeeds-tvOS */,
 				DA2528A91D7AD20800EA6B6B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,13 +166,13 @@
 		DA2528A91D7AD20800EA6B6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */,
-				DACCC5891D858C730062A82F /* AIO-tvOS.app */,
+				DA2528A81D7AD20800EA6B6B /* DataFeeds-iOS.app */,
+				DACCC5891D858C730062A82F /* DataFeeds-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DA2528AA1D7AD20800EA6B6B /* AIO-iOS */ = {
+		DA2528AA1D7AD20800EA6B6B /* DataFeeds-iOS */ = {
 			isa = PBXGroup;
 			children = (
 				DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */,
@@ -189,7 +189,7 @@
 				DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */,
 				DA0294C71D83428300CD56CB /* DateValueFormatter.swift */,
 			);
-			path = "AIO-iOS";
+			path = "DataFeeds-iOS";
 			sourceTree = "<group>";
 		};
 		DA6A58271D8C9C6C006D4C41 /* Products */ = {
@@ -203,7 +203,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DACCC58A1D858C730062A82F /* AIO-tvOS */ = {
+		DACCC58A1D858C730062A82F /* DataFeeds-tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				DACCC58F1D858C730062A82F /* Main.storyboard */,
@@ -211,15 +211,15 @@
 				DACCC5941D858C730062A82F /* Info.plist */,
 				DACCC5AD1D85B0F40062A82F /* EnterKeyViewController.swift */,
 			);
-			path = "AIO-tvOS";
+			path = "DataFeeds-tvOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DA2528A71D7AD20800EA6B6B /* AIO-iOS */ = {
+		DA2528A71D7AD20800EA6B6B /* DataFeeds-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA2528BA1D7AD20800EA6B6B /* Build configuration list for PBXNativeTarget "AIO-iOS" */;
+			buildConfigurationList = DA2528BA1D7AD20800EA6B6B /* Build configuration list for PBXNativeTarget "DataFeeds-iOS" */;
 			buildPhases = (
 				DA2528A41D7AD20800EA6B6B /* Sources */,
 				DA2528A51D7AD20800EA6B6B /* Frameworks */,
@@ -231,14 +231,14 @@
 			dependencies = (
 				DA211F0A1D8C9F9F009B4C68 /* PBXTargetDependency */,
 			);
-			name = "AIO-iOS";
+			name = "DataFeeds-iOS";
 			productName = MyFridge;
-			productReference = DA2528A81D7AD20800EA6B6B /* AIO-iOS.app */;
+			productReference = DA2528A81D7AD20800EA6B6B /* DataFeeds-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DACCC5881D858C730062A82F /* AIO-tvOS */ = {
+		DACCC5881D858C730062A82F /* DataFeeds-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DACCC5951D858C730062A82F /* Build configuration list for PBXNativeTarget "AIO-tvOS" */;
+			buildConfigurationList = DACCC5951D858C730062A82F /* Build configuration list for PBXNativeTarget "DataFeeds-tvOS" */;
 			buildPhases = (
 				DACCC5851D858C730062A82F /* Sources */,
 				DACCC5861D858C730062A82F /* Frameworks */,
@@ -250,9 +250,9 @@
 			dependencies = (
 				DA211F0E1D8C9FAB009B4C68 /* PBXTargetDependency */,
 			);
-			name = "AIO-tvOS";
+			name = "DataFeeds-tvOS";
 			productName = "AIO-tvOS";
-			productReference = DACCC5891D858C730062A82F /* AIO-tvOS.app */;
+			productReference = DACCC5891D858C730062A82F /* DataFeeds-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -274,7 +274,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DA2528A31D7AD20800EA6B6B /* Build configuration list for PBXProject "AIO" */;
+			buildConfigurationList = DA2528A31D7AD20800EA6B6B /* Build configuration list for PBXProject "DataFeeds" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -293,8 +293,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				DA2528A71D7AD20800EA6B6B /* AIO-iOS */,
-				DACCC5881D858C730062A82F /* AIO-tvOS */,
+				DA2528A71D7AD20800EA6B6B /* DataFeeds-iOS */,
+				DACCC5881D858C730062A82F /* DataFeeds-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -335,9 +335,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA08FABF1D8D34D300D266F5 /* Settings.bundle in Resources */,
 				DA2528B61D7AD20800EA6B6B /* LaunchScreen.storyboard in Resources */,
 				DA2528B31D7AD20800EA6B6B /* Assets.xcassets in Resources */,
-				DA02948D1D7B80FB00CD56CB /* Settings.bundle in Resources */,
 				DA2528B11D7AD20800EA6B6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,10 +523,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AIO-iOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.AIO;
-				PRODUCT_NAME = "AIO-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.datafeeds;
+				PRODUCT_NAME = "DataFeeds-iOS";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,10 +541,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/AIO-iOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.AIO;
-				PRODUCT_NAME = "AIO-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.datafeeds;
+				PRODUCT_NAME = "DataFeeds-iOS";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,9 +558,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "AIO-tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.monohelixlabs.AIO-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.datafeeds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 2.3;
@@ -576,9 +576,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "AIO-tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.monohelixlabs.AIO-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.datafeeds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 2.3;
@@ -590,7 +590,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA2528A31D7AD20800EA6B6B /* Build configuration list for PBXProject "AIO" */ = {
+		DA2528A31D7AD20800EA6B6B /* Build configuration list for PBXProject "DataFeeds" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA2528B81D7AD20800EA6B6B /* Debug */,
@@ -599,7 +599,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA2528BA1D7AD20800EA6B6B /* Build configuration list for PBXNativeTarget "AIO-iOS" */ = {
+		DA2528BA1D7AD20800EA6B6B /* Build configuration list for PBXNativeTarget "DataFeeds-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA2528BB1D7AD20800EA6B6B /* Debug */,
@@ -608,7 +608,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DACCC5951D858C730062A82F /* Build configuration list for PBXNativeTarget "AIO-tvOS" */ = {
+		DACCC5951D858C730062A82F /* Build configuration list for PBXNativeTarget "DataFeeds-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DACCC5961D858C730062A82F /* Debug */,

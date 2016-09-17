@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  AIO-iOS
+//  DataFeeds
 //
 //  Created by Paula Petcu on 9/3/16.
 //  Copyright © 2016 monohelixlabs. All rights reserved.

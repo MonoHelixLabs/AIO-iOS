@@ -1,6 +1,6 @@
 //
 //  DateValueFormatter.swift
-//  AIO-iOS
+//  DataFeeds
 //
 //  Created by Paula Petcu on 9/9/16.
 //  Copyright © 2016 monohelixlabs. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  RestApiManager.swift
-//  AIO-iOS
+//  DataFeeds
 //
 //  Code for how to parse JSON from a REST API is based on the following article:
 //  https://devdactic.com/parse-json-with-swift/
