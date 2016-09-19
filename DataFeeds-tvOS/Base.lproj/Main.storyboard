@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <rect key="frame" x="0.0" y="145" width="1920" height="935"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YU-wz-qdB" userLabel="FeedTableView">
@@ -52,7 +52,7 @@
                         <viewControllerLayoutGuide type="bottom" id="k5b-iB-X4G"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1xY-Wc-4fj">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <rect key="frame" x="0.0" y="145" width="1920" height="935"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZAf-vB-vza">
@@ -121,11 +121,15 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mk0-KE-Bul" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feeds" image="sensors" id="2FY-UB-fra"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QNb-xL-JG2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QNb-xL-JG2">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="gRm-2G-i7B">
+                        <rect key="frame" x="0.0" y="1036" width="1920" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="d5H-YI-R3r"/>
                     </connections>
@@ -146,15 +150,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dhz-TN-C1g">
-                                <frame key="frameInset" minX="40" minY="150" width="1840" height="336"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dhz-TN-C1g">
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Manage your AIO Key" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oM2-gS-4Zx" userLabel="Manage Text View">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" editable="NO" text="Manage your AIO Key" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oM2-gS-4Zx" userLabel="Manage Text View">
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="uau-9Z-65t"/>
+                                            <constraint firstAttribute="height" constant="150" id="uau-9Z-65t"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hnL-SW-fRP" userLabel="Key Text Input">
@@ -181,7 +184,7 @@
                         <constraints>
                             <constraint firstItem="Dhz-TN-C1g" firstAttribute="leading" secondItem="x89-6A-en8" secondAttribute="leadingMargin" constant="20" id="I4c-Pp-o0w"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Dhz-TN-C1g" secondAttribute="trailing" constant="20" id="kfo-ah-61l"/>
-                            <constraint firstItem="Dhz-TN-C1g" firstAttribute="top" secondItem="avL-ab-8We" secondAttribute="bottom" constant="150" id="met-5E-Gd3"/>
+                            <constraint firstItem="Dhz-TN-C1g" firstAttribute="top" secondItem="avL-ab-8We" secondAttribute="bottom" constant="20" id="met-5E-Gd3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AIO Key" image="apikey" id="cH2-qq-aCz" userLabel="AIO Key"/>

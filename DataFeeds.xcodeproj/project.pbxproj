@@ -24,6 +24,7 @@
 		DA2528B61D7AD20800EA6B6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2528B41D7AD20800EA6B6B /* LaunchScreen.storyboard */; };
 		DA2528C01D7AD52E00EA6B6B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */; };
 		DA2528C21D7AD55700EA6B6B /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */; };
+		DA4C2C411D904CC700BAD418 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DA08FABE1D8D34D300D266F5 /* Settings.bundle */; };
 		DACCC5931D858C730062A82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DACCC5921D858C730062A82F /* Assets.xcassets */; };
 		DACCC5981D858EB20062A82F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528AD1D7AD20800EA6B6B /* ViewController.swift */; };
 		DACCC5991D858EE20062A82F /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */; };
@@ -271,6 +272,7 @@
 					};
 					DACCC5881D858C730062A82F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = BKZ4YQ4QNH;
 					};
 				};
 			};
@@ -346,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA4C2C411D904CC700BAD418 /* Settings.bundle in Resources */,
 				DACCC5931D858C730062A82F /* Assets.xcassets in Resources */,
 				DACCC5AF1D85B1E70062A82F /* Assets.xcassets in Resources */,
 				DACCC5AC1D85939E0062A82F /* Main.storyboard in Resources */,
@@ -557,6 +560,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BKZ4YQ4QNH;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -575,6 +579,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = BKZ4YQ4QNH;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
