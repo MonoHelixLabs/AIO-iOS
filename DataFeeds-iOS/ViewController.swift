@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
     let warningEmoji = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
-    
+        
     override func viewDidLoad() {
         
         NSUserDefaults.standardUserDefaults().synchronize()
@@ -42,6 +42,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         #else
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
         #endif
+        
+        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateMainFeedPage()
+        print(refreshInterval)
+        if refreshInterval != 0 {
+            var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshFeedData:", userInfo: nil, repeats: true)
+        }
     }
     
     

@@ -16,6 +16,8 @@ class UserDefaultsManager: NSObject {
     let aiokeyNotFound = ""
     
     let imgPrefsString = "imageprefs"
+    let mainfeedrefreshString = "mainfeedrefresh"
+    let feeddetailsrefreshString = "feeddetailsrefresh"
     
     func getAIOkey() -> String {
  
@@ -70,5 +72,17 @@ class UserDefaultsManager: NSObject {
     func getStringFromEmoji(emoji: String) -> String {
         return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
     }
+    
+    
+    func getRefreshRateMainFeedPage() -> Double {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        return prefs.doubleForKey(mainfeedrefreshString)
+    }
+    
+    func getRefreshRateFeedDetailsPage() -> Double {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        return prefs.doubleForKey(feeddetailsrefreshString)
+    }
+    
     
 }

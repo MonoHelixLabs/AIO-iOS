@@ -46,10 +46,15 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         #if os(iOS)
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         #else
-            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
         #endif
         
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY HH:mm:ss"
+        
+        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateFeedDetailsPage()
+        if refreshInterval != 0 {
+            var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshHistFeedData:", userInfo: nil, repeats: true)
+        }
     }
 
     
