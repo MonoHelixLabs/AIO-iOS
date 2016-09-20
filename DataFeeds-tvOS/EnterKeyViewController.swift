@@ -38,6 +38,13 @@ class EnterKeyViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        // guard against anything but alphanumeric characters
+        let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
+        return string.rangeOfCharacterFromSet(set) == nil
+        
+    }
     
     
     /*
