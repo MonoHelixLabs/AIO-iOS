@@ -228,13 +228,22 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             
             if metadataObj.stringValue != nil {
                 let aiokey = metadataObj.stringValue
-                messageLabel.text = aiokey
                 
-                stopRecording()
+                if aiokey.rangeOfCharacterFromSet(NSCharacterSet.alphanumericCharacterSet().invertedSet) == nil {
                 
-                UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
+                    messageLabel.text = aiokey
                 
-                showAIOKeySaveAlert(aiokey)
+                    stopRecording()
+                
+                    UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
+                
+                    showAIOKeySaveAlert(aiokey)
+                }
+                
+                else {
+                    
+                    messageLabel.text = "Not a valid AIO key."
+                }
                 
             }
         }
