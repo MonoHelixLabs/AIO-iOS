@@ -71,7 +71,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func refreshHistFeedData(sender:AnyObject) {
         self.histItems.removeAllObjects();
-        RestApiManager.sharedInstance.getHistoricalData(selectedFeedKey, limit: limit) { (json: JSON) in
+        RestApiManager.sharedInstance.getHistoricalDataBasedOnLimit(selectedFeedKey, limit: limit) { (json: JSON) in
             let history: JSON = json
             for (_, subJson) in history {
                 if let hist: AnyObject = subJson.object {

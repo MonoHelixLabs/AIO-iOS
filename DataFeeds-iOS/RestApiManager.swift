@@ -16,10 +16,11 @@ typealias ServiceResponse = (JSON, NSError?) -> Void
 class RestApiManager: NSObject {
     static let sharedInstance = RestApiManager()
     
-    let baseURL = "https://io.adafruit.com/api/feeds"
+    let baseURL = "https://io.adafruit.com/api/v1/feeds"
     
-    let baseURLhistorical1 = "https://io.adafruit.com/api/feeds/"
-    let baseURLhistorical2 = "/data?limit="
+    let baseURLhistorical = "https://io.adafruit.com/api/v1/feeds/"
+    let baseURLhistorical1 = "/data?limit="
+    let baseURLhistorical2 = "/data?start_time="
     
     func getLatestData(onCompletion: (JSON) -> Void) {
         
@@ -31,11 +32,21 @@ class RestApiManager: NSObject {
         })
     }
     
-    func getHistoricalData(feedkey: String, limit: String, onCompletion: (JSON) -> Void) {
+    func getHistoricalDataBasedOnLimit(feedkey: String, limit: String, onCompletion: (JSON) -> Void) {
         
         let key = UserDefaultsManager.sharedInstance.getAIOkey()
         
-        let route = baseURLhistorical1 + feedkey + baseURLhistorical2 + limit
+        let route = baseURLhistorical + feedkey + baseURLhistorical1 + limit
+        makeHTTPGetRequest(route, key: key, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    func getHistoricalDataBasedOnStartTime(feedkey: String, starttime: String, onCompletion: (JSON) -> Void) {
+        
+        let key = UserDefaultsManager.sharedInstance.getAIOkey()
+        
+        let route = baseURLhistorical + feedkey + baseURLhistorical2 + starttime
         makeHTTPGetRequest(route, key: key, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
