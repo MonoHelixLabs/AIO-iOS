@@ -44,12 +44,23 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        newEmoji = emojiTextField.text! as String
-        emojiTextField.endEditing(true)
-                
-        UserDefaultsManager.sharedInstance.addToImagePreferences(selectedFeedKey,emoji: newEmoji)
+        saveEmoji()
         
         return false
+    }
+    
+    @IBAction func saveEmojiButtonPressed(sender: UIButton) {
+        
+        saveEmoji()
+    
+    }
+    
+    func saveEmoji() {
+        
+        newEmoji = emojiTextField.text! as String
+        emojiTextField.endEditing(true)
+        
+        UserDefaultsManager.sharedInstance.addToImagePreferences(selectedFeedKey,emoji: newEmoji)
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
