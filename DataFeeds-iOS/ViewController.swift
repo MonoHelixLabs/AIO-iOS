@@ -47,6 +47,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if refreshInterval != 0 {
             var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshFeedData:", userInfo: nil, repeats: true)
         }
+        
+        if UserDefaultsManager.sharedInstance.getShownKeyScreen() == false {
+            self.tabBarController!.selectedIndex = 1
+        }
     }
     
     

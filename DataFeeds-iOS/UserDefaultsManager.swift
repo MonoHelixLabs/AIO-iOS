@@ -19,6 +19,8 @@ class UserDefaultsManager: NSObject {
     let mainfeedrefreshString = "mainfeedrefresh"
     let feeddetailsrefreshString = "feeddetailsrefresh"
     
+    let shownKeyScreenString = "shownkeyscreen"
+    
     func getAIOkey() -> String {
  
         let prefs = NSUserDefaults.standardUserDefaults()
@@ -84,5 +86,16 @@ class UserDefaultsManager: NSObject {
         return prefs.doubleForKey(feeddetailsrefreshString)
     }
     
+    func getShownKeyScreen() -> Bool {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        var shownKeyScreen = prefs.boolForKey(shownKeyScreenString)
+        return shownKeyScreen
+    }
+    
+    func setShownKeyScreen(shownKeyScreen: Bool) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(shownKeyScreen, forKey: shownKeyScreenString)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
     
 }

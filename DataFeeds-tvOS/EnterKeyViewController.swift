@@ -16,6 +16,8 @@ class EnterKeyViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.codeTextField.delegate = self
+        
+        UserDefaultsManager.sharedInstance.setShownKeyScreen(true)
     }
 
     override func viewWillAppear(animated: Bool) {

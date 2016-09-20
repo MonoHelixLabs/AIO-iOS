@@ -33,6 +33,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
@@ -41,6 +42,8 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
         self.codeTextField.delegate = self
+        
+        UserDefaultsManager.sharedInstance.setShownKeyScreen(true)
     }
     
     override func viewWillAppear(animated: Bool) {
