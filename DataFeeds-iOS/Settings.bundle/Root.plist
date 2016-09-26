@@ -43,14 +43,12 @@
 			</array>
 			<key>Values</key>
 			<array>
-				<integer>0</integer>
+				<integer>-1</integer>
 				<integer>10</integer>
 				<integer>30</integer>
 				<integer>60</integer>
 				<integer>120</integer>
 			</array>
-			<key>DefaultValue</key>
-			<integer>30</integer>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -61,7 +59,7 @@
 			<string>feeddetailsrefresh</string>
 			<key>Values</key>
 			<array>
-				<integer>0</integer>
+				<integer>-1</integer>
 				<integer>10</integer>
 				<integer>30</integer>
 				<integer>60</integer>
@@ -75,8 +73,6 @@
 				<string>60 seconds</string>
 				<string>120 seconds</string>
 			</array>
-			<key>DefaultValue</key>
-			<integer>30</integer>
 		</dict>
 	</array>
 </dict>

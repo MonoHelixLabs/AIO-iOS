@@ -19,6 +19,8 @@ class UserDefaultsManager: NSObject {
     let mainfeedrefreshString = "mainfeedrefresh"
     let feeddetailsrefreshString = "feeddetailsrefresh"
     
+    let defaultRefreshRate = 30.0
+    
     let shownKeyScreenString = "shownkeyscreen"
     
     func getAIOkey() -> String {
@@ -78,17 +80,27 @@ class UserDefaultsManager: NSObject {
     
     func getRefreshRateMainFeedPage() -> Double {
         let prefs = NSUserDefaults.standardUserDefaults()
-        return prefs.doubleForKey(mainfeedrefreshString)
+        var refreshRate = prefs.doubleForKey(mainfeedrefreshString)
+        if (refreshRate == 0) {
+            prefs.setObject(defaultRefreshRate, forKey: mainfeedrefreshString)
+            refreshRate = defaultRefreshRate
+        }
+        return refreshRate
     }
     
     func getRefreshRateFeedDetailsPage() -> Double {
         let prefs = NSUserDefaults.standardUserDefaults()
-        return prefs.doubleForKey(feeddetailsrefreshString)
+        var refreshRate = prefs.doubleForKey(feeddetailsrefreshString)
+        if (refreshRate == 0) {
+            prefs.setObject(defaultRefreshRate, forKey: feeddetailsrefreshString)
+            refreshRate = defaultRefreshRate
+        }
+        return refreshRate
     }
     
     func getShownKeyScreen() -> Bool {
         let prefs = NSUserDefaults.standardUserDefaults()
-        var shownKeyScreen = prefs.boolForKey(shownKeyScreenString)
+        let shownKeyScreen = prefs.boolForKey(shownKeyScreenString)
         return shownKeyScreen
     }
     

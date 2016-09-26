@@ -50,15 +50,16 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         #endif
         
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY HH:mm:ss"
-        
-        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateFeedDetailsPage()
-        if refreshInterval != 0 {
-            var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshHistFeedData:", userInfo: nil, repeats: true)
-        }
+
     }
 
     
     override func viewWillAppear(animated: Bool) {
+        
+        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateFeedDetailsPage()
+        if refreshInterval > 0 {
+            var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshHistFeedData:", userInfo: nil, repeats: true)
+        }
         
         limit = "50" // default value
         

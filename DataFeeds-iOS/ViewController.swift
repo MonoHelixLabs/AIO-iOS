@@ -43,18 +43,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
         #endif
         
-        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateMainFeedPage()
-        if refreshInterval != 0 {
-            var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshFeedData:", userInfo: nil, repeats: true)
-        }
-        
         if UserDefaultsManager.sharedInstance.getShownKeyScreen() == false {
             self.tabBarController!.selectedIndex = 1
         }
     }
     
-    
     override func viewWillAppear(animated: Bool) {
+        
+        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateMainFeedPage()
+        if refreshInterval > 0 {
+            var timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshFeedData:", userInfo: nil, repeats: true)
+        }
         
         updateTableView((UIScreen.mainScreen().bounds.height), w: (UIScreen.mainScreen().bounds.width))
         
