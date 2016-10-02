@@ -97,22 +97,25 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if self.histItems.count > 0 {
             
-            if Double(self.histItems.firstObject!["value"] as! String) != nil {
+            var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
+            sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
+            
+            var xs = [Double]()
+            var ys = [Double]()
+            var yse = [ChartDataEntry]()
+            
+            for histItem in sortedHistItems {
                 
-                var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
-                sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
-                
-                var xs = [Double]()
-                var ys = [Double]()
-                var yse = [ChartDataEntry]()
-                
-                for histItem in sortedHistItems {
+                if Double(histItem["value"] as! String) != nil {
                     xs.append(histItem["created_epoch"] as! Double)
                     let x = histItem["created_epoch"] as! Double
                     ys.append(Double(histItem["value"] as! String)!)
                     let y = Double(histItem["value"] as! String)!
                     yse.append(ChartDataEntry(x: x,y: y))
                 }
+            }
+            
+            if ys.count > 0 {
                 let minElement = ys.minElement()!
                 let maxElement = ys.maxElement()!
                 
