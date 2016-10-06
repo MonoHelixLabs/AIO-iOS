@@ -276,7 +276,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             return "time"
         }
         else {
-            return "datetime"
+            return "date"
         }
         
     }

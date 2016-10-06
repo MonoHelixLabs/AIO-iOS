@@ -14,10 +14,13 @@ class DateValueFormatter: NSObject, IAxisValueFormatter {
     let dateFormatter = NSDateFormatter()
     let dateTimePeriodFormatterDateFormat = "MMM dd YYYY HH:mm:ss"
     let timePeriodFormatterDateFormat = "HH:mm:ss"
+    let datePeriodFormatterDateFormat = "MMM dd"
     
     init(granularity: String) {
         
         switch granularity {
+        case "date":
+            dateFormatter.dateFormat = datePeriodFormatterDateFormat
         case "datetime":
             dateFormatter.dateFormat = dateTimePeriodFormatterDateFormat
         case "time":
