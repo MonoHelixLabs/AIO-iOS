@@ -16,10 +16,15 @@ class UserDefaultsManager: NSObject {
     let aiokeyNotFound = ""
     
     let imgPrefsString = "imageprefs"
-    let mainfeedrefreshString = "mainfeedrefresh"
-    let feeddetailsrefreshString = "feeddetailsrefresh"
-        
+    
     let shownKeyScreenString = "shownkeyscreen"
+    
+    let mainfeedrefreshString = "mainfeedrefresh"
+    let mainfeedrefreshdefault = 0
+    let feeddetailsrefreshString = "feeddetailsrefresh"
+    let feeddetailsrefreshdefault = 0
+    
+    let refreshRates = [0.0, 15.0, 30.0, 60.0, 120.0]
     
     func getAIOkey() -> String {
  
@@ -110,6 +115,8 @@ class UserDefaultsManager: NSObject {
         return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
     }
     
+    // Preferences that are not synced with iCloud follow
+    
     func getShownKeyScreen() -> Bool {
         let prefs = NSUserDefaults.standardUserDefaults()
         let shownKeyScreen = prefs.boolForKey(shownKeyScreenString)
@@ -121,5 +128,40 @@ class UserDefaultsManager: NSObject {
         defaults.setObject(shownKeyScreen, forKey: shownKeyScreenString)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
+    
+    func getRefreshRateMainFeed() -> Int {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        var mainfeedrefresh = prefs.integerForKey(mainfeedrefreshString)
+        if (mainfeedrefresh == 0) { mainfeedrefresh = mainfeedrefreshdefault }
+        return mainfeedrefresh
+    }
+    
+    func getRefreshRateMainFeedToInterval() -> Double {
+        return refreshRates[getRefreshRateMainFeed()]
+    }
+    
+    func getRefreshRateFeedDetailsToInterval() -> Double {
+        return refreshRates[getRefreshRateDetailsFeed()]
+    }
+    
+    func setRefreshRateMainFeed(value: Int) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.setObject(value, forKey: mainfeedrefreshString)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func getRefreshRateDetailsFeed() -> Int{
+        let prefs = NSUserDefaults.standardUserDefaults()
+        var feeddetailsrefresh = prefs.integerForKey(feeddetailsrefreshString)
+        if (feeddetailsrefresh == 0) { feeddetailsrefresh = feeddetailsrefreshdefault }
+        return feeddetailsrefresh
+    }
+    
+    func setRefreshRateDetailsFeed(value: Int) {
+        let prefs = NSUserDefaults.standardUserDefaults()
+        prefs.setObject(value, forKey: feeddetailsrefreshString)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+
     
 }

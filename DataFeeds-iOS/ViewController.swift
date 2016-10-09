@@ -30,6 +30,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let warningEmoji = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
     
     var iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
+    
+    var timer: NSTimer!
         
     override func viewDidLoad() {
         
@@ -60,7 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if UserDefaultsManager.sharedInstance.getShownKeyScreen() == true {
             updateTableView((UIScreen.mainScreen().bounds.height), w: (UIScreen.mainScreen().bounds.width))
-        
             refreshFeedData(self)
         }
     }
@@ -68,8 +69,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(animated: Bool) {
         
         updateTableView((UIScreen.mainScreen().bounds.height), w: (UIScreen.mainScreen().bounds.width))
-        
         refreshFeedData(self)
+        
+        if timer != nil {
+            timer.invalidate()
+        }
+        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateMainFeedToInterval()
+        if refreshInterval > 0 {
+            timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshFeedData:", userInfo: nil, repeats: true)
+        }
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

@@ -16,11 +16,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-i1-XVW" userLabel="FeedTableView">
-                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-i1-XVW" userLabel="FeedTableView">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -53,15 +52,14 @@
                         <viewControllerLayoutGuide type="bottom" id="tWa-3r-Sc7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="G9i-k0-RKZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p25-8h-vpT">
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZX-TH-HQM" userLabel="Granularity View">
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-dI-a9X">
-                                                <frame key="frameInset" minX="10" minY="10" width="580" height="29"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-dI-a9X">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="6A1-8B-dK9"/>
                                                 </constraints>
@@ -136,7 +134,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Z1n-Yv-Dtc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wcN-TZ-xEH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="199-Zi-2tb">
@@ -177,7 +175,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="You can configure an emoji to use for your feed. This preference will be saved on your phone." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvJ-1U-y1m">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="You can configure an emoji to use for your feed." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvJ-1U-y1m">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="rXZ-WQ-O5g"/>
@@ -215,11 +213,10 @@
                         <viewControllerLayoutGuide type="bottom" id="SA8-Aj-xKB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eZn-YF-EQz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JpH-et-Jaz" userLabel="Enter Mode Stack View">
-                                <frame key="frameInset" minY="507" width="414" height="44"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JpH-et-Jaz" userLabel="Enter Mode Stack View">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-FG-2V8">
                                         <constraints>
@@ -252,8 +249,7 @@
                                     <constraint firstItem="H3r-1o-ei8" firstAttribute="leading" secondItem="jNa-FG-2V8" secondAttribute="trailing" id="pMA-AV-O8J"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Looking for QR code..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-eW-Sxy">
-                                <frame key="frameInset" minY="471" width="414" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for QR code..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-eW-Sxy">
                                 <color key="backgroundColor" red="0.75409031413612571" green="0.75409031413612571" blue="0.75409031413612571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="Tyz-fJ-Bjd"/>
@@ -325,6 +321,102 @@
             </objects>
             <point key="canvasLocation" x="2198.5507246376815" y="1214.6739130434783"/>
         </scene>
+        <!--Refresh Rate-->
+        <scene sceneID="UMI-wF-38K">
+            <objects>
+                <viewController id="ONl-g7-6bB" customClass="RefreshRateViewController" customModule="DataFeeds_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cRN-qK-RO9"/>
+                        <viewControllerLayoutGuide type="bottom" id="z4a-Ob-63M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="txZ-qU-0CK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LT1-X2-iKd">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Feed Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLF-CX-thI">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="wLe-E5-n87"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jhv-8c-2HN">
+                                        <segments>
+                                            <segment title="None"/>
+                                            <segment title="10 sec"/>
+                                            <segment title="30 sec"/>
+                                            <segment title="60 sec"/>
+                                            <segment title="120 sec"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.2156862745" green="0.76470588240000004" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="onMainFeedRefreshRateChanged:" destination="ONl-g7-6bB" eventType="valueChanged" id="g5o-2N-1ks"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Details Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDC-Ls-mpn">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="r91-XX-jM1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LUI-AC-9hT">
+                                        <segments>
+                                            <segment title="None"/>
+                                            <segment title="10 sec"/>
+                                            <segment title="30 sec"/>
+                                            <segment title="60 sec"/>
+                                            <segment title="120 sec"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.21568627450980393" green="0.76470588235294112" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="onFeedDetailsRefreshRateChanged:" destination="ONl-g7-6bB" eventType="valueChanged" id="91G-1C-AIw"/>
+                                            <action selector="onMainFeedRefreshRateChanged:" destination="ONl-g7-6bB" eventType="valueChanged" id="pvX-MH-TAO"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7S-8r-JfA" userLabel="Space">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="lOk-n7-VZe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="xEM-oB-egf">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="125" id="QZt-kh-Dbg"/>
+                                        </constraints>
+                                        <string key="text">You can control how often the main feed page and the feed details page should be refreshed. This is useful when using the app as a dashboard. However, try to avoid using a high refresh rate when looking at a large number of feed data points. </string>
+                                        <color key="textColor" red="0.36405840969999997" green="0.36405840969999997" blue="0.36405840969999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="LT1-X2-iKd" secondAttribute="trailing" constant="20" id="SoT-1w-cqf"/>
+                            <constraint firstItem="LT1-X2-iKd" firstAttribute="leading" secondItem="txZ-qU-0CK" secondAttribute="leadingMargin" constant="20" id="YJB-zq-vmV"/>
+                            <constraint firstItem="LT1-X2-iKd" firstAttribute="top" secondItem="cRN-qK-RO9" secondAttribute="bottom" constant="20" id="raE-Mv-L2U"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Refresh Rate" id="BqG-yE-swo"/>
+                    <connections>
+                        <outlet property="feedDetailsRefreshControl" destination="LUI-AC-9hT" id="Zqw-Rm-msC"/>
+                        <outlet property="mainFeedRefreshControl" destination="jhv-8c-2HN" id="zgN-br-vqY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RXi-Db-FDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813" y="1946"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZX6-ZX-h4C">
             <objects>
@@ -338,6 +430,7 @@
                     <connections>
                         <segue destination="ndv-un-g4u" kind="relationship" relationship="viewControllers" id="5mh-Sd-epU"/>
                         <segue destination="LJS-EQ-ycr" kind="relationship" relationship="viewControllers" id="nKG-Zn-HYZ"/>
+                        <segue destination="rl1-2m-9qK" kind="relationship" relationship="viewControllers" id="B1O-pD-HkC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLR-tg-gea" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -382,9 +475,29 @@
             </objects>
             <point key="canvasLocation" x="1387" y="1215"/>
         </scene>
+        <!--Refresh Rate-->
+        <scene sceneID="T8Z-5i-Acn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rl1-2m-9qK" userLabel="Refresh Rate" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="Refresh Rate" image="refresh" id="Ub7-XN-GEJ" userLabel="Refresh Rate"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VTp-6g-e3G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ONl-g7-6bB" kind="relationship" relationship="rootViewController" id="1Su-wF-4Vj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V8p-Qd-2i7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="826" y="1946"/>
+        </scene>
     </scenes>
     <resources>
         <image name="apikey" width="40" height="24"/>
+        <image name="refresh" width="40" height="37"/>
         <image name="sensors" width="40" height="40"/>
     </resources>
 </document>

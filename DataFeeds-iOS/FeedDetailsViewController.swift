@@ -20,6 +20,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     let dayTimePeriodFormatter = NSDateFormatter()
     
+    var timer: NSTimer!
+    
     #if os(iOS)
         @IBOutlet var lineChartView: LineChartView!
     #else
@@ -58,9 +60,16 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                
         limit = "50" // default value
         
+        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
         refreshHistFeedData(self)
         
-        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
+        if timer != nil {
+            timer.invalidate()
+        }
+        let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateFeedDetailsToInterval()
+        if refreshInterval > 0 {
+            timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshHistFeedData:", userInfo: nil, repeats: true)
+        }
         
     }
     

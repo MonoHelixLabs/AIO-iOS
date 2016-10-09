@@ -193,6 +193,100 @@
             </objects>
             <point key="canvasLocation" x="2906" y="633"/>
         </scene>
+        <!--Refresh Rate-->
+        <scene sceneID="yuM-Kt-Gge">
+            <objects>
+                <viewController id="lSr-nd-kin" customClass="RefreshRateViewController" customModule="DataFeeds_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2If-MT-lL5"/>
+                        <viewControllerLayoutGuide type="bottom" id="5ga-3E-Oje"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dEi-aX-Q3b">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iwq-BR-StE">
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" editable="NO" text="Refresh Rate" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a6-xG-bQO" userLabel="Refresh Rate View">
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="Rbw-4p-v5b"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-GQ-WfM">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="5Ne-R1-DUa"/>
+                                        </constraints>
+                                        <string key="text">You can control how often the main feed page and the feed details page should be refreshed. This is useful when using the app as a dashboard. However, try to avoid using a high refresh rate when looking at a large number of feed data points. </string>
+                                        <color key="textColor" red="0.36405840969999997" green="0.36405840969999997" blue="0.36405840969999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Feed Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjY-AN-KlS">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="lo8-Do-TCb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                        <color key="textColor" red="0.3514222756" green="0.3514222756" blue="0.3514222756" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="p55-HT-Sh2">
+                                        <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                        <segments>
+                                            <segment title="None"/>
+                                            <segment title="10 sec"/>
+                                            <segment title="30 sec"/>
+                                            <segment title="60 sec"/>
+                                            <segment title="120 sec"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="onMainFeedRefreshRateChanged:" destination="lSr-nd-kin" eventType="valueChanged" id="xsT-SW-cxe"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Details Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iro-sF-gFL">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="zH9-RB-n5S"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                        <color key="textColor" red="0.3514222756" green="0.3514222756" blue="0.3514222756" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YoP-WW-PbT">
+                                        <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                        <segments>
+                                            <segment title="None"/>
+                                            <segment title="10 sec"/>
+                                            <segment title="30 sec"/>
+                                            <segment title="60 sec"/>
+                                            <segment title="120 sec"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="onFeedDetailsRefreshRateChanged:" destination="lSr-nd-kin" eventType="valueChanged" id="48G-UH-Flm"/>
+                                            <action selector="onMainFeedRefreshRateChanged:" destination="lSr-nd-kin" eventType="valueChanged" id="FEV-bz-EOw"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Iwq-BR-StE" firstAttribute="leading" secondItem="dEi-aX-Q3b" secondAttribute="leadingMargin" constant="20" id="1BO-Gx-m8H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Iwq-BR-StE" secondAttribute="trailing" constant="20" id="W8X-61-TfV"/>
+                            <constraint firstItem="Iwq-BR-StE" firstAttribute="top" secondItem="2If-MT-lL5" secondAttribute="bottom" constant="20" id="it4-xs-Qo2"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="2" title="Refresh Rate" image="refresh" id="HMU-aG-bUF"/>
+                    <connections>
+                        <outlet property="feedDetailsRefreshControl" destination="YoP-WW-PbT" id="OnF-s8-Rtf"/>
+                        <outlet property="mainFeedRefreshControl" destination="p55-HT-Sh2" id="N93-ff-aJI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYD-7X-mNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2865" y="2456"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FKG-bB-IKh">
             <objects>
@@ -206,6 +300,7 @@
                     <connections>
                         <segue destination="mk0-KE-Bul" kind="relationship" relationship="viewControllers" id="Jys-mp-xF2"/>
                         <segue destination="6Wf-9s-Sxf" kind="relationship" relationship="viewControllers" id="rX0-08-asO"/>
+                        <segue destination="lSr-nd-kin" kind="relationship" relationship="viewControllers" id="v8I-kB-q9f"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGj-iq-VBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,6 +310,7 @@
     </scenes>
     <resources>
         <image name="apikey" width="40" height="24"/>
+        <image name="refresh" width="40" height="37"/>
         <image name="sensors" width="50" height="33"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
