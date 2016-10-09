@@ -57,11 +57,16 @@ class RestApiManager: NSObject {
         request.addValue(key, forHTTPHeaderField: "X-AIO-Key")
         
         let session = NSURLSession.sharedSession()
-        
+    
         let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            let json:JSON = JSON(data: data!)
-            onCompletion(json, error)
-        })
+            if data != nil {
+                let json:JSON = JSON(data: data!)
+                onCompletion(json, error)
+            }
+            else {
+                onCompletion(JSON([]), error)
+            }
+            })
         task.resume()
     }
 }

@@ -23,13 +23,23 @@ class UserDefaultsManager: NSObject {
     
     func getAIOkey() -> String {
  
-        let prefs = NSUserDefaults.standardUserDefaults()
-        var key = prefs.stringForKey(aiokeyString)
-        if (key == nil) { key = aiokeyNotFound }
-        return key!
+        let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
+        if let savedAIOkey = iCloudKeyStore!.stringForKey(aiokeyString) {
+            return savedAIOkey
+        }
+        else {
+            let prefs = NSUserDefaults.standardUserDefaults()
+            var key = prefs.stringForKey(aiokeyString)
+            if (key == nil) { key = aiokeyNotFound }
+            return key!
+        }
     }
     
     func setAIOkey(aiokey: String) {
+        
+        let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
+        iCloudKeyStore!.setString(aiokey, forKey: aiokeyString)
+        iCloudKeyStore!.synchronize()
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(aiokey, forKey: aiokeyString)
@@ -39,13 +49,19 @@ class UserDefaultsManager: NSObject {
     
     func getImagesPreferences() -> [String:String]{
         
-        let prefs = NSUserDefaults.standardUserDefaults()
-        
-        if let imagePrefs = prefs.dictionaryForKey(imgPrefsString) {
+        let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
+        if let imagePrefs = iCloudKeyStore!.dictionaryForKey(imgPrefsString) {
             return (imagePrefs as! [String:String])
         }
         else {
-            return [:]
+            let prefs = NSUserDefaults.standardUserDefaults()
+        
+            if let imagePrefs = prefs.dictionaryForKey(imgPrefsString) {
+                return (imagePrefs as! [String:String])
+            }
+            else {
+                return [:]
+            }
         }
     }
     
@@ -69,6 +85,25 @@ class UserDefaultsManager: NSObject {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(prefs, forKey: imgPrefsString)
         NSUserDefaults.standardUserDefaults().synchronize()
+        let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
+        iCloudKeyStore!.setObject(prefs, forKey: imgPrefsString)
+        iCloudKeyStore!.synchronize()
+        
+    }
+    
+    func syncWithiCloud() {
+        
+        let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
+        let prefs = NSUserDefaults.standardUserDefaults()
+        if let savedAIOkey = iCloudKeyStore!.stringForKey(aiokeyString) {
+            prefs.setObject(savedAIOkey, forKey: aiokeyString)
+        }
+        if let imagePrefs = iCloudKeyStore!.dictionaryForKey(imgPrefsString) {
+            prefs.setObject(imagePrefs, forKey: imgPrefsString)
+        }
+        
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
     }
     
     func getStringFromEmoji(emoji: String) -> String {

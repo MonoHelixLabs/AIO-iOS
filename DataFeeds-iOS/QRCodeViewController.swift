@@ -29,6 +29,8 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
+    var allowScanning = false
+    
     // Can support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     
@@ -44,6 +46,8 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         self.codeTextField.delegate = self
         
         UserDefaultsManager.sharedInstance.setShownKeyScreen(true)
+        
+        checkCamera()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -144,6 +148,10 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     
     @IBAction func onScanPress(sender: UIButton) {
+        
+        if (allowScanning == false) {
+            return
+        }
         
         // Check if we're not already in scanning mode
         if captureSession?.running == true {
@@ -276,6 +284,51 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
     }
     
+    func setAllowScanning() {
+        allowScanning = true
+    }
+    
+    
+    func checkCamera() {
+        let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        switch authStatus {
+        case .Authorized: setAllowScanning()
+        case .Denied: alertToEncourageCameraAccessInitially()
+        case .NotDetermined: alertPromptToAllowCameraAccessViaSetting()
+        default: alertPromptToAllowCameraAccessViaSetting()
+        }
+    }
+    
+    func alertToEncourageCameraAccessInitially() {
+        let alert = UIAlertController(
+            title: "IMPORTANT",
+            message: "Camera access required for QR Scanning",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Allow Camera", style: .Cancel, handler: { (alert) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        }))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func alertPromptToAllowCameraAccessViaSetting() {
+        
+        let alert = UIAlertController(
+            title: "Note",
+            message: "You will need to allow camera access in order to use the QR Scanning features.",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .Cancel) { alert in
+            if AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo).count > 0 {
+                AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { granted in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.checkCamera() } }
+            }
+            }
+        )
+        presentViewController(alert, animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation

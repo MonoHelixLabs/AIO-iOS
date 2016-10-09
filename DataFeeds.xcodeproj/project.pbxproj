@@ -125,7 +125,9 @@
 		DA2528B71D7AD20800EA6B6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "SwiftyJSON-master/Source/SwiftyJSON.swift"; sourceTree = SOURCE_ROOT; };
 		DA2528C11D7AD55700EA6B6B /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
+		DA452A4D1DA823A800FB98CF /* DataFeeds-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DataFeeds-iOS.entitlements"; sourceTree = "<group>"; };
 		DA6A58261D8C9C6C006D4C41 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		DAB4196A1DA838A8003CA61B /* DataFeeds-tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DataFeeds-tvOS.entitlements"; sourceTree = "<group>"; };
 		DACCC5891D858C730062A82F /* DataFeeds-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DataFeeds-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACCC5901D858C730062A82F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DACCC5921D858C730062A82F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				DA2528AA1D7AD20800EA6B6B /* DataFeeds-iOS */,
 				DACCC58A1D858C730062A82F /* DataFeeds-tvOS */,
 				DA2528A91D7AD20800EA6B6B /* Products */,
+				DAB419671DA83859003CA61B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +179,7 @@
 		DA2528AA1D7AD20800EA6B6B /* DataFeeds-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				DA452A4D1DA823A800FB98CF /* DataFeeds-iOS.entitlements */,
 				DA2528BF1D7AD52E00EA6B6B /* SwiftyJSON.swift */,
 				DA2528AB1D7AD20800EA6B6B /* AppDelegate.swift */,
 				DA2528AD1D7AD20800EA6B6B /* ViewController.swift */,
@@ -204,9 +208,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DAB419671DA83859003CA61B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DACCC58A1D858C730062A82F /* DataFeeds-tvOS */ = {
 			isa = PBXGroup;
 			children = (
+				DAB4196A1DA838A8003CA61B /* DataFeeds-tvOS.entitlements */,
 				DACCC58F1D858C730062A82F /* Main.storyboard */,
 				DACCC5921D858C730062A82F /* Assets.xcassets */,
 				DACCC5941D858C730062A82F /* Info.plist */,
@@ -262,17 +274,32 @@
 		DA2528A01D7AD20800EA6B6B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = monohelixlabs;
 				TargetAttributes = {
 					DA2528A71D7AD20800EA6B6B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BKZ4YQ4QNH;
+						DevelopmentTeam = 46WZ32V4WD;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					DACCC5881D858C730062A82F = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BKZ4YQ4QNH;
+						DevelopmentTeam = 46WZ32V4WD;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -523,9 +550,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "DataFeeds-iOS/DataFeeds-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BKZ4YQ4QNH;
+				DEVELOPMENT_TEAM = 46WZ32V4WD;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -542,9 +570,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "DataFeeds-iOS/DataFeeds-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = BKZ4YQ4QNH;
+				DEVELOPMENT_TEAM = 46WZ32V4WD;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -562,7 +591,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = BKZ4YQ4QNH;
+				DEVELOPMENT_TEAM = 46WZ32V4WD;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -581,7 +610,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = BKZ4YQ4QNH;
+				DEVELOPMENT_TEAM = 46WZ32V4WD;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/DataFeeds-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

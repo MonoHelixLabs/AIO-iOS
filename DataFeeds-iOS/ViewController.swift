@@ -28,10 +28,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
     let warningEmoji = String(Character(UnicodeScalar(Int("26a0",radix:16)!)))
+    
+    var iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
         
     override func viewDidLoad() {
         
-        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        UserDefaultsManager.sharedInstance.syncWithiCloud()
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.translucent = false
@@ -43,10 +46,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
         #endif
         
-        if UserDefaultsManager.sharedInstance.getShownKeyScreen() == false {
+        if UserDefaultsManager.sharedInstance.getShownKeyScreen() == false && UserDefaultsManager.sharedInstance.getAIOkey() == "" {
             self.tabBarController!.selectedIndex = 1
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.ubiquitousKeyValueStoreDidChangeExternally),
+                                                         name:  NSUbiquitousKeyValueStoreDidChangeExternallyNotification,
+                                                         object: iCloudKeyStore)
+    }
+    
+    func ubiquitousKeyValueStoreDidChangeExternally() {
+        UserDefaultsManager.sharedInstance.syncWithiCloud()
+        
+        if UserDefaultsManager.sharedInstance.getShownKeyScreen() == true {
+            updateTableView((UIScreen.mainScreen().bounds.height), w: (UIScreen.mainScreen().bounds.width))
+        
+            refreshFeedData(self)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,6 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.items.removeAllObjects();
         RestApiManager.sharedInstance.getLatestData { (json: JSON) in
             let feeds: JSON = json
+            if feeds.count > 0 {
             for (_, subJson) in feeds {
                 if let feed: AnyObject = subJson.object {
                     self.items.addObject(feed)
@@ -107,7 +124,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
         }
-        
+            else {
+                let alertController = UIAlertController(title: "Got not answer back from Adafruit.IO", message: "Please check your internet connection.", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+                #if os(iOS)
+                    self.refreshControl?.endRefreshing()
+                #endif
+            }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
