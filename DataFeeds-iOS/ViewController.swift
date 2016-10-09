@@ -188,12 +188,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         #if os(iOS)
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             label.text = val
+            label.font = UIFont(name: "Arial",size:30)
         #else
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 36))
             label.text = "\t" + val
+            label.adjustsFontSizeToFitWidth = true
         #endif
         
-        label.font = UIFont(name: "Arial",size:30)
+        
         return UIImage.imageWithLabel(label)
     
     }
