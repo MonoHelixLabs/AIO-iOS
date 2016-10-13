@@ -40,6 +40,10 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         @IBOutlet var feedDetailsStackView: UIStackView!
     #endif
     
+    #if os(iOS)
+        @IBOutlet var granularitySegmentedControl: UISegmentedControl!
+    #endif
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -59,6 +63,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(animated: Bool) {
                
         limit = "50" // default value
+        #if os(iOS)
+            granularitySegmentedControl.selectedSegmentIndex = 0
+        #endif
         
         updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
         refreshHistFeedData(self)

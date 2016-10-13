@@ -118,6 +118,7 @@
                     <connections>
                         <outlet property="feedDetailsStackView" destination="p25-8h-vpT" id="LWQ-Pz-Bds"/>
                         <outlet property="feedDetailsView" destination="Orf-yC-Kvd" id="TbW-Jb-AcA"/>
+                        <outlet property="granularitySegmentedControl" destination="VbM-dI-a9X" id="Qfr-mR-bj2"/>
                         <outlet property="lineChartView" destination="gBk-7c-MFM" id="DhA-fx-2gv"/>
                     </connections>
                 </viewController>
