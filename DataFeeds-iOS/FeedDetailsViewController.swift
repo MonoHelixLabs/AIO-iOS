@@ -196,11 +196,12 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         #if os(iOS)
-            // Only show the table if in Portrait
-            if(!UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
+            // Only show the table if in Portrait on iPhone
+            if(!UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) || UIDevice.currentDevice().userInterfaceIdiom == .Pad {
                 
                 let frame:CGRect = CGRect(x: 0, y: 280, width: w, height: h-380)
                 self.tableView = UITableView(frame: frame)
+                self.tableView?.cellLayoutMarginsFollowReadableWidth = false
                 self.tableView?.dataSource = self
                 self.tableView?.delegate = self
                 self.view.addSubview(self.tableView!)
