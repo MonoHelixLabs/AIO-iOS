@@ -82,25 +82,32 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     func refreshHistFeedData(sender:AnyObject) {
-        self.histItems.removeAllObjects();
-        RestApiManager.sharedInstance.getHistoricalDataBasedOnLimit(selectedFeedKey, limit: limit) { (json: JSON) in
-            let history: JSON = json
-            for (_, subJson) in history {
-                if let hist: AnyObject = subJson.object {
-                    self.histItems.addObject(hist)
-                    self.histItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: false)])
-                    if (self.histItems.count != 0) {
-                        dispatch_async(dispatch_get_main_queue(),{
-                            self.tableView?.reloadData()
-                            #if os(iOS)
-                                self.refreshControl?.endRefreshing()
-                            #endif
-                        })
+        
+        var refreshInProgress = false
+        
+        if (!refreshInProgress)
+        {
+            self.histItems.removeAllObjects();
+            RestApiManager.sharedInstance.getHistoricalDataBasedOnLimit(selectedFeedKey, limit: limit) { (json: JSON) in
+                let history: JSON = json
+                for (_, subJson) in history {
+                    if let hist: AnyObject = subJson.object {
+                        self.histItems.addObject(hist)
+                        self.histItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: false)])
+                        if (self.histItems.count != 0) {
+                            dispatch_async(dispatch_get_main_queue(),{
+                                self.tableView?.reloadData()
+                                #if os(iOS)
+                                    self.refreshControl?.endRefreshing()
+                                #endif
+                                refreshInProgress = false
+                            })
+                        }
+                        
                     }
-                    
                 }
+                self.updateChart()
             }
-            self.updateChart()
         }
     }
         
@@ -239,20 +246,20 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell!.userInteractionEnabled = false
         
-        if self.histItems.count > 0 {
-        let histItem:JSON =  JSON(self.histItems[indexPath.row])
-        
-        if let timestamp: AnyObject = histItem["created_epoch"].double {
-            //cell!.textLabel?.text = timestamp as? String
+        if self.histItems.count > 0 && indexPath.row < self.histItems.count {
+            let histItem:JSON =  JSON(self.histItems[indexPath.row])
             
-            cell!.textLabel?.text = dayTimePeriodFormatter.stringFromDate(NSDate(timeIntervalSince1970: (timestamp as? Double)!))
-            
-            if let val: AnyObject = histItem["value"].string {
-                cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + (val as! String)
-                cell!.textLabel!.enabled = true
-            }
-            
-            cell!.textLabel?.font = UIFont(name: "Arial",size:14.0)
+            if let timestamp: AnyObject = histItem["created_epoch"].double {
+                //cell!.textLabel?.text = timestamp as? String
+                
+                cell!.textLabel?.text = dayTimePeriodFormatter.stringFromDate(NSDate(timeIntervalSince1970: (timestamp as? Double)!))
+                
+                if let val: AnyObject = histItem["value"].string {
+                    cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + (val as! String)
+                    cell!.textLabel!.enabled = true
+                }
+                
+                cell!.textLabel?.font = UIFont(name: "Arial",size:14.0)
             }
         }
         return cell!

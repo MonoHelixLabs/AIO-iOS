@@ -113,32 +113,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func refreshFeedData(sender:AnyObject) {
-        self.items.removeAllObjects();
-        RestApiManager.sharedInstance.getLatestData { (json: JSON) in
-            let feeds: JSON = json
-            if feeds.count > 0 {
-            for (_, subJson) in feeds {
-                if let feed: AnyObject = subJson.object {
-                    self.items.addObject(feed)
-                    self.items.sortUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)])
-                    if (self.items.count != 0) {
-                        dispatch_async(dispatch_get_main_queue(),{
-                            self.tableView?.reloadData()
-                            #if os(iOS)
-                                self.refreshControl?.endRefreshing()
-                            #endif
-                        })
+        
+        var refreshInProgress = false
+        
+        if (!refreshInProgress)
+        {
+            refreshInProgress = true
+            self.items.removeAllObjects();
+            RestApiManager.sharedInstance.getLatestData { (json: JSON) in
+                let feeds: JSON = json
+                if feeds.count > 0 {
+                    for (_, subJson) in feeds {
+                        if let feed: AnyObject = subJson.object {
+                            self.items.addObject(feed)
+                            self.items.sortUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)])
+                            if (self.items.count != 0) {
+                                dispatch_async(dispatch_get_main_queue(),{
+                                    self.tableView?.reloadData()
+                                    #if os(iOS)
+                                        self.refreshControl?.endRefreshing()
+                                    #endif
+                                    refreshInProgress = false
+                                })
+                            }
+                        }
                     }
                 }
-            }
-        }
-            else {
-                let alertController = UIAlertController(title: "Got not answer back from Adafruit.IO", message: "Please check your internet connection.", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
-                #if os(iOS)
-                    self.refreshControl?.endRefreshing()
-                #endif
+                else {
+                    let alertController = UIAlertController(title: "Got not answer back from Adafruit.IO", message: "Please check your internet connection.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    #if os(iOS)
+                        self.refreshControl?.endRefreshing()
+                    #endif
+                }
             }
         }
     }
@@ -155,37 +163,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
         }
         
-        let feed:JSON =  JSON(self.items[indexPath.row])
-        
-        let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
-        
-        if let feedname: AnyObject = feed["name"].string {
+        if indexPath.row < self.items.count {
             
-            cell!.accessoryType = .DisclosureIndicator
+            let feed:JSON =  JSON(self.items[indexPath.row])
             
-            if let feedkey: AnyObject = feed["key"].string {
-                if let val = imgPrefs[feedkey as! String] {
-                    cell!.imageView!.image = getImageFromText(val)
-                }
-                else {
-                    cell!.imageView!.image = getImageFromText(defaultEmoji)
-                }
-            }
+            let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
+            
+            if let feedname: AnyObject = feed["name"].string {
                 
-            cell!.textLabel?.text = (feedname as! String)
-            
-            if let feedvalue = feed["last_value"].string {
-                cell!.textLabel?.text = (cell!.textLabel?.text)! + ": " + feedvalue
-            }
-
-        }
-        else {
-            cell!.imageView!.image = getImageFromText(warningEmoji)
-            if let error: AnyObject = feed.string {
-                cell!.textLabel?.text = "Connection problem: " + (error as! String)
+                cell!.accessoryType = .DisclosureIndicator
+                
+                if let feedkey: AnyObject = feed["key"].string {
+                    if let val = imgPrefs[feedkey as! String] {
+                        cell!.imageView!.image = getImageFromText(val)
+                    }
+                    else {
+                        cell!.imageView!.image = getImageFromText(defaultEmoji)
+                    }
+                }
+                
+                cell!.textLabel?.text = (feedname as! String)
+                
+                if let feedvalue = feed["last_value"].string {
+                    cell!.textLabel?.text = (cell!.textLabel?.text)! + ": " + feedvalue
+                }
+                
             }
             else {
-                cell!.textLabel?.text = "Connection problem."
+                cell!.imageView!.image = getImageFromText(warningEmoji)
+                if let error: AnyObject = feed.string {
+                    cell!.textLabel?.text = "Connection problem: " + (error as! String)
+                }
+                else {
+                    cell!.textLabel?.text = "Connection problem."
+                }
             }
         }
         return cell!
