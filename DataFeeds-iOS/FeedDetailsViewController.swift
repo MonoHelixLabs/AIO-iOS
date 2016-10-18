@@ -221,12 +221,6 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 refreshControl.addTarget(self, action: "refreshHistFeedData:", forControlEvents: UIControlEvents.ValueChanged)
                 self.tableView!.addSubview(refreshControl)
             }
-        /*#else
-            let frame:CGRect = CGRect(x: w/2, y: 0, width: w/2, height: h-380)
-            self.tableView = UITableView(frame: frame)
-            self.tableView?.dataSource = self
-            self.tableView?.delegate = self
-            self.view.addSubview(self.tableView!)*/
         #endif
     }
     
@@ -242,7 +236,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL") //as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
@@ -253,9 +247,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if self.histItems.count > 0 && indexPath.row < self.histItems.count {
             let histItem:JSON =  JSON(self.histItems[indexPath.row])
             
-            if let timestamp: AnyObject = histItem["created_epoch"].double {
-                //cell!.textLabel?.text = timestamp as? String
-                
+            if let timestamp: AnyObject = histItem["created_epoch"].double {                
                 cell!.textLabel?.text = dayTimePeriodFormatter.stringFromDate(NSDate(timeIntervalSince1970: (timestamp as? Double)!))
                 
                 if let val: AnyObject = histItem["value"].string {
