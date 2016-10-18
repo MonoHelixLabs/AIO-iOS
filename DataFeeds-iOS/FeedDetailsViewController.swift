@@ -114,6 +114,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     func updateChart() {
         
         if self.histItems.count > 0 {
+           
+            if self.histItems.contains({$0 is [String:AnyObject]}) {
             
             var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
             sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
@@ -121,7 +123,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             var xs = [Double]()
             var ys = [Double]()
             var yse = [ChartDataEntry]()
-            
+
             for histItem in sortedHistItems {
                 
                 if Double(histItem["value"] as! String) != nil {
@@ -184,6 +186,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
                 self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
                 self.lineChartView.descriptionText = ""
+            
+            }
             }
         }
     }
