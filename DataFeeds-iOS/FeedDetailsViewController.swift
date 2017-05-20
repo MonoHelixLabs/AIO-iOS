@@ -18,7 +18,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var tableView:UITableView?
     var histItems = NSMutableArray()
     
-    let dayTimePeriodFormatter = DateFormatter()
+    let dayTimePeriodFormatterIn = DateFormatter()
+    let dayTimePeriodFormatterOut = DateFormatter()
     
     var timer: Timer!
     
@@ -55,7 +56,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
         #endif
         
-        dayTimePeriodFormatter.dateFormat = "MMM dd YYYY HH:mm:ss"
+        dayTimePeriodFormatterIn.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dayTimePeriodFormatterOut.dateFormat = "MMM dd YYYY HH:mm:ss"
 
     }
 
@@ -93,7 +95,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 for (_, subJson) in history {
                     if let hist: AnyObject = subJson.object as AnyObject {
                         self.histItems.add(hist)
-                        self.histItems.sort(using: [NSSortDescriptor(key: "created_epoch", ascending: false)])
+                        self.histItems.sort(using: [NSSortDescriptor(key: "created_at", ascending: false)])
                         if (self.histItems.count != 0) {
                             DispatchQueue.main.async(execute: {
                                 self.tableView?.reloadData()
@@ -118,7 +120,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             if self.histItems.contains(where: {$0 is [String:Any]}) {
             
             var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
-            sortedHistItems.sort(using: [NSSortDescriptor(key: "created_epoch", ascending: true)])
+            sortedHistItems.sort(using: [NSSortDescriptor(key: "created_at", ascending: true)])
             
             var xs = [Double]()
             var ys = [Double]()
@@ -126,8 +128,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
                 for histItem in sortedHistItems as! [[String: Any]] {
                     if Double((histItem["value"] as? String)!) != nil {
-                        xs.append(histItem["created_epoch"] as! Double)
-                        let x = histItem["created_epoch"] as! Double
+                        let timestamp = dayTimePeriodFormatterIn.date(from: histItem["created_at"] as! String)?.timeIntervalSince1970
+                        xs.append(timestamp!)
+                        let x = timestamp!
                         ys.append(Double(histItem["value"] as! String)!)
                         let y = Double(histItem["value"] as! String)!
                         yse.append(ChartDataEntry(x: x,y: y))
@@ -247,10 +250,10 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if self.histItems.count > 0 && indexPath.row < self.histItems.count {
             let histItem:JSON =  JSON(self.histItems[indexPath.row])
             
-            if let timestamp: AnyObject = histItem["created_epoch"].double as AnyObject {                
-                cell!.textLabel?.text = dayTimePeriodFormatter.string(from: Date(timeIntervalSince1970: (timestamp as? Double)!))
+            if let timestamp: AnyObject = histItem["created_at"].string! as String as AnyObject {
+                cell!.textLabel?.text = dayTimePeriodFormatterOut.string(from: dayTimePeriodFormatterIn.date(from: timestamp as! String)!)
                 
-                if let val: AnyObject = histItem["value"].string as AnyObject {
+                if let val: AnyObject = histItem["value"].string! as String as AnyObject {
                     cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + (val as! String)
                     cell!.textLabel!.isEnabled = true
                 }
