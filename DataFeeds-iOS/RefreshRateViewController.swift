@@ -22,23 +22,23 @@ class RefreshRateViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         mainFeedRefreshControl.selectedSegmentIndex = UserDefaultsManager.sharedInstance.getRefreshRateMainFeed()
     }
     
     #if os(iOS)
-    @IBAction func onMainFeedRefreshRateChanged(sender: UISegmentedControl) {
+    @IBAction func onMainFeedRefreshRateChanged(_ sender: UISegmentedControl) {
         
         UserDefaultsManager.sharedInstance.setRefreshRateMainFeed(sender.selectedSegmentIndex)
     }
-    @IBAction func onFeedDetailsRefreshRateChanged(sender: UISegmentedControl) {
+    @IBAction func onFeedDetailsRefreshRateChanged(_ sender: UISegmentedControl) {
         
         UserDefaultsManager.sharedInstance.setRefreshRateDetailsFeed(sender.selectedSegmentIndex)
     }

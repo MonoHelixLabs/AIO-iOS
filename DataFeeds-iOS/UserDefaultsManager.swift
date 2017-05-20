@@ -29,39 +29,39 @@ class UserDefaultsManager: NSObject {
     func getAIOkey() -> String {
  
         let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
-        if let savedAIOkey = iCloudKeyStore!.stringForKey(aiokeyString) {
+        if let savedAIOkey = iCloudKeyStore!.string(forKey: aiokeyString) {
             return savedAIOkey
         }
         else {
-            let prefs = NSUserDefaults.standardUserDefaults()
-            var key = prefs.stringForKey(aiokeyString)
+            let prefs = UserDefaults.standard
+            var key = prefs.string(forKey: aiokeyString)
             if (key == nil) { key = aiokeyNotFound }
             return key!
         }
     }
     
-    func setAIOkey(aiokey: String) {
+    func setAIOkey(_ aiokey: String) {
         
         let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
-        iCloudKeyStore!.setString(aiokey, forKey: aiokeyString)
+        iCloudKeyStore!.set(aiokey, forKey: aiokeyString)
         iCloudKeyStore!.synchronize()
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(aiokey, forKey: aiokeyString)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        let defaults = UserDefaults.standard
+        defaults.set(aiokey, forKey: aiokeyString)
+        UserDefaults.standard.synchronize()
         
     }
     
     func getImagesPreferences() -> [String:String]{
         
         let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
-        if let imagePrefs = iCloudKeyStore!.dictionaryForKey(imgPrefsString) {
+        if let imagePrefs = iCloudKeyStore!.dictionary(forKey: imgPrefsString) {
             return (imagePrefs as! [String:String])
         }
         else {
-            let prefs = NSUserDefaults.standardUserDefaults()
+            let prefs = UserDefaults.standard
         
-            if let imagePrefs = prefs.dictionaryForKey(imgPrefsString) {
+            if let imagePrefs = prefs.dictionary(forKey: imgPrefsString) {
                 return (imagePrefs as! [String:String])
             }
             else {
@@ -70,11 +70,11 @@ class UserDefaultsManager: NSObject {
         }
     }
     
-    func addToImagePreferences(feed: String, emoji: String) {
+    func addToImagePreferences(_ feed: String, emoji: String) {
         
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         
-        if var imagePrefs = prefs.dictionaryForKey(imgPrefsString) {
+        if var imagePrefs = prefs.dictionary(forKey: imgPrefsString) {
             imagePrefs[feed] = emoji
             setImagesPreferences(imagePrefs as! [String:String])
         }
@@ -85,13 +85,13 @@ class UserDefaultsManager: NSObject {
         }
     }
     
-    func setImagesPreferences(prefs: [String:String]) {
+    func setImagesPreferences(_ prefs: [String:String]) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(prefs, forKey: imgPrefsString)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        let defaults = UserDefaults.standard
+        defaults.set(prefs, forKey: imgPrefsString)
+        UserDefaults.standard.synchronize()
         let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
-        iCloudKeyStore!.setObject(prefs, forKey: imgPrefsString)
+        iCloudKeyStore!.set(prefs, forKey: imgPrefsString)
         iCloudKeyStore!.synchronize()
         
     }
@@ -99,39 +99,39 @@ class UserDefaultsManager: NSObject {
     func syncWithiCloud() {
         
         let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
-        let prefs = NSUserDefaults.standardUserDefaults()
-        if let savedAIOkey = iCloudKeyStore!.stringForKey(aiokeyString) {
-            prefs.setObject(savedAIOkey, forKey: aiokeyString)
+        let prefs = UserDefaults.standard
+        if let savedAIOkey = iCloudKeyStore!.string(forKey: aiokeyString) {
+            prefs.set(savedAIOkey, forKey: aiokeyString)
         }
-        if let imagePrefs = iCloudKeyStore!.dictionaryForKey(imgPrefsString) {
-            prefs.setObject(imagePrefs, forKey: imgPrefsString)
+        if let imagePrefs = iCloudKeyStore!.dictionary(forKey: imgPrefsString) {
+            prefs.set(imagePrefs, forKey: imgPrefsString)
         }
         
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.synchronize()
         
     }
     
-    func getStringFromEmoji(emoji: String) -> String {
-        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)))
+    func getStringFromEmoji(_ emoji: String) -> String {
+        return String(Character(UnicodeScalar(Int(emoji,radix:16)!)!))
     }
     
     // Preferences that are not synced with iCloud follow
     
     func getShownKeyScreen() -> Bool {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let shownKeyScreen = prefs.boolForKey(shownKeyScreenString)
+        let prefs = UserDefaults.standard
+        let shownKeyScreen = prefs.bool(forKey: shownKeyScreenString)
         return shownKeyScreen
     }
     
-    func setShownKeyScreen(shownKeyScreen: Bool) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(shownKeyScreen, forKey: shownKeyScreenString)
-        NSUserDefaults.standardUserDefaults().synchronize()
+    func setShownKeyScreen(_ shownKeyScreen: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(shownKeyScreen, forKey: shownKeyScreenString)
+        UserDefaults.standard.synchronize()
     }
     
     func getRefreshRateMainFeed() -> Int {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        var mainfeedrefresh = prefs.integerForKey(mainfeedrefreshString)
+        let prefs = UserDefaults.standard
+        var mainfeedrefresh = prefs.integer(forKey: mainfeedrefreshString)
         if (mainfeedrefresh == 0) { mainfeedrefresh = mainfeedrefreshdefault }
         return mainfeedrefresh
     }
@@ -144,23 +144,23 @@ class UserDefaultsManager: NSObject {
         return refreshRates[getRefreshRateDetailsFeed()]
     }
     
-    func setRefreshRateMainFeed(value: Int) {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        prefs.setObject(value, forKey: mainfeedrefreshString)
-        NSUserDefaults.standardUserDefaults().synchronize()
+    func setRefreshRateMainFeed(_ value: Int) {
+        let prefs = UserDefaults.standard
+        prefs.set(value, forKey: mainfeedrefreshString)
+        UserDefaults.standard.synchronize()
     }
     
     func getRefreshRateDetailsFeed() -> Int{
-        let prefs = NSUserDefaults.standardUserDefaults()
-        var feeddetailsrefresh = prefs.integerForKey(feeddetailsrefreshString)
+        let prefs = UserDefaults.standard
+        var feeddetailsrefresh = prefs.integer(forKey: feeddetailsrefreshString)
         if (feeddetailsrefresh == 0) { feeddetailsrefresh = feeddetailsrefreshdefault }
         return feeddetailsrefresh
     }
     
-    func setRefreshRateDetailsFeed(value: Int) {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        prefs.setObject(value, forKey: feeddetailsrefreshString)
-        NSUserDefaults.standardUserDefaults().synchronize()
+    func setRefreshRateDetailsFeed(_ value: Int) {
+        let prefs = UserDefaults.standard
+        prefs.set(value, forKey: feeddetailsrefreshString)
+        UserDefaults.standard.synchronize()
     }
 
     

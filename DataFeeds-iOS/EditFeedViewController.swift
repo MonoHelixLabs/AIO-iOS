@@ -16,7 +16,7 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
     var currentEmoji: String!
     var newEmoji: String!
     
-    let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)))
+    let defaultEmoji = String(Character(UnicodeScalar(Int("26AA",radix:16)!)!))
     
     let maxEmojiLength = 3
     
@@ -42,14 +42,14 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         saveEmoji()
         
         return false
     }
     
-    @IBAction func saveEmojiButtonPressed(sender: UIButton) {
+    @IBAction func saveEmojiButtonPressed(_ sender: UIButton) {
         
         saveEmoji()
     
@@ -63,11 +63,11 @@ class EditFeedViewController: UIViewController, UITextFieldDelegate {
         UserDefaultsManager.sharedInstance.addToImagePreferences(selectedFeedKey,emoji: newEmoji)
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
         let maxLength = maxEmojiLength
-        let currentString: NSString = emojiTextField.text!
-        let newString: NSString = currentString.stringByReplacingCharactersInRange(range, withString: string)
+        let currentString: NSString = emojiTextField.text! as NSString
+        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
         return newString.length <= maxLength
     }
     

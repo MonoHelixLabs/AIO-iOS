@@ -18,9 +18,9 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     var tableView:UITableView?
     var histItems = NSMutableArray()
     
-    let dayTimePeriodFormatter = NSDateFormatter()
+    let dayTimePeriodFormatter = DateFormatter()
     
-    var timer: NSTimer!
+    var timer: Timer!
     
     #if os(iOS)
         @IBOutlet var lineChartView: LineChartView!
@@ -50,7 +50,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
 
         self.title = selectedFeedName
         #if os(iOS)
-            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         #else
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
         #endif
@@ -60,14 +60,14 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
                
         limit = "50" // default value
         #if os(iOS)
             granularitySegmentedControl.selectedSegmentIndex = 0
         #endif
         
-        updateTableView(UIScreen.mainScreen().bounds.height, w: UIScreen.mainScreen().bounds.width)
+        updateTableView(UIScreen.main.bounds.height, w: UIScreen.main.bounds.width)
         refreshHistFeedData(self)
         
         if timer != nil {
@@ -75,13 +75,13 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         }
         let refreshInterval = UserDefaultsManager.sharedInstance.getRefreshRateFeedDetailsToInterval()
         if refreshInterval > 0 {
-            timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: "refreshHistFeedData:", userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(FeedDetailsViewController.refreshHistFeedData(_:)), userInfo: nil, repeats: true)
         }
         
     }
     
     
-    func refreshHistFeedData(sender:AnyObject) {
+    func refreshHistFeedData(_ sender:AnyObject) {
         
         var refreshInProgress = false
         
@@ -91,11 +91,11 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             RestApiManager.sharedInstance.getHistoricalDataBasedOnLimit(selectedFeedKey, limit: limit) { (json: JSON) in
                 let history: JSON = json
                 for (_, subJson) in history {
-                    if let hist: AnyObject = subJson.object {
-                        self.histItems.addObject(hist)
-                        self.histItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: false)])
+                    if let hist: AnyObject = subJson.object as AnyObject {
+                        self.histItems.add(hist)
+                        self.histItems.sort(using: [NSSortDescriptor(key: "created_epoch", ascending: false)])
                         if (self.histItems.count != 0) {
-                            dispatch_async(dispatch_get_main_queue(),{
+                            DispatchQueue.main.async(execute: {
                                 self.tableView?.reloadData()
                                 #if os(iOS)
                                     self.refreshControl?.endRefreshing()
@@ -115,29 +115,29 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         if self.histItems.count > 0 {
            
-            if self.histItems.contains({$0 is [String:AnyObject]}) {
+            if self.histItems.contains(where: {$0 is [String:Any]}) {
             
             var sortedHistItems = self.histItems.mutableCopy() as! NSMutableArray
-            sortedHistItems.sortUsingDescriptors([NSSortDescriptor(key: "created_epoch", ascending: true)])
+            sortedHistItems.sort(using: [NSSortDescriptor(key: "created_epoch", ascending: true)])
             
             var xs = [Double]()
             var ys = [Double]()
             var yse = [ChartDataEntry]()
 
-            for histItem in sortedHistItems {
+                for histItem in sortedHistItems as! [[String: Any]] {
+                    if Double((histItem["value"] as? String)!) != nil {
+                        xs.append(histItem["created_epoch"] as! Double)
+                        let x = histItem["created_epoch"] as! Double
+                        ys.append(Double(histItem["value"] as! String)!)
+                        let y = Double(histItem["value"] as! String)!
+                        yse.append(ChartDataEntry(x: x,y: y))
+                    }
                 
-                if Double(histItem["value"] as! String) != nil {
-                    xs.append(histItem["created_epoch"] as! Double)
-                    let x = histItem["created_epoch"] as! Double
-                    ys.append(Double(histItem["value"] as! String)!)
-                    let y = Double(histItem["value"] as! String)!
-                    yse.append(ChartDataEntry(x: x,y: y))
-                }
             }
             
             if ys.count > 0 {
-                let minElement = ys.minElement()!
-                let maxElement = ys.maxElement()!
+                let minElement = ys.min()!
+                let maxElement = ys.max()!
                 
                 let data = LineChartData()
                 
@@ -147,7 +147,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 ds1.drawValuesEnabled = false
                 ds1.drawFilledEnabled = true
                 ds1.fillColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-                ds1.mode = LineChartDataSet.Mode.HorizontalBezier
+                ds1.mode = LineChartDataSet.Mode.horizontalBezier
                 ds1.cubicIntensity = 0.2
                 ds1.setDrawHighlightIndicators(false)
                 
@@ -162,7 +162,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     self.lineChartView.leftAxis.axisMaximum = maxElement + 10/100*(maxElement-minElement)
                     self.lineChartView.leftAxis.axisMinimum = minElement - 10/100*(maxElement-minElement)
                 }
-                self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.Bottom
+                self.lineChartView.xAxis.labelPosition = Charts.XAxis.LabelPosition.bottom
                 
                 #if os(iOS)
                     self.lineChartView.extraLeftOffset = 10
@@ -183,21 +183,21 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 let granularity = decideTimeGranularityBasedOnData(xs)
                 self.lineChartView.xAxis.valueFormatter = DateValueFormatter(granularity: granularity)
                 
-                self.lineChartView.gridBackgroundColor = NSUIColor.whiteColor()
+                self.lineChartView.gridBackgroundColor = NSUIColor.white
                 self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
-                self.lineChartView.descriptionText = ""
+                self.lineChartView.chartDescription?.text = ""
             
             }
             }
         }
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         updateTableView(size.height,w: size.width)
     }
     
-    func updateTableView(h: CGFloat, w: CGFloat) {
+    func updateTableView(_ h: CGFloat, w: CGFloat) {
         
         if tableView != nil {
             self.tableView?.removeFromSuperview()
@@ -208,7 +208,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
         #if os(iOS)
             // Only show the table if in Portrait on iPhone
-            if(!UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) || UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            if(!UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) || UIDevice.current.userInterfaceIdiom == .pad {
                 
                 let frame:CGRect = CGRect(x: 0, y: 280, width: w, height: h-380)
                 self.tableView = UITableView(frame: frame)
@@ -218,41 +218,41 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.view.addSubview(self.tableView!)
                 
                 refreshControl = UIRefreshControl()
-                refreshControl.addTarget(self, action: "refreshHistFeedData:", forControlEvents: UIControlEvents.ValueChanged)
+                refreshControl.addTarget(self, action: #selector(FeedDetailsViewController.refreshHistFeedData(_:)), for: UIControlEvents.valueChanged)
                 self.tableView!.addSubview(refreshControl)
             }
         #endif
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.histItems.count;
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 36
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL")
+            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL")
         }
         
-        cell!.userInteractionEnabled = false
+        cell!.isUserInteractionEnabled = false
         
         if self.histItems.count > 0 && indexPath.row < self.histItems.count {
             let histItem:JSON =  JSON(self.histItems[indexPath.row])
             
-            if let timestamp: AnyObject = histItem["created_epoch"].double {                
-                cell!.textLabel?.text = dayTimePeriodFormatter.stringFromDate(NSDate(timeIntervalSince1970: (timestamp as? Double)!))
+            if let timestamp: AnyObject = histItem["created_epoch"].double as AnyObject {                
+                cell!.textLabel?.text = dayTimePeriodFormatter.string(from: Date(timeIntervalSince1970: (timestamp as? Double)!))
                 
-                if let val: AnyObject = histItem["value"].string {
+                if let val: AnyObject = histItem["value"].string as AnyObject {
                     cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + (val as! String)
-                    cell!.textLabel!.enabled = true
+                    cell!.textLabel!.isEnabled = true
                 }
                 
                 cell!.textLabel?.font = UIFont(name: "Arial",size:14.0)
@@ -262,7 +262,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
 
-    @IBAction func onGranularityChange(sender: UISegmentedControl) {
+    @IBAction func onGranularityChange(_ sender: UISegmentedControl) {
         
         let selectedSegment = sender.selectedSegmentIndex
         
@@ -282,17 +282,17 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         refreshHistFeedData(self)
     }
     
-    func decideTimeGranularityBasedOnData(xs: [Double]) -> String {
+    func decideTimeGranularityBasedOnData(_ xs: [Double]) -> String {
         
-        let cal = NSCalendar.currentCalendar()
-        let dayCalendarUnit: NSCalendarUnit = [.Day]
-        let dayDifference = cal.components(
+        let cal = Calendar.current
+        let dayCalendarUnit: NSCalendar.Unit = [.day]
+        let dayDifference = (cal as NSCalendar).components(
             dayCalendarUnit,
-            fromDate: NSDate(timeIntervalSince1970: (xs.minElement())!),
-            toDate: NSDate(timeIntervalSince1970: (xs.maxElement())!),
+            from: Date(timeIntervalSince1970: (xs.min())!),
+            to: Date(timeIntervalSince1970: (xs.max())!),
             options: [])
         
-        if (dayDifference.day < 1) {
+        if (dayDifference.day! < 1) {
             return "time"
         }
         else {
@@ -307,11 +307,11 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if segue.identifier == "editFeed" {
             
             // get a reference to the second view controller
-            let editFeedViewController = segue.destinationViewController as! EditFeedViewController
+            let editFeedViewController = segue.destination as! EditFeedViewController
             
             // set a variable in the second view controller with the data to pass
             editFeedViewController.selectedFeedName = selectedFeedName

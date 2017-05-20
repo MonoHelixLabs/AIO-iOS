@@ -22,7 +22,7 @@ class RestApiManager: NSObject {
     let baseURLhistorical1 = "/data?limit="
     let baseURLhistorical2 = "/data?start_time="
     
-    func getLatestData(onCompletion: (JSON) -> Void) {
+    func getLatestData(_ onCompletion: @escaping (JSON) -> Void) {
         
         let key = UserDefaultsManager.sharedInstance.getAIOkey()
         
@@ -32,7 +32,7 @@ class RestApiManager: NSObject {
         })
     }
     
-    func getHistoricalDataBasedOnLimit(feedkey: String, limit: String, onCompletion: (JSON) -> Void) {
+    func getHistoricalDataBasedOnLimit(_ feedkey: String, limit: String, onCompletion: @escaping (JSON) -> Void) {
         
         let key = UserDefaultsManager.sharedInstance.getAIOkey()
         
@@ -42,7 +42,7 @@ class RestApiManager: NSObject {
         })
     }
     
-    func getHistoricalDataBasedOnStartTime(feedkey: String, starttime: String, onCompletion: (JSON) -> Void) {
+    func getHistoricalDataBasedOnStartTime(_ feedkey: String, starttime: String, onCompletion: @escaping (JSON) -> Void) {
         
         let key = UserDefaultsManager.sharedInstance.getAIOkey()
         
@@ -52,21 +52,31 @@ class RestApiManager: NSObject {
         })
     }
     
-    func makeHTTPGetRequest(path: String, key: String, onCompletion: ServiceResponse) {
-        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
+    func makeHTTPGetRequest(_ path: String, key: String, onCompletion: @escaping ServiceResponse) {
+        let request = NSMutableURLRequest(url: URL(string: path)!)
         request.addValue(key, forHTTPHeaderField: "X-AIO-Key")
         
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
     
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            if data != nil {
-                let json:JSON = JSON(data: data!)
-                onCompletion(json, error)
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+            
+            guard error == nil else {
+                print(error!)
+                onCompletion(JSON([]), error as NSError?)
+                return
             }
-            else {
-                onCompletion(JSON([]), error)
+            guard let data = data else {
+                print("Data is empty")
+                onCompletion(JSON([]), error as NSError?)
+                return
             }
-            })
+            
+            let json = try! JSON(data: data)
+            print(json)
+            onCompletion(json, error as NSError?)
+            
+        })
+        
         task.resume()
     }
 }
