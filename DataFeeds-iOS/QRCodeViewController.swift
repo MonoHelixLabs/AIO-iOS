@@ -39,9 +39,9 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         self.codeTextField.delegate = self
         
@@ -50,7 +50,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         checkCamera()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         stopRecording()
         setManualEnterMode()
@@ -62,7 +62,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     func stopRecording() {
         
-        if captureSession?.running == true {
+        if captureSession?.isRunning == true {
             captureSession?.stopRunning()
             videoPreviewLayer?.removeFromSuperlayer()
             qrCodeFrameView?.removeFromSuperview()
@@ -71,40 +71,40 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     func setManualEnterMode() {
         
-        enterCodeButton.highlighted = false
-        scanQRButton.highlighted = true
-        messageLabel.hidden = true
-        manualEnterStackView.hidden = false
-        enterCodeButton.hidden = false
+        enterCodeButton.isHighlighted = false
+        scanQRButton.isHighlighted = true
+        messageLabel.isHidden = true
+        manualEnterStackView.isHidden = false
+        enterCodeButton.isHidden = false
         
     }
     
     func setQRScanningMode() {
         
-        enterCodeButton.highlighted = true
-        scanQRButton.highlighted = false
+        enterCodeButton.isHighlighted = true
+        scanQRButton.isHighlighted = false
         messageLabel.text = noQRmessage
-        messageLabel.hidden = false
-        manualEnterStackView.hidden = true
+        messageLabel.isHidden = false
+        manualEnterStackView.isHidden = true
     }
     
-    func showAIOKeySaveAlert(aiokey: String) {
+    func showAIOKeySaveAlert(_ aiokey: String) {
         
-        let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: {(action) -> Void in self.moveToMainTab()}))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "AIO key saved!", message: aiokey, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: {(action) -> Void in self.moveToMainTab()}))
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func onEnterCodePress(sender: UIButton) {
+    @IBAction func onEnterCodePress(_ sender: UIButton) {
         
         stopRecording()
         setManualEnterMode()
         
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        if captureSession?.running == true {
+        if captureSession?.isRunning == true {
             
             // Change size of the view containing the video preview
             videoPreviewLayer?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height-100)
@@ -119,7 +119,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         if let connection =  self.videoPreviewLayer?.connection  {
             let previewLayerConnection : AVCaptureConnection = connection
-            if (previewLayerConnection.supportsVideoOrientation)
+            if (previewLayerConnection.isVideoOrientationSupported)
             {
                 previewLayerConnection.videoOrientation = getVideoOrientation()
             }
@@ -128,33 +128,33 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     func getVideoOrientation() ->AVCaptureVideoOrientation {
         
-        let currentDevice: UIDevice = UIDevice.currentDevice()
+        let currentDevice: UIDevice = UIDevice.current
         let orientation: UIDeviceOrientation = currentDevice.orientation
         
         switch (orientation)
             {
-            case .Portrait:
-                return AVCaptureVideoOrientation.Portrait
-            case .LandscapeRight:
-                return AVCaptureVideoOrientation.LandscapeLeft
-            case .LandscapeLeft:
-                return AVCaptureVideoOrientation.LandscapeRight
-            case .PortraitUpsideDown:
-                return AVCaptureVideoOrientation.PortraitUpsideDown
+            case .portrait:
+                return AVCaptureVideoOrientation.portrait
+            case .landscapeRight:
+                return AVCaptureVideoOrientation.landscapeLeft
+            case .landscapeLeft:
+                return AVCaptureVideoOrientation.landscapeRight
+            case .portraitUpsideDown:
+                return AVCaptureVideoOrientation.portraitUpsideDown
             default:
-                return AVCaptureVideoOrientation.Portrait
+                return AVCaptureVideoOrientation.portrait
             }
     }
     
     
-    @IBAction func onScanPress(sender: UIButton) {
+    @IBAction func onScanPress(_ sender: UIButton) {
         
         if (allowScanning == false) {
             return
         }
         
         // Check if we're not already in scanning mode
-        if captureSession?.running == true {
+        if captureSession?.isRunning == true {
             return
         }
         
@@ -162,7 +162,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
-        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
@@ -178,7 +178,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             captureSession?.addOutput(captureMetadataOutput)
             
             // Set delegate and use the default dispatch queue to execute the call back
-            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             
             // Detect all the supported bar code
             captureMetadataOutput.metadataObjectTypes = supportedBarCodes
@@ -198,15 +198,15 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             qrCodeFrameView = UIView()
             
             if let qrCodeFrameView = qrCodeFrameView {
-                qrCodeFrameView.layer.borderColor = UIColor.greenColor().CGColor
+                qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
-                view.bringSubviewToFront(qrCodeFrameView)
+                view.bringSubview(toFront: qrCodeFrameView)
             }
             
             // Move the message label and the buttons to the top view
-            view.bringSubviewToFront(messageLabel)
-            view.bringSubviewToFront(enterModeStackView)
+            view.bringSubview(toFront: messageLabel)
+            view.bringSubview(toFront: enterModeStackView)
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
@@ -216,11 +216,11 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRectZero
+            qrCodeFrameView?.frame = CGRect.zero
             messageLabel.text = noQRmessage
             return
         }
@@ -234,21 +234,21 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         if supportedBarCodes.contains(metadataObj.type) {
             //        if metadataObj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
                 let aiokey = metadataObj.stringValue
                 
-                if aiokey.rangeOfCharacterFromSet(NSCharacterSet.alphanumericCharacterSet().invertedSet) == nil {
+                if aiokey?.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil {
                 
                     messageLabel.text = aiokey
                 
                     stopRecording()
                 
-                    UserDefaultsManager.sharedInstance.setAIOkey(aiokey)
+                    UserDefaultsManager.sharedInstance.setAIOkey(aiokey!)
                 
-                    showAIOKeySaveAlert(aiokey)
+                    showAIOKeySaveAlert(aiokey!)
                 }
                 
                 else {
@@ -264,7 +264,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         self.tabBarController!.selectedIndex = 0
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let aiokey = codeTextField.text! as String
         codeTextField.endEditing(true)
@@ -276,11 +276,11 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         return false
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         // guard against anything but alphanumeric characters
-        let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-        return string.rangeOfCharacterFromSet(set) == nil
+        let set = CharacterSet.alphanumerics.inverted
+        return string.rangeOfCharacter(from: set) == nil
         
     }
     
@@ -290,11 +290,11 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     
     func checkCamera() {
-        let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch authStatus {
-        case .Authorized: setAllowScanning()
-        case .Denied: alertToEncourageCameraAccessInitially()
-        case .NotDetermined: alertPromptToAllowCameraAccessViaSetting()
+        case .authorized: setAllowScanning()
+        case .denied: alertToEncourageCameraAccessInitially()
+        case .notDetermined: alertPromptToAllowCameraAccessViaSetting()
         default: alertPromptToAllowCameraAccessViaSetting()
         }
     }
@@ -303,13 +303,13 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         let alert = UIAlertController(
             title: "IMPORTANT",
             message: "Camera access required for QR Scanning",
-            preferredStyle: UIAlertControllerStyle.Alert
+            preferredStyle: UIAlertControllerStyle.alert
         )
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Allow Camera", style: .Cancel, handler: { (alert) -> Void in
-            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Allow Camera", style: .cancel, handler: { (alert) -> Void in
+            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
         }))
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func alertPromptToAllowCameraAccessViaSetting() {
@@ -317,17 +317,17 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         let alert = UIAlertController(
             title: "Note",
             message: "You will need to allow camera access in order to use the QR Scanning features.",
-            preferredStyle: UIAlertControllerStyle.Alert
+            preferredStyle: UIAlertControllerStyle.alert
         )
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .Cancel) { alert in
-            if AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo).count > 0 {
-                AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { granted in
-                    dispatch_async(dispatch_get_main_queue()) {
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel) { alert in
+            if AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo).count > 0 {
+                AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { granted in
+                    DispatchQueue.main.async {
                         self.checkCamera() } }
             }
             }
         )
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     /*

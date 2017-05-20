@@ -11,7 +11,7 @@ import Charts
 
 class DateValueFormatter: NSObject, IAxisValueFormatter {
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     let dateTimePeriodFormatterDateFormat = "MMM dd YYYY HH:mm:ss"
     let timePeriodFormatterDateFormat = "HH:mm:ss"
     let datePeriodFormatterDateFormat = "MMM dd"
@@ -32,8 +32,8 @@ class DateValueFormatter: NSObject, IAxisValueFormatter {
         super.init()
     }
     
-    func stringForValue(value: Double, axis: AxisBase?) -> String {
-        return dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: value))
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
     }
     
 }
