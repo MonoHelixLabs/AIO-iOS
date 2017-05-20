@@ -36,6 +36,8 @@
 		DACCC5AF1D85B1E70062A82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2528B21D7AD20800EA6B6B /* Assets.xcassets */; };
 		DAE2E1081ED01D6B0078C418 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; };
 		DAE2E1091ED01D6B0078C418 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DAE2E10C1ED042310078C418 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; };
+		DAE2E10D1ED042310078C418 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DAFB149B1DAA8AA0002F2DCA /* RefreshRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB149A1DAA8AA0002F2DCA /* RefreshRateViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,13 @@
 			remoteInfo = ChartsTests;
 		};
 		DAE2E10A1ED01D6B0078C418 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAE2E0FF1ED01D340078C418 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
+		DAE2E10E1ED042310078C418 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DAE2E0FF1ED01D340078C418 /* Charts.xcodeproj */;
 			proxyType = 1;
@@ -81,6 +90,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DAE2E10D1ED042310078C418 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE2E10C1ED042310078C418 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +249,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DAE2E10F1ED042310078C418 /* PBXTargetDependency */,
 			);
 			name = "DataFeeds-tvOS";
 			productName = "AIO-tvOS";
@@ -389,6 +401,11 @@
 			isa = PBXTargetDependency;
 			name = Charts;
 			targetProxy = DAE2E10A1ED01D6B0078C418 /* PBXContainerItemProxy */;
+		};
+		DAE2E10F1ED042310078C418 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = DAE2E10E1ED042310078C418 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -561,7 +578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.datafeeds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -580,7 +597,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.monohelixlabs.datafeeds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};

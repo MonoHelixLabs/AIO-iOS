@@ -20,7 +20,7 @@ class EnterKeyViewController: UIViewController, UITextFieldDelegate {
         UserDefaultsManager.sharedInstance.setShownKeyScreen(true)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         codeTextField.text = UserDefaultsManager.sharedInstance.getAIOkey()
     }
     
@@ -30,7 +30,7 @@ class EnterKeyViewController: UIViewController, UITextFieldDelegate {
     }
     
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let aiokey = codeTextField.text! as String
         codeTextField.endEditing(true)
@@ -40,11 +40,11 @@ class EnterKeyViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         // guard against anything but alphanumeric characters
-        let set = NSCharacterSet.alphanumericCharacterSet().invertedSet
-        return string.rangeOfCharacterFromSet(set) == nil
+        let set = NSCharacterSet.alphanumerics.inverted
+        return string.rangeOfCharacter(from: set) == nil
         
     }
     

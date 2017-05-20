@@ -53,7 +53,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         #if os(iOS)
             self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         #else
-            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(50)]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black, NSFontAttributeName: UIFont.systemFont(ofSize: 50)]
         #endif
         
         dayTimePeriodFormatterIn.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -178,8 +178,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                     self.lineChartView.extraRightOffset = 30
                     self.lineChartView.extraBottomOffset = 30
                     
-                    self.lineChartView.xAxis.labelFont = self.lineChartView.xAxis.labelFont.fontWithSize(30)
-                    self.lineChartView.leftAxis.labelFont = self.lineChartView.leftAxis.labelFont.fontWithSize(30)
+                    self.lineChartView.xAxis.labelFont = self.lineChartView.xAxis.labelFont.withSize(30)
+                    self.lineChartView.leftAxis.labelFont = self.lineChartView.leftAxis.labelFont.withSize(30)
                 #endif
                 self.lineChartView.xAxis.avoidFirstLastClippingEnabled = true
                 self.lineChartView.xAxis.drawAxisLineEnabled = false
