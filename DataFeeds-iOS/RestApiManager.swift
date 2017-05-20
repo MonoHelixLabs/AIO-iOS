@@ -61,20 +61,16 @@ class RestApiManager: NSObject {
         let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
             
             guard error == nil else {
-                print(error!)
                 onCompletion(JSON([]), error as NSError?)
                 return
             }
             guard let data = data else {
-                print("Data is empty")
                 onCompletion(JSON([]), error as NSError?)
                 return
             }
             
             let json = try! JSON(data: data)
-            print(json)
             onCompletion(json, error as NSError?)
-            
         })
         
         task.resume()
