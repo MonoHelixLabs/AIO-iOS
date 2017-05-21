@@ -124,7 +124,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let feeds: JSON = json
                 if feeds.count > 0 {
                     for (_, subJson) in feeds {
-                        if let feed: AnyObject = subJson.object as AnyObject {
+                        if let feed: AnyObject = subJson.object as AnyObject{
                             self.items.add(feed)
                             self.items.sort(using: [NSSortDescriptor(key: "name", ascending: true)])
                             if (self.items.count != 0) {
@@ -169,12 +169,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             let imgPrefs = UserDefaultsManager.sharedInstance.getImagesPreferences()
             
-            if let feedname: AnyObject = feed["name"].string as AnyObject {
+            if let feedname = feed["name"].string {
                 
                 cell!.accessoryType = .disclosureIndicator
                 
-                if let feedkey: AnyObject = feed["key"].string as AnyObject {
-                    if let val = imgPrefs[feedkey as! String] {
+                if let feedkey = feed["key"].string {
+                    if let val = imgPrefs[feedkey] {
                         cell!.imageView!.image = getImageFromText(val)
                     }
                     else {
@@ -182,7 +182,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     }
                 }
                 
-                cell!.textLabel?.text = (feedname as! String)
+                cell!.textLabel?.text = (feedname)
                 
                 if let feedvalue = feed["last_value"].string {
                     cell!.textLabel?.text = (cell!.textLabel?.text)! + ": " + feedvalue
@@ -191,8 +191,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             else {
                 cell!.imageView!.image = getImageFromText(warningEmoji)
-                if let error: AnyObject = feed.string as AnyObject {
-                    cell!.textLabel?.text = "Connection problem: " + (error as! String)
+                if let error = feed.string {
+                    cell!.textLabel?.text = "Connection problem: " + error
                 }
                 else {
                     cell!.textLabel?.text = "Connection problem."
@@ -225,11 +225,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
         let feed:JSON =  JSON(self.items[indexPath.row])
         
-        if let feedname: AnyObject = feed["name"].string as AnyObject {
-            selectedFeedName = feedname as! String
+        if let feedname = feed["name"].string {
+            selectedFeedName = feedname
             
-            if let feedkey: AnyObject = feed["key"].string as AnyObject {
-                selectedFeedKey = feedkey as! String
+            if let feedkey = feed["key"].string {
+                selectedFeedKey = feedkey
             }
             
             performSegue(withIdentifier: "tableCellDetails", sender: self)
