@@ -250,11 +250,11 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
         if self.histItems.count > 0 && indexPath.row < self.histItems.count {
             let histItem:JSON =  JSON(self.histItems[indexPath.row])
             
-            if let timestamp: AnyObject = histItem["created_at"].string! as String as AnyObject {
-                cell!.textLabel?.text = dayTimePeriodFormatterOut.string(from: dayTimePeriodFormatterIn.date(from: timestamp as! String)!)
+            if let timestamp = histItem["created_at"].string {
+                cell!.textLabel?.text = dayTimePeriodFormatterOut.string(from: dayTimePeriodFormatterIn.date(from: timestamp)!)
                 
-                if let val: AnyObject = histItem["value"].string! as String as AnyObject {
-                    cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + (val as! String)
+                if let val = histItem["value"].string {
+                    cell!.textLabel?.text = (cell!.textLabel?.text)! + "\t\t" + val
                     cell!.textLabel!.isEnabled = true
                 }
                 
