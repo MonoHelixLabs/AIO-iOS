@@ -43,11 +43,11 @@ class RefreshRateViewController: UIViewController {
         UserDefaultsManager.sharedInstance.setRefreshRateDetailsFeed(sender.selectedSegmentIndex)
     }
     #else
-    @IBAction func onMainFeedRefreshRateChanged(sender: UISegmentedControl) {
+    @IBAction func onMainFeedRefreshRateChanged(_ sender: UISegmentedControl) {
     
         UserDefaultsManager.sharedInstance.setRefreshRateMainFeed(sender.selectedSegmentIndex)
     }
-    @IBAction func onFeedDetailsRefreshRateChanged(sender: UISegmentedControl) {
+    @IBAction func onFeedDetailsRefreshRateChanged(_ sender: UISegmentedControl) {
     
         UserDefaultsManager.sharedInstance.setRefreshRateDetailsFeed(sender.selectedSegmentIndex)
     }
