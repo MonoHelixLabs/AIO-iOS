@@ -27,7 +27,7 @@ class UserDefaultsManager: NSObject {
     
     let linemodeString = "linemode"
     let linemodedefault = 2
-    
+    let linemodePickerList = ["Stepped","Linear","Horizontal Bezier","Cubic Bezier"]
     
     //
     // Preferences that are synced with iCloud
@@ -194,6 +194,5 @@ class UserDefaultsManager: NSObject {
         prefs.set(value, forKey: linemodeString)
         UserDefaults.standard.synchronize()
     }
-
     
 }

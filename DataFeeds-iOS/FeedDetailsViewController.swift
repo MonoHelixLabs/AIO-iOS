@@ -23,6 +23,8 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     
     var timer: Timer!
     
+    var lineMode: Int!
+    
     #if os(iOS)
         @IBOutlet var lineChartView: LineChartView!
     #else
@@ -80,6 +82,7 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             timer = Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(FeedDetailsViewController.refreshHistFeedData(_:)), userInfo: nil, repeats: true)
         }
         
+        lineMode = UserDefaultsManager.sharedInstance.getLineMode()
     }
     
     
@@ -150,8 +153,22 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 ds1.drawValuesEnabled = false
                 ds1.drawFilledEnabled = true
                 ds1.fillColor = UIColor(red: 0.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-                ds1.mode = LineChartDataSet.Mode.horizontalBezier//.stepped//.linear//.horizontalBezier
-                //ds1.cubicIntensity = 0.2
+                
+                switch lineMode {
+                case 0:
+                    ds1.mode = LineChartDataSet.Mode.stepped
+                case 1:
+                    ds1.mode = LineChartDataSet.Mode.linear
+                case 2:
+                    ds1.mode = LineChartDataSet.Mode.horizontalBezier
+                    ds1.cubicIntensity = 0.2
+                case 3:
+                    ds1.mode = LineChartDataSet.Mode.cubicBezier
+                default:
+                    ds1.mode = LineChartDataSet.Mode.horizontalBezier
+                    ds1.cubicIntensity = 0.2
+                }
+                
                 ds1.setDrawHighlightIndicators(false)
                 
                 data.addDataSet(ds1)
