@@ -23,6 +23,8 @@ class UserDefaultsManager: NSObject {
     let mainfeedrefreshdefault = 0
     let feeddetailsrefreshString = "feeddetailsrefresh"
     let feeddetailsrefreshdefault = 0
+    let linemodeString = "linemode"
+    let linemodedefault = 2
     
     let refreshRates = [0.0, 15.0, 30.0, 60.0, 120.0]
     
@@ -160,6 +162,19 @@ class UserDefaultsManager: NSObject {
     func setRefreshRateDetailsFeed(_ value: Int) {
         let prefs = UserDefaults.standard
         prefs.set(value, forKey: feeddetailsrefreshString)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func getLineMode() -> Int {
+        let prefs = UserDefaults.standard
+        var linemode = prefs.integer(forKey: linemodeString)
+        if (linemode == 0) { linemode = linemodedefault }
+        return linemode
+    }
+    
+    func setLineMode(_ value: Int) {
+        let prefs = UserDefaults.standard
+        prefs.set(value, forKey: linemodeString)
         UserDefaults.standard.synchronize()
     }
 
