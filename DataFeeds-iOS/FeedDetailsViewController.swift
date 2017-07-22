@@ -156,12 +156,12 @@ class FeedDetailsViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 switch lineMode {
                 case 0:
-                    ds1.mode = LineChartDataSet.Mode.stepped
+                    ds1.mode = LineChartDataSet.Mode.horizontalBezier
+                    ds1.cubicIntensity = 0.2
                 case 1:
                     ds1.mode = LineChartDataSet.Mode.linear
                 case 2:
-                    ds1.mode = LineChartDataSet.Mode.horizontalBezier
-                    ds1.cubicIntensity = 0.2
+                    ds1.mode = LineChartDataSet.Mode.stepped
                 case 3:
                     ds1.mode = LineChartDataSet.Mode.cubicBezier
                 default:

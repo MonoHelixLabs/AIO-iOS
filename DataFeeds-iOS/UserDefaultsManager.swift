@@ -26,8 +26,8 @@ class UserDefaultsManager: NSObject {
     let refreshRates = [0.0, 15.0, 30.0, 60.0, 120.0]
     
     let linemodeString = "linemode"
-    let linemodedefault = 2
-    let linemodePickerList = ["Stepped","Linear","Horizontal Bezier","Cubic Bezier"]
+    let linemodedefault = 0
+    let linemodePickerList = ["Horizontal Bezier","Linear","Stepped","Cubic Bezier"]
     
     //
     // Preferences that are synced with iCloud
@@ -184,8 +184,7 @@ class UserDefaultsManager: NSObject {
     
     func getLineMode() -> Int {
         let prefs = UserDefaults.standard
-        var linemode = prefs.integer(forKey: linemodeString)
-        if (linemode == 0) { linemode = linemodedefault }
+        let linemode = prefs.integer(forKey: linemodeString)
         return linemode
     }
     
