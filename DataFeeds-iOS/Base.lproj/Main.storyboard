@@ -592,7 +592,7 @@
         <scene sceneID="ewy-4u-Bab">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V2W-DZ-nJE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Plot Settings" image="plotsettings" id="jdv-si-sHF"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Plot Settings" image="plotsettings" id="jdv-si-sHF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dlK-LT-MFW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
