@@ -49,7 +49,6 @@ class PlotSettingsViewController: UIViewController, UIPickerViewDataSource, UIPi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        print(pickerData[0][lineModePicker.selectedRow(inComponent: 0)])
         UserDefaultsManager.sharedInstance.setLineMode(lineModePicker.selectedRow(inComponent: 0))
     }
 }
