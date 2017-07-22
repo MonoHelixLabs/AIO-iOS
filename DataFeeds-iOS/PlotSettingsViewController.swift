@@ -14,7 +14,7 @@ class PlotSettingsViewController: UIViewController, UIPickerViewDataSource, UIPi
     @IBOutlet weak var lineModePicker: UIPickerView!
     
     var pickerData = [
-        ["test"]
+        ["Horizontal Bezier","Linear","Stepped","Cubic Bezier"]
     ]
     
     override func viewDidLoad() {
@@ -28,7 +28,6 @@ class PlotSettingsViewController: UIViewController, UIPickerViewDataSource, UIPi
         lineModePicker.delegate = self
         lineModePicker.dataSource = self
         
-        pickerData = [UserDefaultsManager.sharedInstance.linemodePickerList]
     }
     
     override func viewDidAppear(_ animated: Bool) {
