@@ -357,7 +357,6 @@
                                             <segment title="Horizontal Bezier"/>
                                             <segment title="Linear"/>
                                             <segment title="Stepped"/>
-                                            <segment title="Cubic Bezier"/>
                                         </segments>
                                         <connections>
                                             <action selector="onLineModeChanged:" destination="hj6-pJ-vAT" eventType="valueChanged" id="fdf-Ew-if8"/>
