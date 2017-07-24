@@ -23,8 +23,16 @@ class UserDefaultsManager: NSObject {
     let mainfeedrefreshdefault = 0
     let feeddetailsrefreshString = "feeddetailsrefresh"
     let feeddetailsrefreshdefault = 0
-    
     let refreshRates = [0.0, 15.0, 30.0, 60.0, 120.0]
+    
+    let linemodeString = "linemode"
+    let linemodedefault = 0
+    
+    //
+    // Preferences that are synced with iCloud
+    //
+    
+    // AIO key
     
     func getAIOkey() -> String {
  
@@ -51,6 +59,8 @@ class UserDefaultsManager: NSObject {
         UserDefaults.standard.synchronize()
         
     }
+    
+    // Feed emojis
     
     func getImagesPreferences() -> [String:String]{
         
@@ -96,6 +106,8 @@ class UserDefaultsManager: NSObject {
         
     }
     
+    // Helper functions
+    
     func syncWithiCloud() {
         
         let iCloudKeyStore: NSUbiquitousKeyValueStore? = NSUbiquitousKeyValueStore()
@@ -115,7 +127,9 @@ class UserDefaultsManager: NSObject {
         return String(Character(UnicodeScalar(Int(emoji,radix:16)!)!))
     }
     
+    //
     // Preferences that are not synced with iCloud follow
+    //
     
     func getShownKeyScreen() -> Bool {
         let prefs = UserDefaults.standard
@@ -129,12 +143,7 @@ class UserDefaultsManager: NSObject {
         UserDefaults.standard.synchronize()
     }
     
-    func getRefreshRateMainFeed() -> Int {
-        let prefs = UserDefaults.standard
-        var mainfeedrefresh = prefs.integer(forKey: mainfeedrefreshString)
-        if (mainfeedrefresh == 0) { mainfeedrefresh = mainfeedrefreshdefault }
-        return mainfeedrefresh
-    }
+    // Refresh Rate
     
     func getRefreshRateMainFeedToInterval() -> Double {
         return refreshRates[getRefreshRateMainFeed()]
@@ -142,6 +151,13 @@ class UserDefaultsManager: NSObject {
     
     func getRefreshRateFeedDetailsToInterval() -> Double {
         return refreshRates[getRefreshRateDetailsFeed()]
+    }
+    
+    func getRefreshRateMainFeed() -> Int {
+        let prefs = UserDefaults.standard
+        var mainfeedrefresh = prefs.integer(forKey: mainfeedrefreshString)
+        if (mainfeedrefresh == 0) { mainfeedrefresh = mainfeedrefreshdefault }
+        return mainfeedrefresh
     }
     
     func setRefreshRateMainFeed(_ value: Int) {
@@ -162,6 +178,19 @@ class UserDefaultsManager: NSObject {
         prefs.set(value, forKey: feeddetailsrefreshString)
         UserDefaults.standard.synchronize()
     }
-
+    
+    // Line Mode
+    
+    func getLineMode() -> Int {
+        let prefs = UserDefaults.standard
+        let linemode = prefs.integer(forKey: linemodeString)
+        return linemode
+    }
+    
+    func setLineMode(_ value: Int) {
+        let prefs = UserDefaults.standard
+        prefs.set(value, forKey: linemodeString)
+        UserDefaults.standard.synchronize()
+    }
     
 }

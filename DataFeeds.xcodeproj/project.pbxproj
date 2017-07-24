@@ -38,6 +38,8 @@
 		DAE2E1091ED01D6B0078C418 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DAE2E10C1ED042310078C418 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; };
 		DAE2E10D1ED042310078C418 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DAE2E1051ED01D350078C418 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DAF2E5C21F2281A100C5B18F /* PlotSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF2E5C11F2281A100C5B18F /* PlotSettingsViewController.swift */; };
+		DAF2E5C61F23B37D00C5B18F /* PlotSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF2E5C51F23B37D00C5B18F /* PlotSettingsViewController.swift */; };
 		DAFB149B1DAA8AA0002F2DCA /* RefreshRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB149A1DAA8AA0002F2DCA /* RefreshRateViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +123,8 @@
 		DACCC5941D858C730062A82F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DACCC5AD1D85B0F40062A82F /* EnterKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterKeyViewController.swift; sourceTree = "<group>"; };
 		DAE2E0FF1ED01D340078C418 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		DAF2E5C11F2281A100C5B18F /* PlotSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotSettingsViewController.swift; sourceTree = "<group>"; };
+		DAF2E5C51F23B37D00C5B18F /* PlotSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotSettingsViewController.swift; sourceTree = "<group>"; };
 		DAFB149A1DAA8AA0002F2DCA /* RefreshRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshRateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +187,7 @@
 				DA0294C51D81ADD200CD56CB /* EditFeedViewController.swift */,
 				DA0294C71D83428300CD56CB /* DateValueFormatter.swift */,
 				DAFB149A1DAA8AA0002F2DCA /* RefreshRateViewController.swift */,
+				DAF2E5C11F2281A100C5B18F /* PlotSettingsViewController.swift */,
 			);
 			path = "DataFeeds-iOS";
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				DACCC5921D858C730062A82F /* Assets.xcassets */,
 				DACCC5941D858C730062A82F /* Info.plist */,
 				DACCC5AD1D85B0F40062A82F /* EnterKeyViewController.swift */,
+				DAF2E5C51F23B37D00C5B18F /* PlotSettingsViewController.swift */,
 			);
 			path = "DataFeeds-tvOS";
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				DA0294911D7C771600CD56CB /* UserDefaultsManager.swift in Sources */,
 				DA2528C21D7AD55700EA6B6B /* RestApiManager.swift in Sources */,
 				DA0294C81D83428300CD56CB /* DateValueFormatter.swift in Sources */,
+				DAF2E5C21F2281A100C5B18F /* PlotSettingsViewController.swift in Sources */,
 				DAFB149B1DAA8AA0002F2DCA /* RefreshRateViewController.swift in Sources */,
 				DA0294931D7F26DD00CD56CB /* FeedDetailsViewController.swift in Sources */,
 				DA2528AC1D7AD20800EA6B6B /* AppDelegate.swift in Sources */,
@@ -387,6 +394,7 @@
 				DACCC5AA1D8591340062A82F /* DateValueFormatter.swift in Sources */,
 				DACCC59B1D858EFA0062A82F /* UserDefaultsManager.swift in Sources */,
 				DACCC59C1D8590240062A82F /* FeedDetailsViewController.swift in Sources */,
+				DAF2E5C61F23B37D00C5B18F /* PlotSettingsViewController.swift in Sources */,
 				DA98CE451DAA97D900F608E1 /* RefreshRateViewController.swift in Sources */,
 				DACCC5A91D8591120062A82F /* AppDelegate.swift in Sources */,
 				DACCC5991D858EE20062A82F /* RestApiManager.swift in Sources */,

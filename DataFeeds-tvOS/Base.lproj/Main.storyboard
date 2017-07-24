@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="6tL-Gj-bdT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="6tL-Gj-bdT">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YU-wz-qdB" userLabel="FeedTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="935"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -56,10 +60,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZAf-vB-vza">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="935"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psx-dR-9LV" userLabel="Granularity View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="H5u-Pu-Psr">
+                                                <rect key="frame" x="20" y="20" width="1880" height="70"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="69" id="iF8-D3-8yh"/>
@@ -84,8 +91,10 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ufp-ju-gty" userLabel="Vertical Stack View">
+                                        <rect key="frame" x="0.0" y="140" width="1920" height="795"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syg-3o-a1F" userLabel="Line Chart View" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="0.0" width="1920" height="795"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                         </subviews>
@@ -151,8 +160,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dhz-TN-C1g">
+                                <rect key="frame" x="40" y="20" width="1840" height="346"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" editable="NO" text="Manage Your AIO Key" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oM2-gS-4Zx" userLabel="Manage Text View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1840" height="150"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="uau-9Z-65t"/>
@@ -161,6 +172,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="To view your Adafruit IO feeds you have to use your AIO key. You can find this key on the io.adafruit.com website." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9a-sF-Kaa" userLabel="Details Text View">
+                                        <rect key="frame" x="0.0" y="150" width="1840" height="150"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="sCM-l0-EsJ"/>
@@ -171,6 +183,7 @@
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter AIO Key" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hnL-SW-fRP" userLabel="Key Text Input">
+                                        <rect key="frame" x="0.0" y="300" width="1840" height="46"/>
                                         <color key="textColor" red="0.35142227564102568" green="0.35142227564102568" blue="0.35142227564102568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -206,8 +219,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iwq-BR-StE">
+                                <rect key="frame" x="40" y="20" width="1840" height="688"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" editable="NO" text="Refresh Rate" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a6-xG-bQO" userLabel="Refresh Rate View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1840" height="150"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="Rbw-4p-v5b"/>
@@ -216,6 +231,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-GQ-WfM">
+                                        <rect key="frame" x="0.0" y="150" width="1840" height="200"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="5Ne-R1-DUa"/>
@@ -226,6 +242,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Feed Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjY-AN-KlS">
+                                        <rect key="frame" x="0.0" y="350" width="1840" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="lo8-Do-TCb"/>
                                         </constraints>
@@ -234,6 +251,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="p55-HT-Sh2">
+                                        <rect key="frame" x="0.0" y="450" width="1840" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="None"/>
@@ -247,6 +265,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed Details Refresh Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iro-sF-gFL">
+                                        <rect key="frame" x="0.0" y="519" width="1840" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="zH9-RB-n5S"/>
                                         </constraints>
@@ -255,6 +274,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YoP-WW-PbT">
+                                        <rect key="frame" x="0.0" y="619" width="1840" height="70"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="None"/>
@@ -287,6 +307,79 @@
             </objects>
             <point key="canvasLocation" x="2865" y="2456"/>
         </scene>
+        <!--Plot Settings-->
+        <scene sceneID="sMI-au-5vH">
+            <objects>
+                <viewController id="hj6-pJ-vAT" customClass="PlotSettingsViewController" customModule="DataFeeds_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ilk-zq-rmZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="GCa-zj-1dT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8wM-LB-FhU">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NHo-n8-Mao">
+                                <rect key="frame" x="40" y="20" width="1840" height="419"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" editable="NO" text="Plot Settings" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpF-Mi-2jh" userLabel="Refresh Rate View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1840" height="150"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="aSS-cx-ms2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="You can control how the line between data points on the feed details page is drawn." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb7-xc-Ej2">
+                                        <rect key="frame" x="0.0" y="150" width="1840" height="100"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="fIy-1o-AXx"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.36405840969999997" green="0.36405840969999997" blue="0.36405840969999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line Drawing Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1C-6o-kWJ">
+                                        <rect key="frame" x="0.0" y="250" width="1840" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Vbw-M2-52C"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                                        <color key="textColor" red="0.3514222756" green="0.3514222756" blue="0.3514222756" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6G4-3k-5cc">
+                                        <rect key="frame" x="0.0" y="350" width="1840" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                        <segments>
+                                            <segment title="Horizontal Bezier"/>
+                                            <segment title="Linear"/>
+                                            <segment title="Stepped"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="onLineModeChanged:" destination="hj6-pJ-vAT" eventType="valueChanged" id="fdf-Ew-if8"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="NHo-n8-Mao" firstAttribute="leading" secondItem="8wM-LB-FhU" secondAttribute="leadingMargin" constant="20" id="WR8-JJ-W90"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NHo-n8-Mao" secondAttribute="trailing" constant="20" id="kM5-Nt-kwD"/>
+                            <constraint firstItem="NHo-n8-Mao" firstAttribute="top" secondItem="Ilk-zq-rmZ" secondAttribute="bottom" constant="20" id="qa4-bJ-isx"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="3" title="Plot Settings" image="plotsettings" id="R9o-xS-o7D"/>
+                    <connections>
+                        <outlet property="lineModeControl" destination="6G4-3k-5cc" id="ndQ-nZ-e0e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddl-cr-buU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2854" y="3832"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FKG-bB-IKh">
             <objects>
@@ -301,6 +394,7 @@
                         <segue destination="mk0-KE-Bul" kind="relationship" relationship="viewControllers" id="Jys-mp-xF2"/>
                         <segue destination="6Wf-9s-Sxf" kind="relationship" relationship="viewControllers" id="rX0-08-asO"/>
                         <segue destination="lSr-nd-kin" kind="relationship" relationship="viewControllers" id="v8I-kB-q9f"/>
+                        <segue destination="hj6-pJ-vAT" kind="relationship" relationship="viewControllers" id="eWG-wJ-oIJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGj-iq-VBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -310,6 +404,7 @@
     </scenes>
     <resources>
         <image name="apikey" width="40" height="24"/>
+        <image name="plotsettings" width="40" height="30"/>
         <image name="refresh" width="40" height="37"/>
         <image name="sensors" width="50" height="33"/>
     </resources>
